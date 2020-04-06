@@ -7,4 +7,5 @@ indexController.index=(req,res)=>{
 
 }
 
+
 module.exports = indexController;

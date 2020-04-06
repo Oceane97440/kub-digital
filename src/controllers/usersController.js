@@ -20,5 +20,6 @@ usersController.create = (req, res) => { // POST : /users/create
     }).then(res.redirect('/'))
 }
 
+
 module.exports = usersController;
 

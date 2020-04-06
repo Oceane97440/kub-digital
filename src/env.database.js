@@ -10,6 +10,7 @@ DATABASE.LOCAL = {
     PASSWORD: ""
 }
 
+
 DATABASE.PROD = {
     DBNAME: "",
     USERNAME: "",

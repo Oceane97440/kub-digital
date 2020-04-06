@@ -8,5 +8,6 @@ usersController.index=(req,res)=>{
     })
 }
 
+
 module.exports = usersController;
 

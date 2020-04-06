@@ -15,7 +15,6 @@ const User = sequelize.define('utilisateurs', {
     // role: {type: Sequelize.INTEGER(), allowNull:false}, 1 =admi 0=user
     // statut: {type: Sequelize.INTEGER(), allowNull:false} 1=actif 0=inatif
 
-
 },
     {tableName: 'utilisateurs', underscored: true, paranoid: true}
 );

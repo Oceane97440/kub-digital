@@ -7,4 +7,5 @@ logging: false,//passer a true pour voir les différentes requêtes effectuées 
 });
 //on exporte pour utiliser notre connexion depuis les autre fichiers.
 var exports = module.exports = {};
+
 exports.sequelize = sequelize;
