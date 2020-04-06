@@ -1,5 +1,5 @@
 {
-  "name": "myapp",
+  "name": "kub-digital",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -15,8 +15,10 @@
     "http-errors": "^1.6.3",
     "https": "^1.0.0",
     "morgan": "^1.10.0",
+    "mysql2": "^2.1.0",
     "path": "^0.12.7",
     "pug": "2.0.0-beta11",
-    "sequelize": "^5.21.6"
+    "sequelize": "^5.21.6",
+    "sqlite3": "^4.1.1"
   }
 }

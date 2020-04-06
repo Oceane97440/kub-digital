@@ -25,11 +25,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileUpload());
 
 //HP
-var indexRouter = require('./routes/indexRoute');
+var indexRouter = require('./src/routes/indexRoute');
 app.use('/', indexRouter);
 
 //Users
-var usersRouter = require('./routes/usersRoute');
+var usersRouter = require('./src/routes/usersRoute');
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler

@@ -14,3 +14,4 @@ Terminer
 
 
 Prob
+Squelize ne veut pas s'installer 
