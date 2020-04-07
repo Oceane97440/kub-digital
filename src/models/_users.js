@@ -1,13 +1,10 @@
-const Sequelize = require('sequelize');
+const sequelize = require('../src/database.js').sequelize;
 
-const db = require('./../db');
+const Sequelize = require('sequelize');
 //var bcrypt = require("bcryptjs");
 
 
-module.exports = db.sequelize.define(
-    
-'utilisateurs', {
-
+const User = sequelize.define('utilisateurs', {
     id: {type: Sequelize.INTEGER, autoIncrement:true, primaryKey:true },
     nom: {type: Sequelize.STRING(45),allowNull:false},
     prenom: {type: Sequelize.STRING(45),allowNull:false},
@@ -22,3 +19,4 @@ module.exports = db.sequelize.define(
 {tableName: 'utilisateurs', underscored: true, timestamps: false}
 );
 
+module.exports = User;
