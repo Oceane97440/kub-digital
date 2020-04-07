@@ -1,4 +1,4 @@
-const sequelize = require('./database/database.js').sequelize;
+const sequelize = require('./../src/database').sequelize;
 const Sequelize = require('sequelize');
 //var bcrypt = require("bcryptjs");
 
@@ -16,7 +16,7 @@ const User = sequelize.define('utilisateurs', {
 
 
 },
-    {tableName: 'utilisateurs', underscored: true, paranoid: true}
+    {tableName: 'utilisateurs', underscored: true, timestamps: false}
 );
 
 module.exports = User;
