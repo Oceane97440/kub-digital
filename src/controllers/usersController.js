@@ -1,7 +1,7 @@
 const usersController = {};
 const User = require('../models/users.js');
 
-usersController.index=(req,res)=>{
+usersController.index=(req,res)=>{// GET : /users/create
 
 
     res.render('users/signup', {
@@ -10,6 +10,7 @@ usersController.index=(req,res)=>{
 }
 
 usersController.create = (req, res) => { // POST : /users/create
+    console.log(req.body);
     User.create({
         nom: req.body.nom_user,
         prenom: req.body.prenom_user,

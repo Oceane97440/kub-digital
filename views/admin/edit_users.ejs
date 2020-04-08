@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <title><%= title %></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Boutique" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style>
+
+.login-blue {
+    background: linear-gradient(145deg, #2196F3, #3F51B5);
+}
+</style>
+  </head>
+  <body>
+   
+
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card"style="margin-top: 20%;">
+            <div class="login-blue p-3 shadow-lg rounded">
+                <div class="pt-3">
+                    <h2 class="text-white">Admin | Ajout d'un utilisateur</h2>
+                </div>
+        
+                <form id="signup-form" data-parsley-validate class="mt-5" role="form" action="/admin/update/<%= user.id %>" method="POST"> 
+                    
+                    
+                    <div class="form-group">
+                        <input type="text" 
+                            name="nom_user"
+                            class="form-control form-control-sm"
+                            required 
+                            placeholder="<%= user.nom %>">
+                    </div>
+        
+        
+                    <div class="form-group">
+                        <input type="text" 
+                            name="prenom_user"
+                            class="form-control form-control-sm" 
+                            required 
+                            placeholder="<%= user.prenom %>">
+                    </div>
+        
+        
+                    <div class="form-group">
+                        <input type="email" 
+                            name="email_user"
+                            class="form-control form-control-sm" 
+                            required
+                            placeholder="<%= user.email %>"
+                           >
+                    </div>
+        
+                    <div class="form-group">
+                        <input type="password" 
+                            name="password_user"
+                            class="form-control form-control-sm" 
+                            required 
+                            placeholder="<%= user.password %>">
+                    </div>
+        
+                    <div class="form-group">
+                        <input type="text" 
+                            name="profession_user"
+                            class="form-control form-control-sm" 
+                            required 
+                            placeholder="<%= user.profession %>">
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="tel" 
+                            name="telephone_user"
+                            class="form-control form-control-sm" 
+                            required 
+                            placeholder="<%= user.telephone %>"
+                            > <!--+262 692 12 34 56 -->
+                    </div>
+        
+        
+        
+                    <div class="mt-5">
+                        <button id="signup-submit-btn" class="btn btn-sm btn-danger col">
+                            Ajout user
+                        </button>
+                    </div>
+        
+                    
+                    
+                    <div class="mt-5">
+                        <p class="text-center text-white">
+                            Vous avez déja un compte ?
+                            <a href="/login" class="text-warning">Connecter-vous</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
+    </div> 
+</div>
+
+
+
+
+  </body>
+</html>
+
+
+
+
+

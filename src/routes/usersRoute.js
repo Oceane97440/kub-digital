@@ -5,7 +5,7 @@ let usersController = require("../controllers/usersController");
 
 /**
  * @request GET
- * @controller list
+ * @controller index
  * Affiche le formulaire inscription
  * 
  */
@@ -13,11 +13,20 @@ router.get('/', usersController.index);
 
 /**
  * @request POST
- * @controller list
+ * @controller create
  * Ajout du users dans la bdd
  * 
  */
-router.get('/create', usersController.create);
+router.post('/create', usersController.create);
+
+
+/**
+ * @request POST
+ * @controller login
+ * Identification du user (login)
+ * 
+ */
+
 
 module.exports = router;
 
