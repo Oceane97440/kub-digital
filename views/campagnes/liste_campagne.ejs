@@ -8,6 +8,8 @@
     <meta name="description" content="Boutique" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+
 
 </head>
 
@@ -23,8 +25,54 @@
     </div>
 
 
+    <table class="table table-striped">
+
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Noms Annonceurs</th>
+                <th scope="col">Noms Campagnes</th>
+                <th scope="col">Date debut et fin campagne</th>
+                <th scope="col">Budget</th>
+                <th scope="col">Statut</th>
+                <th scope="col">Id_visuel</th>
+                <th scope="col">Id_format</th>
+                <th scope="col">Action</th>
+
+            </tr>
+        </thead>
+
+        <% for(let i=0; i < campagnes.length; i++) {%>
+        <tbody>
+            <tr>
+                <th scope="row"><%= campagnes[i].id %></th>
+                <td><%= campagnes[i].nom_campagne %></td>
+                <td><%= campagnes[i].date_d %>
+                <br>
+                <%= campagnes[i].date_f %>
+                </td>
+                <td><%= campagnes[i].email %></td>
+                <td><%= campagnes[i].budget %></td>
+                <td><%= campagnes[i].statut %></td>
+                <td>visuels</td>
+                <td>Formats</td>
+
+                <td>
+                    <a class="btn btn-sm btn-warning" href="/campagne/edit/<%= campagnes[i].id %>"><i
+                            class="fa fa-pencil-alt"></i></a>
+
+                    <a class="btn btn-sm btn-danger" href="/campagne/delete/<%= campagnes[i].id %>" type="button"><i
+                            class="fas fa-times-circle"></i></a>
+                </td>
 
 
+
+            </tr>
+
+        </tbody>
+        <% } %>
+
+    </table>
 
 </body>
 

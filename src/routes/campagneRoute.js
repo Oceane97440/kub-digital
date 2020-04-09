@@ -13,20 +13,45 @@ router.get('/', campagneController.index);
 
 /**
  * @request GET
- * @controller index
- * Affiche les campagnes
+ * @controller form_campagne
+ * Formulaire d'ajout d'une campagne
  * 
  */
 router.get('/add', campagneController.form_campagne);
 
 /**
  * @request POST
- * @controller index
+ * @controller create
  * Cree un campagne
  * 
  */
 router.post('/create', campagneController.create);
 
+
+
+/**
+ * @request GET
+ * @controller edit
+ * Formulaire d'edit d'un campagne
+ * 
+ */
+router.get('/edit/:id', campagneController.edit);
+
+/**
+ * @request POST
+ * @controller update
+ * Update des info de la campagne
+ * 
+ */
+router.post('/update/:id', campagneController.update);
+
+/**
+ * @request DELETE
+ * @controller delete
+ * Delete une campagne
+ * 
+ */
+router.get('/delete/:id', campagneController.delete);
 
 
 module.exports = router;
