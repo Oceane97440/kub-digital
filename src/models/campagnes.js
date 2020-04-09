@@ -13,7 +13,7 @@ module.exports = db.sequelize.define(
     date_d: {type: Sequelize.STRING(45),allowNull:false},
     date_f: {type: Sequelize.STRING(45),allowNull:false},
     budget: {type: Sequelize.STRING(),allowNull:false},
-    statut: {type: Sequelize.BOOLEAN(),allowNull:false}// 1=actif 0=inatif
+    statut: {type: Sequelize.BOOLEAN(),allowNull:false}// 1=actif 0=inactif
    // id_formats:{}
 
 },
