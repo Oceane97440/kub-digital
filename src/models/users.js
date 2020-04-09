@@ -16,7 +16,8 @@ module.exports = db.sequelize.define(
     profession: {type: Sequelize.STRING(200),allowNull:false},
     telephone: {type: Sequelize.STRING(45),allowNull:false},
     // role: {type: Sequelize.INTEGER(), allowNull:false}, 1 =admi 0=user
-    // statut: {type: Sequelize.INTEGER(), allowNull:false} 1=actif 0=inatif
+    statut: {type: Sequelize.BOOLEAN(),allowNull:false}// 1=actif 0=inactif
+
 
 },
 {tableName: 'utilisateurs', underscored: true, timestamps: false}

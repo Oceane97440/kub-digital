@@ -48,14 +48,18 @@
                     <td><%= users[i].profession %></td>
                     <td><%= users[i].telephone %></td>
                     <td>Annonceurs</td>
-                    <td>Statut</td>
+                    <td><%= users[i].statut %></td>
 
                     <td>
+                        <a class="btn btn-sm btn-info" href="/admin/detail/<%= users[i].id %>" type="button"><i
+                                class="fas fa-eye"></i></a>
                         <a class="btn btn-sm btn-warning" href="/admin/edit/<%= users[i].id %>"><i
                                 class="fa fa-pencil-alt"></i></a>
 
                         <a class="btn btn-sm btn-danger" href="/admin/delete/<%= users[i].id %>" type="button"><i
                                 class="fas fa-times-circle"></i></a>
+
+
                     </td>
 
 

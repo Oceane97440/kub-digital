@@ -35,7 +35,7 @@
                             name="nom_user"
                             class="form-control form-control-sm"
                             required 
-                            placeholder="<%= user.nom %>">
+                            value="<%= user.nom %>">
                     </div>
         
         
@@ -44,7 +44,7 @@
                             name="prenom_user"
                             class="form-control form-control-sm" 
                             required 
-                            placeholder="<%= user.prenom %>">
+                            value="<%= user.prenom %>">
                     </div>
         
         
@@ -53,35 +53,43 @@
                             name="email_user"
                             class="form-control form-control-sm" 
                             required
-                            placeholder="<%= user.email %>"
+                            value="<%= user.email %>"
                            >
                     </div>
         
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <input type="password" 
                             name="password_user"
                             class="form-control form-control-sm" 
                             required 
                             placeholder="<%= user.password %>">
-                    </div>
+                    </div> -->
         
                     <div class="form-group">
                         <input type="text" 
                             name="profession_user"
                             class="form-control form-control-sm" 
                             required 
-                            placeholder="<%= user.profession %>">
+                            value="<%= user.profession %>">
                     </div>
                     
                     <div class="form-group">
                         <input type="tel" 
                             name="telephone_user"
+                            
                             class="form-control form-control-sm" 
                             required 
-                            placeholder="<%= user.telephone %>"
+                            value="<%= user.telephone %>"
                             > <!--+262 692 12 34 56 -->
                     </div>
         
+                    <div class="form-group">
+                            <select value="<%= user.statut %>" name="statut" id="">
+                                <option value="1">Actif</option>
+                                <option value="0">Inactif</option>
+
+                            </select>
+                    </div>
         
         
                     <div class="mt-5">

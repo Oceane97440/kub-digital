@@ -44,9 +44,10 @@ adminController.update = (req, res) => { // POST : admin/update/:id
             nom: req.body.nom_user,
             prenom: req.body.prenom_user,
             email: req.body.email_user,
-            password: req.body.password_user,
+          //  password: req.body.password_user,
             profession: req.body.profession_user,
-            telephone: req.body.telephone_user
+            telephone: req.body.telephone_user,
+            statut:req.body.statut
         }, {
             where:{
                 id:req.params.id
