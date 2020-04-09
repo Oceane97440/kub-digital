@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 //const fileUpload = require('express-fileupload');
 //var cookieSession = require('cookie-session')
 
+mainDir = __dirname;
 
 
 var app = express();
