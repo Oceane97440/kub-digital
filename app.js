@@ -45,6 +45,26 @@ var campagneRouter=require('./src/routes/campagneRoute');
 app.use('/campagne',campagneRouter);
 
 
+//Formats
+var formatRouter=require('./src/routes/formatRoute');
+app.use('/format',formatRouter);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.set("port", process.env.PORT || 3000);
 
