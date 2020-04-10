@@ -1,8 +1,7 @@
 const usersController = {};
 const User = require('../models/users.js');
 
-usersController.index=(req,res)=>{// GET : /users/create
-
+usersController.index=(req,res)=>{// GET : /users
 
     res.render('users/signup', {
         title: "Page Users"

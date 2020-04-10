@@ -1,0 +1,67 @@
+<style>
+    #navbar {
+
+        background-color: #3f51b5 !important;
+    }
+</style>
+
+<body>
+    <nav id="navbar" class="mb-4 navbar navbar-expand-lg navbar-light bg-light text-white">
+        <a class="navbar-brand" href="#"><img src="https://mdbootstrap.com/img/logo/mdb-transparent.png" height="30"
+                alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
+            aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link text-white" href="/">KUB-Digital <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">Annonceur</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle  text-white" href="/campagne" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Campagne
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item " href="/campagne">Vos des campagnes</a>
+                        <a class="dropdown-item" href="/campagne/add">Crée sa campagne</a>
+                        <div class="dropdown-divider "></div>
+                        <a class="dropdown-item " href="#">Vos visuels</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled text-white" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto nav-flex-icons">
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-unique"
+                        aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="/admin">Voir tout nos users</a>
+                        <a class="dropdown-item" href="/format">Nos formats</a>
+                        <a class="dropdown-item" href="/format/add">Crée un format</a>
+                        <a class="dropdown-item" href="/format/add">Supports de diffusions</a>
+
+                    </div>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link  text-white" href="/users" id="navbarDropdown" >Inscription </a>
+                <li class="nav-item ">
+                    <a class="nav-link  text-white" href="#" id="navbarDropdown">Login</a>
+                
+                </li>
+            </ul>
+        
+
+        </div>
+    </nav>
