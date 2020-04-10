@@ -3,8 +3,50 @@
 
 <h1>Page format</h1>
 
+<table class="table table-striped">
+
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Noms du format</th>
+            <th scope="col">Dimenssion longeur</th>
+            <th scope="col">Dimenssion largeur</th>
+            <th scope="col">Prix en €</th>
+            <th scope="col">Site</th>
+            <th scope="col">Action</th>
+
+        </tr>
+    </thead>
+
+    <% for(let i=0; i < formats.length; i++) {%>
+    <tbody>
+        <tr>
+            <th scope="row"><%= formats[i].id %></th>
+            <td><%= formats[i].nom_format %></td>
+            <td><%= formats[i].dimension_w %></td>
+            <td><%= formats[i].dimension_h %></td>
+            <td><%= formats[i].prix %></td>
+            <td>Site</td>
+
+            <td>
+                <a class="btn btn-sm btn-info" href="/format/detail/<%= formats[i].id %>" type="button"><i
+                        class="fas fa-eye"></i></a>
+                <a class="btn btn-sm btn-warning" href="/format/edit/<%= formats[i].id %>"><i
+                        class="fa fa-pencil-alt"></i></a>
+
+                <a class="btn btn-sm btn-danger" href="/format/delete/<%= formats[i].id %>" type="button"><i
+                        class="fas fa-times-circle"></i></a>
+
+
+            </td>
+
+
+
+        </tr>
+
+    </tbody>
+    <% } %>
+
+</table>
+
 <% include ../layouts/doctype_end.ejs %>
-
-
-
-

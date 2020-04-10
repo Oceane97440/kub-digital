@@ -14,13 +14,13 @@
                 </div>
                 <div id="collapse1" class="collapse show">
                     <div class="card-body">
-                        <form id="signup-form" data-parsley-validate class="mt-5" role="form" action="/format/create"
+                        <form id="signup-form" data-parsley-validate class="mt-5" role="form" action="/format/update/<%= format.id %>"
                             method="POST">
                             <div class="row">
                                 <div class="col-md-3 col-lg-4">
                                     <div class="form-group">
                                         <label class="control-label">Nom du format</label>
-                                        <input type="text" name="nom_format" class="form-control" />
+                                        <input type="text" name="nom_format" class="form-control" value="<%= format.nom_format %>" />
                                     </div>
                                 </div>
 
@@ -30,7 +30,7 @@
                                         <label class="control-label">Dimension longeur (W)</label>
                                         <div class="input-group date">
                                             <input type="number" class="form-control" name="dimension_w"
-                                                value="" min="50">
+                                                value="<%= format.dimension_w %>" min="50">
 
                                         </div>
                                     </div>
@@ -39,7 +39,7 @@
                                     <div class="form-group">
                                         <label class="control-label">Dimension hauteur (H)</label>
                                         <input type="number" class="form-control" name="dimension_h"
-                                            value="" min="50">
+                                            value="<%= format.dimension_h %>" min="50">
                                     </div>
                                 </div>
                             </div>
@@ -49,7 +49,7 @@
                                     <div class="form-group">
                                         <label class="control-label">Prix (HT en €)</label>
                                         <input type="number" name="prix" class="form-control"
-                                        min="50" value=""/>
+                                        min="50" value="<%= format.prix %>"/>
 
                                     </div>
                                 </div>
