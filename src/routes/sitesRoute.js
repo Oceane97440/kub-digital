@@ -29,4 +29,33 @@ router.get('/add', sitesController.add);
  */
 router.post('/create', sitesController.create);
 
+
+/**
+ * @request GET
+ * @controller update
+ * Formulaire modif d'un sites
+ * 
+ */
+router.get('/edit/:id', sitesController.edit);
+
+/**
+ * @request POST
+ * @controller update
+ * Update les donnée  d'un sites
+ * 
+ */
+router.post('/update/:id', sitesController.update);
+
+/**
+ * @request DELETE
+ * @controller delete
+ *Supprime un site
+ * 
+ */
+router.get('/delete/:id', sitesController.delete);
+
+
+
+
+
 module.exports = router;

@@ -1,9 +1,45 @@
 <% include ../layouts/doctype.ejs %>
 
 
-    <!-- <title><%= title %></title> -->
+<table class="table table-striped">
 
-<h1>Liste sites</h1>
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Noms du site</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+
+        </tr>
+    </thead>
+
+    <% for(let i=0; i < sites.length; i++) {%>
+    <tbody>
+        <tr>
+            <th scope="row"><%= sites[i].id %></th>
+            <td><%= sites[i].nom_site %></td>
+            <td><%= sites[i].statut %></td>
+
+
+            <td>
+                <a class="btn btn-sm btn-info" href="/sites/detail/<%= sites[i].id %>" type="button"><i
+                        class="fas fa-eye"></i></a>
+                <a class="btn btn-sm btn-warning" href="/sites/edit/<%= sites[i].id %>"><i
+                        class="fa fa-pencil-alt"></i></a>
+
+                <a class="btn btn-sm btn-danger" href="/sites/delete/<%= sites[i].id %>" type="button"><i
+                        class="fas fa-times-circle"></i></a>
+
+
+            </td>
+
+
+
+        </tr>
+
+    </tbody>
+    <% } %>
+
+</table>
 
 <% include ../layouts/doctype_end.ejs %>
-
