@@ -1,0 +1,34 @@
+<% include ../layouts/doctype.ejs %>
+
+<div class="card bg-light mb-3 mx-auto mt-5" style="max-width: 18rem;">
+    <div class="card-header">
+        Modif d'un annonceur
+    </div>
+    <div class="card-body">
+        <form action="/annonceurs/update/<%=annonceur.id %>" method="POST">
+            <div class="form-group">
+                <label for="nom-categorie">Nom de la societer :</label>
+                <input type="text" class="form-control" name="nom_societe" id="nom_societe"
+                    value="<%=annonceur.nom_societe %>" />
+            </div>
+            <div class="form-group">
+                <label for="nom-categorie">Nom de l'annonceur :</label>
+                <input type="text" class="form-control" name="nom_annonceur" id="nom_annonceur"
+                    value="<%=annonceur.nom_annonceur %>" />
+            </div>
+            <div class="form-group">
+                <label for="active-categorie">Statut :</label>
+                <select name="statut" class="form-control" id="active-categorie" value="<%=annonceur.statut %>">
+                    <option value="0">Inactif</option>
+                    <option value="1">Actif</option>
+                </select>
+            </div>
+
+            <div class="card-footer bg-transparent border-success justify-content-center d-flex">
+                <button type="submit" class="btn btn-warning">Modif</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<% include ../layouts/doctype_end.ejs %>

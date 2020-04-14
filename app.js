@@ -54,10 +54,9 @@ var sitesRouter=require('./src/routes/sitesRoute');
 app.use('/sites',sitesRouter);
 
 
-
 //Annonceurs
-// var annonceursRouter=require('./src/routes/annonceursRouter');
-// app.use('/annonceurs',annonceursRouter);
+var annonceursRouter=require('./src/routes/annonceursRouter');
+app.use('/annonceurs',annonceursRouter);
 
 
 

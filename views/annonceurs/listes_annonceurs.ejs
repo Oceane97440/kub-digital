@@ -1,0 +1,54 @@
+<% include ../layouts/doctype.ejs %>
+
+
+    <!-- <title><%= title %></title> -->
+
+<h1>Liste des annonceurs</h1>
+
+
+<table class="table table-striped">
+
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Noms du societer</th>
+            <th scope="col">Noms de l'annonceurs</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+
+        </tr>
+    </thead>
+
+    <% for(let i=0; i < annonceurs.length; i++) {%>
+    <tbody>
+        <tr>
+            <th scope="row"><%= annonceurs[i].id %></th>
+            <td><%= annonceurs[i].nom_societe %></td>
+            <td><%= annonceurs[i].nom_annonceur %></td>
+            <td><%= annonceurs[i].statut %></td>
+
+
+            <td>
+                <a class="btn btn-sm btn-info" href="/annonceurs/detail/<%= annonceurs[i].id %>" type="button"><i
+                        class="fas fa-eye"></i></a>
+                <a class="btn btn-sm btn-warning" href="/annonceurs/edit/<%= annonceurs[i].id %>"><i
+                        class="fa fa-pencil-alt"></i></a>
+
+                <a class="btn btn-sm btn-danger" href="/annonceurs/delete/<%= annonceurs[i].id %>" type="button"><i
+                        class="fas fa-times-circle"></i></a>
+
+
+            </td>
+
+
+
+        </tr>
+
+    </tbody>
+    <% } %>
+
+</table>
+
+
+<% include ../layouts/doctype_end.ejs %>
+
