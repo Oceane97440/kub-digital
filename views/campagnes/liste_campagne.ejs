@@ -7,7 +7,7 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Noms Annonceurs</th>
+                <!-- <th scope="col">Noms Annonceurs</th> -->
                 <th scope="col">Noms Campagnes</th>
                 <th scope="col">Date debut et fin campagne</th>
                 <th scope="col">Budget</th>
@@ -28,14 +28,13 @@
                     <br>
                     <%= campagnes[i].date_f %>
                 </td>
-                <td><%= campagnes[i].email %></td>
                 <td><%= campagnes[i].budget %></td>
                 <td><%= campagnes[i].statut %></td>
                 <td>visuels</td>
-                <td>Formats</td>
+                <td>Format:<%= campagnes[i].id_formats %></td>
 
                 <td>
-                    <a class="btn btn-sm btn-info" href="/admin/detail/<%= campagnes[i].id %>" type="button"><i
+                    <a class="btn btn-sm btn-info" href="/campagne/detail/<%= campagnes[i].id %>" type="button"><i
                             class="fas fa-eye"></i></a>
 
                     <a class="btn btn-sm btn-warning" href="/campagne/edit/<%= campagnes[i].id %>"><i
