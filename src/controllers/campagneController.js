@@ -31,7 +31,9 @@ campagneController.create = (req, res) => { // POST : /campagne/create
         date_d: req.body.date_d,
         date_f: req.body.date_f,
         budget: req.body.budget,
-        statut:req.body.statut
+        statut:req.body.statut,
+        id_formats: Number(req.body.format_campagne),//choisir un format
+
     }).then(res.redirect('/campagne'))
 }
 
@@ -64,7 +66,9 @@ campagneController.update = (req, res) => { // POST : campagne/update/:id
             date_d: req.body.date_d,
             date_f: req.body.date_f,
             budget: req.body.budget,
-            statut:req.body.statut
+            statut:req.body.statut,
+            id_formats: Number(req.body.format_campagne),
+
         }, {
             where:{
                 id:req.params.id
@@ -81,6 +85,28 @@ campagneController.delete = (req, res) => { // GET : campagne/delete/:id
         }
     }).then(() => {
         res.redirect('/campagne')
+    })
+}
+
+/**
+ * @method GET
+ * @url /campagne/jsonList
+ */
+campagneController.jsonList = (req, res) => {
+    Campagne.findAll().then(campagnes => {
+      //  console.log(campagnes);
+        try {
+            res.json({
+                statut: "OK",
+                data: campagnes,
+                message: ""
+            })
+        } catch (error) {
+            res.json({
+                statut: "KO",
+                message: error
+            })
+        }
     })
 }
 

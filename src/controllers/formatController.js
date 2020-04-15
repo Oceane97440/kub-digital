@@ -89,4 +89,26 @@ formatController.delete = (req, res) => { // GET : format/delete/:id
 }
 
 
+formatController.jsonList = (req, res) => {//GET /format/jsonlist
+
+    //permet de convertion la data en json
+    Formats.findAll().then(formats => {
+   //     console.log(formats);
+
+        try {
+            res.json({
+                statut: "OK",
+                data: formats,
+                message: ""
+            })
+        } catch (error) {
+            res.json({
+                statut: "KO",
+                message: error
+            })
+        }
+    })
+}
+
+
 module.exports = formatController;
