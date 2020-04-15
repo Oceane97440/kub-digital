@@ -84,4 +84,26 @@ annonceursController.delete = (req, res) => { // GET : annonceurs/delete/:id
     })
 }
 
+/**
+ * @method GET
+ * @url /annonceurs/jsonList
+ */
+annonceursController.jsonList = (req, res) => {
+    Annonceur.findAll().then(annonceurs => {
+      //  console.log(annonceurs);
+        try {
+            res.json({
+                statut: "OK",
+                data: annonceurs,
+                message: ""
+            })
+        } catch (error) {
+            res.json({
+                statut: "KO",
+                message: error
+            })
+        }
+    })
+}
+
 module.exports = annonceursController;

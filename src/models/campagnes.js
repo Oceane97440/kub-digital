@@ -19,9 +19,8 @@ const campagnes = sequelize.define('campagnes', {
 const formats = require('../models/formats');
 
 
-campagnes.belongsTo(formats,{foreignKey: 'id_formats', onDelete: 'cascade', hooks: true });// l'article à une catégorie.
-formats.hasMany(campagnes, {foreignKey: 'id_formats', onDelete: 'cascade', hooks: true});// Une catégorie peut avoir plusieur articles.
-// Article.hasMany(LignePanier, {foreignKey: 'articles_id'});// Un article peut avoir plusieur lignes panier.
+campagnes.belongsTo(formats,{foreignKey: 'id_formats', onDelete: 'cascade', hooks: true });// la campagne à un format.
+formats.hasMany(campagnes, {foreignKey: 'id_formats', onDelete: 'cascade', hooks: true});// Un format peut avoir plusieur articles.
 
 
 module.exports = campagnes;

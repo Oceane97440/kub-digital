@@ -53,5 +53,10 @@ router.post('/update/:id', annonceursController.update);
  */
 router.get('/delete/:id', annonceursController.delete);
 
+/**
+ * @method GET
+ * @url /annonceurs/jsonList
+ */
+router.get('/jsonList',annonceursController.jsonList)
 
 module.exports = router;

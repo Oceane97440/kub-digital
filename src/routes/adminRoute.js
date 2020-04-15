@@ -33,6 +33,10 @@ router.post('/update/:id', adminController.update);
  */
 router.get('/delete/:id', adminController.delete);
 
-
+/**
+ * @method GET
+ * @url /admin/jsonList
+ */
+//router.get('/jsonList',adminController.jsonList)
 
 module.exports = router;

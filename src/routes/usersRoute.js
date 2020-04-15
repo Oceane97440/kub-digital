@@ -27,6 +27,11 @@ router.post('/create', usersController.create);
  * 
  */
 
+/**
+ * @method GET
+ * @url /users/jsonList
+ */
+router.get('/jsonList',usersController.jsonList)
 
 module.exports = router;
 
