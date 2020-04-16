@@ -1,0 +1,53 @@
+<% include ../layouts/doctype.ejs %>
+
+
+
+    <table class="table table-striped">
+
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <!-- <th scope="col">Noms Annonceurs</th> -->
+                <th scope="col">Noms visuels</th>
+                <th scope="col">Type</th>
+                <th scope="col">Poids</th>
+                <th scope="col">Dimession largeur(w)</th>
+                <th scope="col">Dimession largeur(h)</th>
+                <th scope="col">Id_format</th>
+                <th scope="col">Action</th>
+
+            </tr>
+        </thead>
+
+        <% for(let i=0; i < visuels.length; i++) {%>
+        <tbody>
+            <tr>
+                <th scope="row"><%= visuels[i].id %></th>
+                <td><%= visuels[i].nom_visuel %></td>
+                <td><%= visuels[i].type %></td>
+                <td><%= visuels[i].poids %></td>
+                <td><%= visuels[i].dimension_visuel_w %></td>
+                <td><%= visuels[i].dimension_visuel_h %></td>                
+                <td><%= visuels[i].id_formats %></td>
+
+                <td>
+                    <a class="btn btn-sm btn-info" href="/visuels/detail/<%= visuels[i].id %>" type="button"><i
+                            class="fas fa-eye"></i></a>
+
+                    <a class="btn btn-sm btn-warning" href="/visuels/edit/<%= visuels[i].id %>"><i
+                            class="fa fa-pencil-alt"></i></a>
+
+                    <a class="btn btn-sm btn-danger" href="/visuels/delete/<%= visuels[i].id %>" type="button"><i
+                            class="fas fa-times-circle"></i></a>
+                </td>
+
+
+
+            </tr>
+
+        </tbody>
+        <% } %>
+
+    </table>
+
+    <% include ../layouts/doctype_end.ejs %>

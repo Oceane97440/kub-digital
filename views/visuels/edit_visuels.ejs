@@ -1,0 +1,80 @@
+<% include ../layouts/doctype.ejs %>
+
+
+<div id="accordion">
+
+
+    <div class="card card-default">
+        <div class="card-header">
+            <h4 class="card-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                    <i class="glyphicon glyphicon-search text-gold"></i>
+                    <b>Crée votre campagne</b>
+                </a>
+            </h4>
+        </div>
+        <div id="collapse1" class="collapse show">
+            <div class="card-body">
+                <form id="signup-form" data-parsley-validate class="mt-5" role="form" action="/visuels/update/<%=visuel.id %>"method="POST">
+                    <div class="row">
+                        <div class="col-md-3 col-lg-4">
+                            <div class="form-group">
+                                <label class="control-label">Nom du visuel</label>
+                                <input type="text" name="nom_visuel" class="form-control"value="<%=visuel.nom_visuel %>"  />
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-lg-4">
+                            <div class="form-group">
+                                <label class="control-label">Type de fichier</label>
+                                <input type="text" name="type" class="form-control"value="<%=visuel.type  %>"  />
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-lg-4">
+                            <div class="form-group">
+                                <label class="control-label">Poid fichier</label>
+                                <input type="number" name="poids" class="form-control"value="<%=visuel.poids  %>"  />
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-md-4 col-lg-3">
+
+                                <div class="form-group">
+                                    <label class="control-label">Dimession largeur</label>
+                                    <input type="number" name="dimension_visuel_w" class="form-control"value="<%=visuel.dimension_visuel_w  %>"  />
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-lg-4">
+                                <div class="form-group">
+                                    <label class="control-label">Dimession hauteur</label>
+                                    <input type="number" name="dimension_visuel_h" class="form-control"value="<%=visuel.dimension_visuel_h  %>"  />
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-2 col-lg-3">
+                                <label class="control-label">Choisir votre format</label>
+                                <div class="form-group">
+                                    <select name="format_visuels" id="format_visuel">
+
+
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="mt-5">
+                            <button id="signup-submit-btn" class="btn btn-sm btn-info col">
+                                Créaction de votre visuel
+                            </button>
+                        </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<% include ../layouts/doctype_end.ejs %>

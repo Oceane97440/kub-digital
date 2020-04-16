@@ -41,8 +41,8 @@ var adminRouter=require('./src/routes/adminRoute');
 app.use('/admin',adminRouter);
 
 //Campagnes
-var campagneRouter=require('./src/routes/campagneRoute');
-app.use('/campagne',campagneRouter);
+// var campagneRouter=require('./src/routes/campagneRoute');
+// app.use('/campagne',campagneRouter);
 
 
 //Formats
@@ -53,6 +53,10 @@ app.use('/format',formatRouter);
 var sitesRouter=require('./src/routes/sitesRoute');
 app.use('/sites',sitesRouter);
 
+
+//Sites
+var visuelsRouter=require('./src/routes/visuelsRoute');
+app.use('/visuels',visuelsRouter);
 
 //Annonceurs
 var annonceursRouter=require('./src/routes/annonceursRouter');
