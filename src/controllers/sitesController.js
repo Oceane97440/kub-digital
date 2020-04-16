@@ -83,4 +83,28 @@ sitesController.delete = (req, res) => { // GET : sites/delete/:id
     })
 }
 
+
+/**
+ * @method GET
+ * @url /sites/jsonList
+ */
+sitesController.jsonList = (req, res) => {
+    Sites.findAll().then(sites => {
+        //  console.log(campagnes);
+        try {
+            res.json({
+                statut: "OK",
+                data: sites,
+                message: ""
+            })
+        } catch (error) {
+            res.json({
+                statut: "KO",
+                message: error
+            })
+        }
+    })
+}
+
+
 module.exports = sitesController;

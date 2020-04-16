@@ -55,7 +55,11 @@ router.post('/update/:id', sitesController.update);
 router.get('/delete/:id', sitesController.delete);
 
 
-
+/**
+ * @method GET
+ * @url /sites/jsonList
+ */
+router.get('/jsonList',sitesController.jsonList)
 
 
 module.exports = router;

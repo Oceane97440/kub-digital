@@ -12,8 +12,9 @@
                 <th scope="col">Date debut et fin campagne</th>
                 <th scope="col">Budget</th>
                 <th scope="col">Statut</th>
-                <th scope="col">Id_visuel</th>
-                <th scope="col">Id_format</th>
+                <th scope="col">Votre visuel</th>
+                <th scope="col">Format</th>
+                <th scope="col">Sites</th>
                 <th scope="col">Action</th>
 
             </tr>
@@ -30,8 +31,10 @@
                 </td>
                 <td><%= campagnes[i].budget %></td>
                 <td><%= campagnes[i].statut %></td>
-                <td>visuels</td>
-                <td>Format:<%= campagnes[i].id_formats %></td>
+                <td><%= campagnes[i].id_visuels %></td>
+                <td><%= campagnes[i].id_formats %></td>
+                <td><%= campagnes[i].id_sites %></td>
+
 
                 <td>
                     <a class="btn btn-sm btn-info" href="/campagne/detail/<%= campagnes[i].id %>" type="button"><i

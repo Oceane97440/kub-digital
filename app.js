@@ -41,8 +41,8 @@ var adminRouter=require('./src/routes/adminRoute');
 app.use('/admin',adminRouter);
 
 //Campagnes
-// var campagneRouter=require('./src/routes/campagneRoute');
-// app.use('/campagne',campagneRouter);
+var campagneRouter=require('./src/routes/campagneRoute');
+app.use('/campagne',campagneRouter);
 
 
 //Formats

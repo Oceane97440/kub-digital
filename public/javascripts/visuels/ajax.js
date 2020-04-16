@@ -1,17 +1,17 @@
 $(document).ready(function () {
 
     function init() {
-        getFormats();
+        getVisuels();
     }
 
-    function getFormats() {
-        $.get("/format/jsonList", function (formats) {
+    function getVisuels() {
+        $.get("/visuels/jsonList", function (visuels) {
             let options = "";
-            formats.data.forEach(format => {
-                options += `<option value="${format.id}">${format.nom_format}</option>`
+            visuels.data.forEach(visuel => {
+                options += `<option value="${visuel.id}">${visuel.nom_visuel}</option>`
             });
 
-            $('#format_visuel').html(options);
+            $('#visuel').html(options);
         })
     }
 
