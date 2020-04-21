@@ -21,10 +21,10 @@ const users = sequelize.define('utilisateurs', {
 {tableName: 'utilisateurs', underscored: true, timestamps: false}
 );
 
-const annonceurs = require('../models/annonceurs');
+// const annonceurs = require('../models/annonceurs');
 
 
-users.belongsTo(annonceurs,{foreignKey: 'id_annonceurs', onDelete: 'cascade', hooks: true });// la campagne à un format.
-annonceurs.hasMany(users, {foreignKey: 'id_annonceurs', onDelete: 'cascade', hooks: true});// Un format peut avoir plusieur articles.
+// users.belongsTo(annonceurs,{foreignKey: 'id_annonceurs', onDelete: 'cascade', hooks: true });// la campagne à un format.
+// annonceurs.hasMany(users, {foreignKey: 'id_annonceurs', onDelete: 'cascade', hooks: true});// Un format peut avoir plusieur articles.
 
 module.exports = users;

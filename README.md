@@ -1,18 +1,51 @@
 # kub-digital
-Npm : https-errors express path cookie-parser morgan nodemon body-parser express-fileupload ejs sequelize sqlife mysql cors
 
-A faire:
--Creaction dossier models/users
--Formulaire inscription
--Formulaire login
--Routes + Controller
-En cours
- 
+# Intituler du projet
+Il s'agit d'un site marchand qui permet au utilisateur inscript de crée et diffuser sa campagne sur nos site support. Il recois un recap
+de sa campagne qui lui indique le bugjet total à payer,le nombre impression. Un process d'achat avec sandox,paypal est envisagable
 
-Terminer
+
+# Techno
+Nodejs
+Drawio
+Mysql Phpmyadmin
+ORM Squelise
+Trello
+Discord Slack
+VS code
+Google sheet
+Npm : https-errors express path cookie-parser morgan nodemon body-parser express-fileupload ejs sequelize sqlife mysql bcrypt jwt
+
+# A faire:
+
+-Identification user + securité mdp
+-Upload une image
+-Role admin =1 et user=0 + repartition des roles et actions (cf.user story)
+-Avec Squelieze crée les relations entre les table: visuels /campagne (visuels_has_campagne)
+-Faire le lien etre annonceurs /user
+-Cree le modèle commandes :id_user , id_annonceurs,id_visuels,id_campagne,nbr_impressions,budjet_total
+-Recup les donnés de la campagne et affichier dans commande
+-Le budjet total s'ajoute lorsque le nombre impression augmente (cela depend du prix du format et quatiter)
+-Avoir un recap des toutes la commandes
+
+# En cours
+L'intendification + controller de securité mdp et pas le même utilisateur dans le bdd 
+
+# Terminer
+-Validation du projet :16/03/2020
+-Planification des tâches:16/03/2020
+-User story (discussion entre mon tuteur et c besoin)
+-Dico de donnée
+-Creaction du MCD UML
+-Creaction de la bdd
 -Creaction repo de base avec express generator (serveur/routes/controllers/views)
+-Creaction dossier models: user annonceur campagne format site visuels
+-Formulaire inscription
+-CRUD :Add Update Delette : user annonceur campagne format site visuels
+-Dans la bdd les relations avec les tables son fait
+-Relation entre user et id annonceur est fait : le user peut choisir son annonceur: un autre methode est envisager
 
 
-Prob
+# Prob
 Squelize ne veut pas s'installer =resolue
 Les donné user ne s'enregistre pas dans la base
