@@ -18,12 +18,12 @@ const visuels = sequelize.define('visuels', {
 {tableName: 'visuels', underscored: true, timestamps: false}
 );
 
-const formats = require('../models/formats');
+// const formats = require('../models/formats');
 
 
 
-visuels.belongsTo(formats,{foreignKey: 'id_formats', onDelete: 'cascade', hooks: true });// un visuel à un format.
-formats.hasMany(visuels, {foreignKey: 'id_formats', onDelete: 'cascade', hooks: true});// Un format peut avoir plusieur visueL.
+// visuels.belongsTo(formats,{foreignKey: 'id_formats', onDelete: 'cascade', hooks: true });// un visuel à un format.
+// formats.hasMany(visuels, {foreignKey: 'id_formats', onDelete: 'cascade', hooks: true});// Un format peut avoir plusieur visueL.
 
 
 module.exports = visuels;

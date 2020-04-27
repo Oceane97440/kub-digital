@@ -10,7 +10,7 @@ const users = sequelize.define('utilisateurs', {
     nom: {type: Sequelize.STRING(45),allowNull:false},
     prenom: {type: Sequelize.STRING(45),allowNull:false},
     email: {type: Sequelize.STRING(45),allowNull:false},
-    password: {type: Sequelize.STRING(),allowNull:false},
+    password: {type: Sequelize.STRING(255),allowNull:false},
     profession: {type: Sequelize.STRING(200),allowNull:false},
     telephone: {type: Sequelize.STRING(45),allowNull:false},
     // role: {type: Sequelize.INTEGER(), allowNull:false}, 1 =admi 0=user
@@ -21,10 +21,10 @@ const users = sequelize.define('utilisateurs', {
 {tableName: 'utilisateurs', underscored: true, timestamps: false}
 );
 
-// const annonceurs = require('../models/annonceurs');
+const annonceurs = require('../models/annonceurs');
 
 
-// users.belongsTo(annonceurs,{foreignKey: 'id_annonceurs', onDelete: 'cascade', hooks: true });// la campagne à un format.
-// annonceurs.hasMany(users, {foreignKey: 'id_annonceurs', onDelete: 'cascade', hooks: true});// Un format peut avoir plusieur articles.
+users.belongsTo(annonceurs,{foreignKey: 'id_annonceurs', onDelete: 'cascade', hooks: true });// la campagne à un format.
+annonceurs.hasMany(users, {foreignKey: 'id_annonceurs', onDelete: 'cascade', hooks: true});// Un format peut avoir plusieur articles.
 
 module.exports = users;

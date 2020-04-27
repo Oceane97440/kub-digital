@@ -32,7 +32,7 @@ visuelsController.create = (req, res) => { // POST :/visuels/create
         poids: req.body.poids,
         dimension_visuel_w: req.body.dimension_visuel_w,
         dimension_visuel_h:req.body.dimension_visuel_h,
-        id_formats: Number(req.body.format_visuels),//choisir un format
+        //id_formats: Number(req.body.format_visuels),//choisir un format
       
 
 
@@ -69,7 +69,7 @@ visuelsController.update = (req, res) => { // POST : visuels/update/:id
             poids: req.body.poids,
             dimension_visuel_w: req.body.dimension_visuel_w,
             dimension_visuel_h:req.body.dimension_visuel_h,
-            id_formats: Number(req.body.format_visuels),//choisir un format
+          //  id_formats: Number(req.body.format_visuels),//choisir un format
 
         }, {
             where:{

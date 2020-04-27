@@ -1,7 +1,7 @@
 # kub-digital
 
 # Intituler du projet
-Il s'agit d'un site marchand qui permet au utilisateur inscript de crée et diffuser sa campagne sur nos site support. Il recois un recap
+Il s'agit d'un site marchand qui permet au utilisateur inscrit de crée et diffuser sa campagne sur nos site support. Il recois un recap
 de sa campagne qui lui indique le bugjet total à payer,le nombre impression. Un process d'achat avec sandox,paypal est envisagable
 
 
@@ -14,7 +14,7 @@ Trello
 Discord Slack
 VS code
 Google sheet
-Npm : https-errors express path cookie-parser morgan nodemon body-parser express-fileupload ejs sequelize sqlife mysql bcrypt jwt
+Npm : https-errors express path cookie-parser morgan nodemon body-parser express-fileupload ejs sequelize sqlife mysql bcrypt jwt async
 
 # A faire:
 
@@ -44,8 +44,8 @@ L'intendification + controller de securité mdp et pas le même utilisateur dans
 -CRUD :Add Update Delette : user annonceur campagne format site visuels
 -Dans la bdd les relations avec les tables son fait
 -Relation entre user et id annonceur est fait : le user peut choisir son annonceur: un autre methode est envisager
-
+-Le user peut être enregistre avec un process de sécurité , mdp hashé par bycryte
 
 # Prob
 Squelize ne veut pas s'installer =resolue
-Les donné user ne s'enregistre pas dans la base
+Le user ne s'enregistre pas dans la base de donné ,la methode bcrypte ne hash pas le mdp =resolu

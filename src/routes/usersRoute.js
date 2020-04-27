@@ -32,7 +32,7 @@ router.get('/login', usersController.login);
  * @method GET
  * @url /users/jsonList
  */
-router.get('/jsonList',usersController.jsonList)
+//router.get('/jsonList',usersController.jsonList)
 
 module.exports = router;
 
