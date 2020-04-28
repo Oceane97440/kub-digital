@@ -31,19 +31,22 @@ router.get('/login', usersController.login);
 /**
  * @request POST
  * @controller login
- * Page authentification du user (login)
+ * Action authentification du user (login)
  * 
  */
 router.post('/registre', usersController.registre);
 
-
-
-
 /**
- * @method GET
- * @url /users/jsonList
+ * @request GET
+ * @controller login
+ * Page profil apres authentification du user 
+ * 
  */
-//router.get('/jsonList',usersController.jsonList)
+router.get('/auth', usersController.auth);
+
+
+
+
 
 module.exports = router;
 

@@ -1,0 +1,17 @@
+<% include ../layouts/doctype.ejs %>
+
+<h1>Mon profile</h1>
+
+
+<% for(userFound) {%>
+
+            <p><%= userFound.id %></p>
+            <p><%= userFound.nom %></p>
+            <p><%= userFound.prenom %></p>
+            <p><%= userFound.profession %></p>
+            <p><%= userFound.telephone %></p>
+
+
+    <% } %>
+
+<% include ../layouts/doctype_end.ejs %>

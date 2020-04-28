@@ -13,8 +13,30 @@ module.exports={
          JWT_SIGN_SECRET,
          //le token ne sera plus valide dans 1h
          {
-              expiresIn:'1h'
+              expiresIn:'4h'
          })
-     }
+     },
+     parseAuthorization: function(authorization) {
+          //verif si la chaîne de caratère est non null si c le cas on laisse vide pour recup que le token 
+          return (authorization != null) ? authorization.replace('Bearer','') : null;
+     
+     },
+     getUserId: function(authorization) {
+          //value par defaut
+          var userId = -1;
+          //module.exports.parseAuthorization: précise qu'on est dans le même module
+          var token = module.exports.parseAuthorization(authorization);
+          if(token != null) {
+            try {
+              var jwtToken = jwt.verify(token, JWT_SIGN_SECRET);
+              if(jwtToken != null)
+                userId = jwtToken.userId;
+            } catch(err) { }
+          }
+          return userId;
+        }
+
+
+
 
 }

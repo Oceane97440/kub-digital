@@ -1,6 +1,6 @@
 const usersController = {};
 const User = require('../models/users.js');
-var Jwt= require('../jwt/utils');
+var Jwt = require('../jwt/utils');
 var bcrypt = require('bcrypt');
 var asyncLib = require('async');
 
@@ -123,95 +123,147 @@ usersController.login = (req, res) => { // GET : /users/login
 }
 
 usersController.registre = (req, res) => { // POST : /users/registre
- 
-    //recup les valeur du body
-    console.log(req.body.email_user)
-    console.log(req.body.password_user)
-    
-    var email = req.body.email_user
-    var password = req.body.password_user
-    //verifie si les donnée son correcte 
-    if (email == null || password == null) {
-        return res.status(400).json({
-            'error': 'parametre manquante'
-        })
-    }
-    asyncLib.waterfall([
-        function(callback) {
-            //verif si le mail est présent dans la base
-         User.findOne({
-              where: {
-                  email: email
-              }
-          })
-          .then(function(userFound) {
-              //même process que pour le 1er waterfall
-            callback(null, userFound);
-          })
-          .catch(function(err) {
-            return res.status(500).json({ 'error': 'unable to verify user' });
-          });
-        },
-        function(userFound, callback) {
-          if (userFound) {
-              //on compare le password saisir par le user et celui dans la base qui est hashé par bcrypt
-            bcrypt.compare(password, userFound.password, function(errBycrypt, resBycrypt) {
-              callback(null, userFound, resBycrypt);
+
+        //recup les valeur du body
+        console.log(req.body.email_user)
+        console.log(req.body.password_user)
+
+        var email = req.body.email_user
+        var password = req.body.password_user
+        //verifie si les donnée son correcte 
+        if (email == null || password == null) {
+            return res.status(400).json({
+                'error': 'parametre manquante'
+            })
+        }
+        asyncLib.waterfall([
+                function (callback) {
+                    //verif si le mail est présent dans la base
+                    User.findOne({
+                            where: {
+                                email: email
+                            }
+                        })
+                        .then(function (userFound) {
+                            //même process que pour le 1er waterfall
+                            callback(null, userFound);
+                        })
+                        .catch(function (err) {
+                            return res.status(500).json({
+                                'error': 'unable to verify user'
+                            });
+                        });
+                },
+                function (userFound, callback) {
+                    if (userFound) {
+                        //on compare le password saisir par le user et celui dans la base qui est hashé par bcrypt
+                        bcrypt.compare(password, userFound.password, function (errBycrypt, resBycrypt) {
+                            callback(null, userFound, resBycrypt);
+                        });
+                    } else {
+                        //erreur si le mdo ou email n'est pas dans la base
+                        return res.status(404).json({
+                            'error': 'user not exist in DB'
+                        });
+                    }
+                },
+                function (userFound, resBycrypt, callback) {
+                    if (resBycrypt) {
+                        //waterfall end
+                        callback(userFound);
+                    } else {
+                        return res.status(403).json({
+                            'error': 'invalid password'
+                        });
+                    }
+                }
+            ],
+
+            function (userFound) {
+                if (userFound) {
+                    console.log(userFound.id)
+                    console.log(Jwt.generateTokenForUser(userFound))
+                    //   return res.status(201).json({
+                    //       'userId': userFound.id,
+                    //       'token': Jwt.generateTokenForUser(userFound)
+
+                    //   });
+                    res.redirect('/')
+
+                } else {
+                    return res.status(500).json({
+                        'error': 'cannot log on user'
+                    });
+                }
             });
-          } else {
-              //erreur si le mdo ou email n'est pas dans la base
-            return res.status(404).json({ 'error': 'user not exist in DB' });
-          }
-        },
-        function(userFound, resBycrypt, callback) {
-          if(resBycrypt) {
-              //waterfall end
-            callback(userFound);
-          } else {
-            return res.status(403).json({ 'error': 'invalid password' });
-          }
-        }
-      ],
-  
-       function(userFound) {
-        if (userFound) {
-            console.log(userFound.id)
-            console.log(Jwt.generateTokenForUser(userFound))
-        //   return res.status(201).json({
-        //       'userId': userFound.id,
-        //       'token': Jwt.generateTokenForUser(userFound)
-              
-        //   });
-        return res.redirect('/')
-         
-        } else {
-          return res.status(500).json({ 'error': 'cannot log on user' });
-        }
-      });
     },
 
 
 
+    usersController.auth = (req, res) => { //GET : /users/auth
+        console.log(req.headers['authorization'])
+        console.log(Jwt.getUserId(headerAuth))
+        //recup le header du token
+        var headerAuth = req.headers['authorization'];
+        var userId = Jwt.getUserId(headerAuth);
 
-/**
- * @method GET
- * @url /users/jsonList
- */
-// usersController.jsonList = (req, res) => {
-//     User.findAll().then(users => {
-//         //  console.log(users);
-//         try {
-//             res.json({
-//                 status: "OK",
-//                 data: users,
-//                 message: ""
-//             })
-//         } catch (error) {
-//             res.json({
-//                 status: "KO",
-//                 message: error
-//             })
-//         }
-//     })
-// }
+        //verif si userid n'est pas négatif test de sécurité
+        // if (userId < 0){
+        //    return res.status(400).json({
+        //         'error': 'token incorrect'
+        //     }) 
+        // }
+            
+
+        User.findOne({
+            //chercher les éléments de la table utilisateurs qu'on souhaite récup
+            attributes: ['id', 'nom', 'prenom', 'profession', 'telephone'],
+            //recup les donnée userid du token
+            where: {
+                id: userId
+            }
+
+
+        }).then((user) => {
+            if (user) {
+                console.log(user);
+                //si les info son correct affiche les donnés
+              res.status(201).json(user)
+                // res.render('users/profil', {
+                //     user:user,
+                //     title: "Page profil user"
+                // })
+             
+
+            } //sinon error
+            else {
+                res.status(404).json({
+                    'error': 'user pas trouvé'
+                })
+            }
+        }).catch((err) => {
+            res.status(500).json({
+                'error': 'impossible de recupérer le user'
+            })
+        });
+
+
+    }
+
+// res.render('users/profil', {
+//     title: "Page profil user"
+// })
+
+
+
+
+
+
+
+
+
+
+
+
+
 module.exports = usersController;
