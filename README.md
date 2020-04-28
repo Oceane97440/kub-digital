@@ -45,6 +45,7 @@ L'intendification + controller de securité mdp et pas le même utilisateur dans
 -Dans la bdd les relations avec les tables son fait
 -Relation entre user et id annonceur est fait : le user peut choisir son annonceur: un autre methode est envisager
 -Le user peut être enregistre avec un process de sécurité , mdp hashé par bycryte
+-J'arrive à générer un token authentification avec jwt 28/04
 
 # Prob
 Squelize ne veut pas s'installer =resolue
