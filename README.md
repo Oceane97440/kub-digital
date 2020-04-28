@@ -1,8 +1,8 @@
 # kub-digital
 
 # Intituler du projet
-Il s'agit d'un site marchand qui permet au utilisateur inscrit de crée et diffuser sa campagne sur nos site support. Il recois un recap
-de sa campagne qui lui indique le bugjet total à payer,le nombre impression. Un process d'achat avec sandox,paypal est envisagable
+Il s'agit d'un site marchand qui permet au utilisateur inscrit, crée et diffuser sa campagne sur nos sites support. Il reçoit un récap.
+de sa campagne qui lui indique le budget total à payer,le nombre impression. Un process d'achat avec sandox, paypal est envisageable
 
 
 # Techno
@@ -18,8 +18,8 @@ Npm : https-errors express path cookie-parser morgan nodemon body-parser express
 
 # A faire:
 
--Identification user + securité mdp
 -Upload une image
+-Login user
 -Role admin =1 et user=0 + repartition des roles et actions (cf.user story)
 -Avec Squelieze crée les relations entre les table: visuels /campagne (visuels_has_campagne)
 -Faire le lien etre annonceurs /user

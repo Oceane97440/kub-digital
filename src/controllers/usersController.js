@@ -1,6 +1,6 @@
 const usersController = {};
 const User = require('../models/users.js');
-//var jwt = require('jsonwebtoken');
+var Jwt= require('../jwt/utils');
 var bcrypt = require('bcrypt');
 var asyncLib = require('async');
 
@@ -45,7 +45,7 @@ usersController.create = (req, res) => { // POST : /users/create
 
     }
     asyncLib.waterfall([
-        function (done) {
+        function (callback) {
             User.findOne({
                     //mail si il exsite déjà dans le bdd
                     attributes: ['email'],
@@ -53,25 +53,33 @@ usersController.create = (req, res) => { // POST : /users/create
                         email: email
                     }
                 })
+                //debut du waterfall valeur null car on passe à la function suivante
                 .then(function (userFound) {
-                    done(null, userFound);
+                    callback(null, userFound);
                 })
-                .catch(function(err) {
-                    return res.status(500).json({ 'error': 'unable to verify user' });
-                  });
+                .catch(function (err) {
+                    return res.status(500).json({
+                        'error': 'unable to verify user'
+                    });
+                });
         },
-        function (userFound, done) {
+        function (userFound, callback) {
+            //verif si userFound exsite
             if (!userFound) {
+                //hash le passeword
                 bcrypt.hash(password, 5, function (err, bcryptedPassword) {
-                    done(null, userFound, bcryptedPassword);
+                    //waterfall pas terminer passe à la function suivante bcrypted
+                    callback(null, userFound, bcryptedPassword);
                 });
             } else {
-                return res.status(409).json({ 'error': 'user already exist' });
+                return res.status(409).json({
+                    'error': 'user already exist'
+                });
             }
         },
-        function (userFound, bcryptedPassword, done) {
+        function (userFound, bcryptedPassword, callback) {
             console.log(bcryptedPassword)
-
+            //save le new user
             var newUser = User.create({
                     nom: nom,
                     prenom: prenom,
@@ -81,22 +89,26 @@ usersController.create = (req, res) => { // POST : /users/create
                     telephone: telephone,
                     id_annonceurs: id_annonceurs
                 })
-              
+
                 .then(function (newUser) {
-                    done(newUser);
+                    //waterfall end 
+                    callback(newUser);
                 })
                 .catch(function (err) {
                     return res.status(500).json({
                         'error': 'impossible add le user'
                     });
                 });
-        }], function(newUser) {
-      if (newUser) {
-        return res.redirect('/');
+        }
+    ], function (newUser) {
+        if (newUser) {
+            return res.redirect('/users/login');
 
-      } else {
-        return res.status(500).json({ 'error': 'impossible add le user' });
-      }
+        } else {
+            return res.status(500).json({
+                'error': 'impossible add le user'
+            });
+        }
     });
 
 }
@@ -110,32 +122,75 @@ usersController.login = (req, res) => { // GET : /users/login
     })
 }
 
-usersController.registre = (req, res) => { // GET : /users/registre
-    var email = req.body.email
-    var password = req.body.password
-
+usersController.registre = (req, res) => { // POST : /users/registre
+ 
+    //recup les valeur du body
+    console.log(req.body.email_user)
+    console.log(req.body.password_user)
+    
+    var email = req.body.email_user
+    var password = req.body.password_user
+    //verifie si les donnée son correcte 
     if (email == null || password == null) {
         return res.status(400).json({
             'error': 'parametre manquante'
         })
     }
-    User.findOne({
-            where: {
-                email: email
-            }
-        })
-        .then(userFound => {
-            if (userFound) {
-                //bcrypte
-            } else {
-                return res.status(404).json({
-                    'error': 'user no exist'
-                })
-            }
+    asyncLib.waterfall([
+        function(callback) {
+            //verif si le mail est présent dans la base
+         User.findOne({
+              where: {
+                  email: email
+              }
+          })
+          .then(function(userFound) {
+              //même process que pour le 1er waterfall
+            callback(null, userFound);
+          })
+          .catch(function(err) {
+            return res.status(500).json({ 'error': 'unable to verify user' });
+          });
+        },
+        function(userFound, callback) {
+          if (userFound) {
+              //on compare le password saisir par le user et celui dans la base qui est hashé par bcrypt
+            bcrypt.compare(password, userFound.password, function(errBycrypt, resBycrypt) {
+              callback(null, userFound, resBycrypt);
+            });
+          } else {
+              //erreur si le mdo ou email n'est pas dans la base
+            return res.status(404).json({ 'error': 'user not exist in DB' });
+          }
+        },
+        function(userFound, resBycrypt, callback) {
+          if(resBycrypt) {
+              //waterfall end
+            callback(userFound);
+          } else {
+            return res.status(403).json({ 'error': 'invalid password' });
+          }
+        }
+      ],
+  
+       function(userFound) {
+        if (userFound) {
+            console.log(userFound.id)
+            console.log(Jwt.generateTokenForUser(userFound))
+        //   return res.status(201).json({
+        //       'userId': userFound.id,
+        //       'token': Jwt.generateTokenForUser(userFound)
+              
+        //   });
+        return res.redirect('/')
+         
+        } else {
+          return res.status(500).json({ 'error': 'cannot log on user' });
+        }
+      });
+    },
 
-        })
 
-}
 
 
 /**

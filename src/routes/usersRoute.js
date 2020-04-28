@@ -14,7 +14,7 @@ router.get('/', usersController.index);
 /**
  * @request POST
  * @controller create
- * Ajout du users dans la bdd
+ * Identification du users dans la bdd
  * 
  */
 router.post('/create', usersController.create);
@@ -23,10 +23,21 @@ router.post('/create', usersController.create);
 /**
  * @request POST
  * @controller login
- * Identification du user (login)
+ * Page authentification du user (login)
  * 
  */
 router.get('/login', usersController.login);
+
+/**
+ * @request POST
+ * @controller login
+ * Page authentification du user (login)
+ * 
+ */
+router.post('/registre', usersController.registre);
+
+
+
 
 /**
  * @method GET
