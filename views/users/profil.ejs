@@ -3,15 +3,13 @@
 <h1>Mon profile</h1>
 
 
-<% for(userFound) {%>
 
-            <p><%= userFound.id %></p>
-            <p><%= userFound.nom %></p>
-            <p><%= userFound.prenom %></p>
-            <p><%= userFound.profession %></p>
-            <p><%= userFound.telephone %></p>
+            <p><%= user.id %></p>
+            <p><%= user.nom %></p>
+            <p><%= user.prenom %></p>
+            <p><%= user.profession %></p>
+            <p><%= user.telephone %></p>
 
 
-    <% } %>
 
 <% include ../layouts/doctype_end.ejs %>

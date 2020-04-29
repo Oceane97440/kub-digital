@@ -11,7 +11,7 @@ module.exports={
           
          },
          JWT_SIGN_SECRET,
-         //le token ne sera plus valide dans 1h
+         //le token ne sera plus valide dans 4h
          {
               expiresIn:'4h'
          })

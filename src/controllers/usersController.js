@@ -188,11 +188,22 @@ usersController.registre = (req, res) => { // POST : /users/registre
                     //       'token': Jwt.generateTokenForUser(userFound)
 
                     //   });
-                    res.redirect('/')
+                    User.findOne({
+                        where: {
+                            id: userFound.id
+                        }
+
+                    }).then(user => {
+                        console.log(user)
+                        res.render('users/profil', {
+                            user: user,
+                            title: "Page profil"
+                        })
+                    })
 
                 } else {
                     return res.status(500).json({
-                        'error': 'cannot log on user'
+                        'error': 'impossible de logé le user'
                     });
                 }
             });
@@ -208,12 +219,12 @@ usersController.registre = (req, res) => { // POST : /users/registre
         var userId = Jwt.getUserId(headerAuth);
 
         //verif si userid n'est pas négatif test de sécurité
-        // if (userId < 0){
-        //    return res.status(400).json({
-        //         'error': 'token incorrect'
-        //     }) 
-        // }
-            
+        if (userId < 0) {
+            return res.status(400).json({
+                'error': 'token incorrect'
+            })
+        }
+
 
         User.findOne({
             //chercher les éléments de la table utilisateurs qu'on souhaite récup
@@ -228,12 +239,8 @@ usersController.registre = (req, res) => { // POST : /users/registre
             if (user) {
                 console.log(user);
                 //si les info son correct affiche les donnés
-              res.status(201).json(user)
-                // res.render('users/profil', {
-                //     user:user,
-                //     title: "Page profil user"
-                // })
-             
+                res.status(201).json(user)
+
 
             } //sinon error
             else {
@@ -250,9 +257,7 @@ usersController.registre = (req, res) => { // POST : /users/registre
 
     }
 
-// res.render('users/profil', {
-//     title: "Page profil user"
-// })
+
 
 
 

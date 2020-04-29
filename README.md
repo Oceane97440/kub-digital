@@ -18,8 +18,9 @@ Npm : https-errors express path cookie-parser morgan nodemon body-parser express
 
 # A faire:
 
+-Save les donnée du user en local et pouvoir accés a se profil dans le menu
+-Deconnexion
 -Upload une image
--Login user
 -Role admin =1 et user=0 + repartition des roles et actions (cf.user story)
 -Avec Squelieze crée les relations entre les table: visuels /campagne (visuels_has_campagne)
 -Faire le lien etre annonceurs /user
@@ -46,8 +47,9 @@ L'intendification + controller de securité mdp et pas le même utilisateur dans
 -Relation entre user et id annonceur est fait : le user peut choisir son annonceur: un autre methode est envisager
 -Le user peut être enregistre avec un process de sécurité , mdp hashé par bycryte
 -J'arrive à générer un token authentification avec jwt 28/04
+-Le user est rediriger vers sa page profile
 
 # Prob
-Squelize ne veut pas s'installer =resolue
-Le user ne s'enregistre pas dans la base de donné ,la methode bcrypte ne hash pas le mdp =resolu
-Le user apres login n'est pas rediriger vers sa page profil + avec les info liée a son compte
+Squelize ne veut pas s'installer =resolue version du package
+Le user ne s'enregistre pas dans la base de donné ,la methode bcrypte ne hash pas le mdp =resolu utiliser des fonction asynchrone avec waterfall
+Le user apres login n'est pas rediriger vers sa page profil + avec les info liée a son compte=resolu grâce a un findOne de id user dans la route post registre
