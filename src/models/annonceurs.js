@@ -10,7 +10,7 @@ module.exports = db.sequelize.define(
 
     id: {type: Sequelize.INTEGER, autoIncrement:true, primaryKey:true },
     nom_societe: {type: Sequelize.STRING(45),allowNull:false},
-    nom_annonceur: {type: Sequelize.STRING(45),allowNull:false},
+  
     statut: {type: Sequelize.BOOLEAN(),allowNull:false},// 1=actif 0=inactif
 
 

@@ -6,6 +6,7 @@ de sa campagne qui lui indique le budget total à payer,le nombre impression. Un
 
 
 # Techno
+lucidchart :diagrame gantt uml
 Nodejs
 Drawio
 Mysql Phpmyadmin
@@ -18,8 +19,6 @@ Npm : https-errors express path cookie-parser morgan nodemon body-parser express
 
 # A faire:
 
--Save les donnée du user en local et pouvoir accés a se profil dans le menu
--Deconnexion
 -Upload une image
 -Role admin =1 et user=0 + repartition des roles et actions (cf.user story)
 -Avec Squelieze crée les relations entre les table: visuels /campagne (visuels_has_campagne)
@@ -28,9 +27,13 @@ Npm : https-errors express path cookie-parser morgan nodemon body-parser express
 -Recup les donnés de la campagne et affichier dans commande
 -Le budjet total s'ajoute lorsque le nombre impression augmente (cela depend du prix du format et quatiter)
 -Avoir un recap des toutes la commandes
+-Avoir les staus de la commande quand le date de debut est < campagne pas encore diffuser
+date de diff >=
+
 
 # En cours
-L'intendification + controller de securité mdp et pas le même utilisateur dans le bdd 
+-Enregistrer son id dans une session et pouvoir accés a se profil dans le menu 
+-Deconnexion
 
 # Terminer
 -Validation du projet :16/03/2020
@@ -48,6 +51,7 @@ L'intendification + controller de securité mdp et pas le même utilisateur dans
 -Le user peut être enregistre avec un process de sécurité , mdp hashé par bycryte
 -J'arrive à générer un token authentification avec jwt 28/04
 -Le user est rediriger vers sa page profile
+L'intendification + controller de securité mdp et pas le même utilisateur dans le bdd 
 
 # Prob
 Squelize ne veut pas s'installer =resolue version du package

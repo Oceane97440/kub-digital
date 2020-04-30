@@ -13,7 +13,7 @@ const users = sequelize.define('utilisateurs', {
     password: {type: Sequelize.STRING(255),allowNull:false},
     profession: {type: Sequelize.STRING(200),allowNull:false},
     telephone: {type: Sequelize.STRING(45),allowNull:false},
-    // role: {type: Sequelize.INTEGER(), allowNull:false}, 1 =admi 0=user
+    role: {type: Sequelize.BOOLEAN()},// 1 =admi 0=user
   //  statut: {type: Sequelize.BOOLEAN(),allowNull:false}// 1=actif 0=inactif
 
 
@@ -21,10 +21,6 @@ const users = sequelize.define('utilisateurs', {
 {tableName: 'utilisateurs', underscored: true, timestamps: false}
 );
 
-const annonceurs = require('../models/annonceurs');
 
-
-users.belongsTo(annonceurs,{foreignKey: 'id_annonceurs', onDelete: 'cascade', hooks: true });// la campagne à un format.
-annonceurs.hasMany(users, {foreignKey: 'id_annonceurs', onDelete: 'cascade', hooks: true});// Un format peut avoir plusieur articles.
 
 module.exports = users;

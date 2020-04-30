@@ -25,7 +25,7 @@ usersController.create = (req, res) => { // POST : /users/create
     var password = req.body.password_user
     var profession = req.body.profession_user
     var telephone = req.body.telephone_user
-    var id_annonceurs = Number(req.body.user_annonceur) //choisir un annonceur
+    // var id_annonceurs = Number(req.body.user_annonceur) //choisir un annonceur
 
     //verifier c les champs ne son pas vide
     if (nom == null || prenom == null || email == null || password == null) {
@@ -33,7 +33,7 @@ usersController.create = (req, res) => { // POST : /users/create
 
     }
 
-    //verif si email est valide
+    //verif si email est valide avec le regex
     if (!EMAIL_REGEX.test(email)) {
         return res.send('mail pas valide' + '<a href="/users">Retour</a>')
 
@@ -87,7 +87,8 @@ usersController.create = (req, res) => { // POST : /users/create
                     password: bcryptedPassword,
                     profession: profession,
                     telephone: telephone,
-                    id_annonceurs: id_annonceurs
+                    //on dit que user inscrit n'est pas admin
+                    role : 0
                 })
 
                 .then(function (newUser) {
@@ -140,6 +141,7 @@ usersController.registre = (req, res) => { // POST : /users/registre
                 function (callback) {
                     //verif si le mail est présent dans la base
                     User.findOne({
+                        //on selection tout les atribut de utilisateur
                             where: {
                                 email: email
                             }
@@ -156,7 +158,7 @@ usersController.registre = (req, res) => { // POST : /users/registre
                 },
                 function (userFound, callback) {
                     if (userFound) {
-                        //on compare le password saisir par le user et celui dans la base qui est hashé par bcrypt
+                        //on verifie si l'utilisateur à utiliser le bon mot de passe
                         bcrypt.compare(password, userFound.password, function (errBycrypt, resBycrypt) {
                             callback(null, userFound, resBycrypt);
                         });

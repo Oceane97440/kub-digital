@@ -30,7 +30,6 @@ campagneController.create = (req, res) => { // POST : /campagne/create
         nom_campagne: req.body.nom_campagne,
         date_d: req.body.date_d,
         date_f: req.body.date_f,
-        budget: req.body.budget,
         statut: req.body.statut,
         id_formats: Number(req.body.format_campagne), //choisir un format
         id_visuels: Number(req.body.visuel_campagne), //choisir votre visuel apres créaction

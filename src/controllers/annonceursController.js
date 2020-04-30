@@ -27,7 +27,7 @@ annonceursController.create = (req, res) => { // POST : /annonceurs/create
     console.log(req.body);
     Annonceur.create({
         nom_societe: req.body.nom_societe,
-        nom_annonceur: req.body.nom_annonceur,
+       // nom_annonceur: req.body.nom_annonceur,
         statut: req.body.statut,
     }).then(res.redirect('/annonceurs'))
 }
@@ -63,7 +63,7 @@ annonceursController.update = (req, res) => { // POST : annonceurs/update/:id
     }).then(annonceur => {
         Annonceur.update({
             nom_societe: req.body.nom_societe,
-            nom_annonceur: req.body.nom_annonceur,
+          //  nom_annonceur: req.body.nom_annonceur,
             statut: req.body.statut,
         }, {
             where: {
