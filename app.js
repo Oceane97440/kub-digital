@@ -1,11 +1,12 @@
 var express = require('express');
 var path = require('path');
 var cors = require('cors')
-
-var cookieParser = require('cookie-parser');
+var fileUpload = require('express-fileupload');
+//var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
-//const fileUpload = require('express-fileupload');
+
+
 
 mainDir = __dirname;
 
@@ -20,12 +21,24 @@ app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
- app.use(cookieParser());
+// app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-//app.use(fileUpload());
+app.use(fileUpload());
 
+// app.use(fileUpload({
+//   limits: {
+//     fileSize: 50 * 100 * 100
+//   },
+// }));
+
+//Route pour uploads image
+app.post('/uploads', function (req, res) {
+  console.log(req.files.image_visuel.name); //requette.files.nom du file 
+
+
+});
 //HP
 var indexRouter = require('./src/routes/indexRoute');
 app.use('/', indexRouter);
@@ -42,6 +55,9 @@ app.use('/admin',adminRouter);
 var campagneRouter=require('./src/routes/campagneRoute');
 app.use('/campagne',campagneRouter);
 
+//Usercampagnes
+// var usercampagneRouter=require('./src/routes/userCampagneRoute');
+// app.use('/users/campagne',usercampagneRouter);
 
 //Formats
 var formatRouter=require('./src/routes/formatRoute');

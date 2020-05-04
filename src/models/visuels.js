@@ -7,6 +7,7 @@ const visuels = sequelize.define('visuels', {
 
     id: {type: Sequelize.INTEGER, autoIncrement:true, primaryKey:true },
     nom_visuel: {type: Sequelize.STRING(45),allowNull:false},
+    image: {type: Sequelize.STRING(255),allowNull:false},
 
 
    

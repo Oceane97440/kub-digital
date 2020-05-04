@@ -15,7 +15,7 @@
         </div>
         <div id="collapse1" class="collapse show">
             <div class="card-body">
-                <form id="signup-form" data-parsley-validate class="mt-5" role="form" action="/visuels/create"method="POST">
+                <form id="signup-form" data-parsley-validate class="mt-5" role="form" action="/visuels/create"method="POST" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-3 col-lg-4">
                             <div class="form-group">
@@ -23,54 +23,17 @@
                                 <input type="text" name="nom_visuel" class="form-control" />
                             </div>
                         </div>
+                      
                         <div class="col-md-3 col-lg-4">
                             <div class="form-group">
-                                <label class="control-label">Type de fichier</label>
-                                <select name="type" class="form-control">
-                                <option value="png">png</option>
-                                <option value="jpeg">jpeg</option>
-                                <option value="mp4">mp4</option>
-
-                                </select>
-                            </div>
-
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-lg-4">
-                            <div class="form-group">
-                                <label class="control-label">Poid fichier</label>
-                                <input type="number" name="poids" class="form-control" />
+                                <label class="control-label">Upload votre visuel</label>
+                                <input type="file" name="image_visuel" class="form-control" />
                             </div>
                         </div>
 
 
 
-                        <div class="row">
-                            <div class="col-md-4 col-lg-3">
-
-                                <div class="form-group">
-                                    <label class="control-label">Dimession largeur</label>
-                                    <input type="number" name="dimension_visuel_w" class="form-control" />
-                                </div>
-                            </div>
-
-                            <div class="col-md-3 col-lg-4">
-                                <div class="form-group">
-                                    <label class="control-label">Dimession hauteur</label>
-                                    <input type="number" name="dimension_visuel_h" class="form-control" />
-                                </div>
-                            </div>
-
-<!-- 
-                            <div class="col-md-2 col-lg-3">
-                                <label class="control-label">Choisir votre format</label>
-                                <div class="form-group">
-                                    <select name="format_visuels" id="format_campagne">
-
-
-                                    </select>
-                                </div>
-                            </div> -->
+                      
 
                         </div>
                         <div class="mt-5">

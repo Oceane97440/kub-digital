@@ -19,7 +19,6 @@ Npm : https-errors express path cookie-parser morgan nodemon body-parser express
 
 # A faire:
 
--Upload une image
 -Role admin =1 et user=0 + repartition des roles et actions (cf.user story)
 -Avec Squelieze crée les relations entre les table: visuels /campagne (visuels_has_campagne)
 -Faire le lien etre annonceurs /user
@@ -52,8 +51,11 @@ date de diff >=
 -J'arrive à générer un token authentification avec jwt 28/04
 -Le user est rediriger vers sa page profile
 L'intendification + controller de securité mdp et pas le même utilisateur dans le bdd 
+-Upload une image 4/04
 
 # Prob
 Squelize ne veut pas s'installer =resolue version du package
 Le user ne s'enregistre pas dans la base de donné ,la methode bcrypte ne hash pas le mdp =resolu utiliser des fonction asynchrone avec waterfall
 Le user apres login n'est pas rediriger vers sa page profil + avec les info liée a son compte=resolu grâce a un findOne de id user dans la route post registre
+problème upload d'image "mv" undifiend pourtant la fuction est ascry enctype est présent comme le dossier uploads dans public =résolu
+console.log(uploadfile) remplacer let par var uploadfile
