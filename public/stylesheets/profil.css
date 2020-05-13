@@ -1,0 +1,22 @@
+body{
+    background-color: #ffdfa475;
+}
+
+.fa-1x {
+    font-size: 1.5rem;
+}
+#profil{
+    margin-top: 10rem;
+}
+/* h1{
+    color: white;
+}
+p{
+    color: white;
+} */
+
+.navbar {
+    padding: 1.5rem 1rem;
+    background-color: #004085;
+    padding: 1.5rem 1rem;
+  }

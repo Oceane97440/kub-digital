@@ -15,6 +15,7 @@ usersController.index = (req, res) => { // GET : /users
     })
 }
 
+
 usersController.create = (req, res) => { // POST : /users/create
 
     console.log(req.body);
@@ -88,7 +89,7 @@ usersController.create = (req, res) => { // POST : /users/create
                     profession: profession,
                     telephone: telephone,
                     //on dit que user inscrit n'est pas admin
-                    role : 0
+                    admin : 0
                 })
 
                 .then(function (newUser) {
@@ -123,7 +124,8 @@ usersController.login = (req, res) => { // GET : /users/login
     })
 }
 
-usersController.registre = (req, res) => { // POST : /users/registre
+
+usersController.registre = (req, res, next) => { // POST : /users/registre
 
         //recup les valeur du body
         console.log(req.body.email_user)
@@ -220,12 +222,12 @@ usersController.registre = (req, res) => { // POST : /users/registre
         var headerAuth = req.headers['authorization'];
         var userId = Jwt.getUserId(headerAuth);
 
-        //verif si userid n'est pas négatif test de sécurité
-        if (userId < 0) {
-            return res.status(400).json({
-                'error': 'token incorrect'
-            })
-        }
+//        verif si userid n'est pas négatif test de sécurité
+        // if (userId < 0) {
+        //     return res.status(400).json({
+        //         'error': 'token incorrect'
+        //     })
+        // }
 
 
         User.findOne({

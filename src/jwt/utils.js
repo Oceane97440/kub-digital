@@ -4,17 +4,18 @@ const JWT_SIGN_SECRET='564dazdbgfeziufbezifbfzefay8995893214865fdezfhuyty5685598
 
 module.exports={
      generateTokenForUser: function (userData) {
+          console.log(userData)
           //on génère et sign notre token
          return jwt.sign({
           //payload donnée
           userId: userData.id,
-          role:userData.role
+          admin:userData.admin
           
          },
          JWT_SIGN_SECRET,
          //le token ne sera plus valide dans 1h
          {
-              expiresIn:'1h'
+              expiresIn:'24h'
          })
      },
      parseAuthorization: function(authorization) {

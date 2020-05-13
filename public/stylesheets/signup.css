@@ -1,0 +1,12 @@
+body {
+    background: #1f3f80;
+}
+
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: inherit;
+    margin-left: -15px;
+}

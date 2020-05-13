@@ -52,6 +52,7 @@ date de diff >=
 -Le user est rediriger vers sa page profile
 L'intendification + controller de securité mdp et pas le même utilisateur dans le bdd 
 -Upload une image 4/04
+-Template de hp login signup 
 
 # Prob
 Squelize ne veut pas s'installer =resolue version du package

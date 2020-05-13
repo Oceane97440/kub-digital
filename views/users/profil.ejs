@@ -1,6 +1,45 @@
 <% include ../layouts/doctype.ejs %>
+  <link rel="stylesheet" href="/stylesheets/profil.css"> 
 
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#home">
+            <img src="https://www.antennereunionpublicite.re/lekub/wp-content/uploads/2019/08/Logo-Le-Kub_150x150.png"
+                height="70" alt="image" style="padding-right: 8px;">
+            KUB-DIGITALE
+        </a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+            data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="fa fa-bars mfa-white"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-1x fa-user-circle"></i> MON PROFIL</a>
+                </li>
+
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#team">DECONNECTION <i class="fas fa-1x fa-sign-out-alt"></i></a>
+                </li>
+
+
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    </div>
+</nav>
+<div id="profil">
+<div class="container-fluid">
+<div class="col-md-4"></div>
 <h1>Mon profile</h1>
+
 
 
 
@@ -9,6 +48,17 @@
             <p><%= user.prenom %></p>
             <p><%= user.profession %></p>
             <p><%= user.telephone %></p>
+</div>
+
+</div>
+</div>
+
+
+
+
+
+
+
 
 
 
