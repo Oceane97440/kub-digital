@@ -1,54 +1,85 @@
-<% include ../layouts/doctype.ejs %>
+<% include ../_partials/nav_dashboard.ejs %>
+
+<div class="container-fluid">
+       
+        
+    <div class="row">
+      
+      
+  
+      <div class="col-md-6 col-lg-6 col-sm-3">
+        <div class="card ">
+          <div class="card-body">
+            <h5 class="card-title">Utilisateur</h5>
+            <table class="table table-sm table-striped">
+              <thead class="thead-dark" >
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Noms du societer</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
 
 
-    <!-- <title><%= title %></title> -->
+                </tr>
+              </thead>
+              <% for(let i=0; i < annonceurs.length; i++) {%>
+                <tbody>
+                      <tr>
+                          <th scope="row"><%= annonceurs[i].id %></th>
+                          <td><%= annonceurs[i].nom_societe %></td>
+                          <td><%= annonceurs[i].statut %></td>
+              
+      
+                          <td>
+                           
+                            <a class="btn btn-sm btn-warning" href="/annonceurs/edit/<%= annonceurs[i].id %>">
+                                <i class="fas fa-pencil-alt"></i></a>
+        
+                        <a class="btn btn-sm btn-danger" href="/annonceurs/delete/<%= annonceurs[i].id %>" type="button"><i
+                                class="fas fa-times-circle"></i></a>
+      
+                          </td>
+      
+      
+      
+                      </tr>
+      
+                  </tbody>
+                  <% } %>
 
-<h1>Liste des annonceurs</h1>
-
-
-<table class="table table-striped">
-
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Noms du societer</th>
-            <th scope="col">Noms de l'annonceurs</th>
-            <th scope="col">Status</th>
-            <th scope="col">Action</th>
-
-        </tr>
-    </thead>
-
-    <% for(let i=0; i < annonceurs.length; i++) {%>
-    <tbody>
-        <tr>
-            <th scope="row"><%= annonceurs[i].id %></th>
-            <td><%= annonceurs[i].nom_societe %></td>
-            <td><%= annonceurs[i].nom_annonceur %></td>
-            <td><%= annonceurs[i].statut %></td>
-
-
-            <td>
-                <a class="btn btn-sm btn-info" href="/annonceurs/detail/<%= annonceurs[i].id %>" type="button"><i
-                        class="fas fa-eye"></i></a>
-                <a class="btn btn-sm btn-warning" href="/annonceurs/edit/<%= annonceurs[i].id %>"><i
-                        class="fa fa-pencil-alt"></i></a>
-
-                <a class="btn btn-sm btn-danger" href="/annonceurs/delete/<%= annonceurs[i].id %>" type="button"><i
-                        class="fas fa-times-circle"></i></a>
-
-
-            </td>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 
-        </tr>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+</script>
 
-    </tbody>
-    <% } %>
-
-</table>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
 
 
-<% include ../layouts/doctype_end.ejs %>
+<script>
+$( document ).ready(function() {
+$('.leftmenutrigger').on('click', function(e) {
+$('.side-nav').toggleClass("open");
+e.preventDefault();
+});
+});
+</script>
+
+
+
+</body>
+
+</html>
 

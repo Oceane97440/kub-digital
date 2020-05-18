@@ -27,11 +27,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileUpload());
 
-// app.use(fileUpload({
-//   limits: {
-//     fileSize: 50 * 100 * 100
-//   },
-// }));
+app.use(fileUpload({
+  limits: {
+    fileSize: 50 * 2000 * 2000
+  },
+  uriDecodeFileNames:true,
+  abortOnLimit:true,
+  responseOnLimit:'La taille de la pièce jointe dépasse la limite autorisée '	
+
+}));
 
 //Route pour uploads image
 app.post('/uploads', function (req, res) {
@@ -55,9 +59,7 @@ app.use('/admin',adminRouter);
 var campagneRouter=require('./src/routes/campagneRoute');
 app.use('/campagne',campagneRouter);
 
-//Usercampagnes
-// var usercampagneRouter=require('./src/routes/userCampagneRoute');
-// app.use('/users/campagne',usercampagneRouter);
+
 
 //Formats
 var formatRouter=require('./src/routes/formatRoute');
@@ -91,7 +93,11 @@ app.use('/annonceurs',annonceursRouter);
 //   }
 //   next();
 // });
-
+app.get('/logout',function(req,res){
+  req.auth= false;
+  req.token= null;
+  res.redirect('/')
+})
 
 
 

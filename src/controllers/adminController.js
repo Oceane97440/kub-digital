@@ -1,8 +1,27 @@
 const adminController = {};
 const User = require('../models/users.js');
+const Format = require('../models/formats');
+//const Site = require('../models/sites');
 
 
-adminController.index=(req,res)=>{ // GET : /admin/
+
+
+adminController.index=(req,res)=>{// GET : /admin/
+   
+    User.findOne({
+         attributes: ['id', 'nom', 'prenom', 'profession', 'telephone','email'],
+         
+
+     }).then(user => {
+        res.render('admin/dashboard',{
+            user: user,
+            title: "Dashboard_admin"
+        });console.log(user);
+    }); 
+
+}
+
+adminController.utilisateurs=(req,res)=>{ // GET : /admin/utilisateurs
 
     User.findAll().then(users => {
         res.render('admin/liste_users',{
@@ -44,10 +63,8 @@ adminController.update = (req, res) => { // POST : admin/update/:id
             nom: req.body.nom_user,
             prenom: req.body.prenom_user,
             email: req.body.email_user,
-          //  password: req.body.password_user,
             profession: req.body.profession_user,
             telephone: req.body.telephone_user,
-          //  id_annonceurs: Number(req.body.user_annonceur),//choisir un annonceur
             statut:req.body.statut
         }, {
             where:{

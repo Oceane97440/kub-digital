@@ -28,6 +28,7 @@ router.post('/create', usersController.create);
  */
 router.get('/login', usersController.login);
 
+
 /**
  * @request POST
  * @controller login
@@ -44,8 +45,7 @@ router.post('/registre', usersController.registre);
  */
 router.get('/auth', usersController.auth);
 
-
-
+router.get('/profil', usersController.profil)
 
 
 module.exports = router;

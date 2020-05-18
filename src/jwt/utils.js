@@ -15,7 +15,7 @@ module.exports={
          JWT_SIGN_SECRET,
          //le token ne sera plus valide dans 1h
          {
-              expiresIn:'24h'
+              expiresIn:'1h'
          })
      },
      parseAuthorization: function(authorization) {

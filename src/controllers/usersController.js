@@ -18,7 +18,7 @@ usersController.index = (req, res) => { // GET : /users
 
 usersController.create = (req, res) => { // POST : /users/create
 
-    console.log(req.body);
+   // console.log(req.body);
 
     var nom = req.body.nom_user
     var prenom = req.body.prenom_user
@@ -79,7 +79,7 @@ usersController.create = (req, res) => { // POST : /users/create
             }
         },
         function (userFound, bcryptedPassword, callback) {
-            console.log(bcryptedPassword)
+          //  console.log(bcryptedPassword)
             //save le new user
             var newUser = User.create({
                     nom: nom,
@@ -128,8 +128,8 @@ usersController.login = (req, res) => { // GET : /users/login
 usersController.registre = (req, res, next) => { // POST : /users/registre
 
         //recup les valeur du body
-        console.log(req.body.email_user)
-        console.log(req.body.password_user)
+      //  console.log(req.body.email_user)
+      //  console.log(req.body.password_user)
 
         var email = req.body.email_user
         var password = req.body.password_user
@@ -185,24 +185,32 @@ usersController.registre = (req, res, next) => { // POST : /users/registre
 
             function (userFound) {
                 if (userFound) {
-                    console.log(userFound.id)
-                    console.log(Jwt.generateTokenForUser(userFound))
-                    //   return res.status(201).json({
-                    //       'userId': userFound.id,
-                    //       'token': Jwt.generateTokenForUser(userFound)
+                   console.log(userFound.id)
+                   console.log(userFound.admin)
 
-                    //   });
+                    console.log(Jwt.generateTokenForUser(userFound))
+                  
                     User.findOne({
+                      attributes: ['id', 'nom', 'prenom', 'profession', 'telephone','email'],
                         where: {
-                            id: userFound.id
+                            id: userFound.id,
+                            admin:userFound.admin
                         }
 
                     }).then(user => {
-                        console.log(user)
-                        res.render('users/profil', {
-                            user: user,
-                            title: "Page profil"
-                        })
+                        var admin=userFound.admin
+                        if (admin===true) {
+                            res.redirect('/admin')
+                           
+                
+                        }
+                        else{
+                        res.redirect('/users/profil')
+                            
+                        }
+                     
+
+                       
                     })
 
                 } else {
@@ -213,22 +221,16 @@ usersController.registre = (req, res, next) => { // POST : /users/registre
             });
     },
 
-
+    usersController.profil=(req,res)=>{
+        res.render('users/profil')
+    }
 
     usersController.auth = (req, res) => { //GET : /users/auth
-        console.log(req.headers['authorization'])
-        console.log(Jwt.getUserId(headerAuth))
+      //  console.log(req.headers['authorization'])
+       // console.log(Jwt.getUserId(headerAuth))
         //recup le header du token
         var headerAuth = req.headers['authorization'];
         var userId = Jwt.getUserId(headerAuth);
-
-//        verif si userid n'est pas négatif test de sécurité
-        // if (userId < 0) {
-        //     return res.status(400).json({
-        //         'error': 'token incorrect'
-        //     })
-        // }
-
 
         User.findOne({
             //chercher les éléments de la table utilisateurs qu'on souhaite récup
@@ -237,15 +239,12 @@ usersController.registre = (req, res, next) => { // POST : /users/registre
             where: {
                 id: userId
             }
-
-
         }).then((user) => {
             if (user) {
-                console.log(user);
+              //  console.log(user);
                 //si les info son correct affiche les donnés
-                res.status(201).json(user)
-
-
+               res.status(201).json(user)
+                
             } //sinon error
             else {
                 res.status(404).json({

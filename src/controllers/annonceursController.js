@@ -2,7 +2,7 @@ const annonceursController = {};
 const Annonceur = require('../models/annonceurs');
 
 
-annonceursController.index = (req, res) => { //GET:/sites
+annonceursController.index = (req, res) => { //GET:/annonceurs
 
     Annonceur.findAll().then(annonceurs => {
         res.render('annonceurs/listes_annonceurs', {

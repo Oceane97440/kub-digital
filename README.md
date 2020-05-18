@@ -53,6 +53,7 @@ date de diff >=
 L'intendification + controller de securité mdp et pas le même utilisateur dans le bdd 
 -Upload une image 4/04
 -Template de hp login signup 
+-Model crée user_has_campagne user_has_annonceur visuel_has_campagne
 
 # Prob
 Squelize ne veut pas s'installer =resolue version du package

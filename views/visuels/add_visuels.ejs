@@ -15,32 +15,33 @@
         </div>
         <div id="collapse1" class="collapse show">
             <div class="card-body">
-                <form id="signup-form" data-parsley-validate class="mt-5" role="form" action="/visuels/create"method="POST" enctype="multipart/form-data">
+                <form id="signup-form" data-parsley-validate class="mt-5" role="form" action="/visuels/create"
+                    method="POST" enctype="multipart/form-data">
                     <div class="row">
-                        <div class="col-md-3 col-lg-4">
-                            <div class="form-group">
-                                <label class="control-label">Nom du visuel</label>
-                                <input type="text" name="nom_visuel" class="form-control" />
-                            </div>
-                        </div>
-                      
+
+
                         <div class="col-md-3 col-lg-4">
                             <div class="form-group">
                                 <label class="control-label">Upload votre visuel</label>
-                                <input type="file" name="image_visuel" class="form-control" />
+                                <input type="file" name="image_visuel" class="form-control" required />
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-lg-4">
+                            <div class="form-group">
+                                <label class="control-label">Nom du visuel</label>
+                                <input type="text" name="nom_visuel" class="form-control" value="Visuel" required />
                             </div>
                         </div>
 
 
 
-                      
-
-                        </div>
-                        <div class="mt-5">
-                            <button id="signup-submit-btn" class="btn btn-sm btn-info col">
-                                Créaction de votre visuel
-                            </button>
-                        </div>
+                    </div>
+                    <div class="mt-5">
+                        <button id="signup-submit-btn" class="btn btn-sm btn-info col">
+                            Créaction de votre visuel
+                        </button>
+                    </div>
 
                 </form>
             </div>

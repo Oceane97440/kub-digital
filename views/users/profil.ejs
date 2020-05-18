@@ -1,57 +1,112 @@
-<% include ../layouts/doctype.ejs %>
-  <link rel="stylesheet" href="/stylesheets/profil.css"> 
-
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#home">
-            <img src="https://www.antennereunionpublicite.re/lekub/wp-content/uploads/2019/08/Logo-Le-Kub_150x150.png"
-                height="70" alt="image" style="padding-right: 8px;">
-            KUB-DIGITALE
-        </a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-            data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="fa fa-bars mfa-white"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-1x fa-user-circle"></i> MON PROFIL</a>
-                </li>
-
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#team">DECONNECTION <i class="fas fa-1x fa-sign-out-alt"></i></a>
-                </li>
+<% include ../_partials/nav_profil.ejs %>
 
 
 
-            </ul>
+        <div class="container-fluid">
+              <div class="row">
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Etape 1</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Crée votre annonceur</h6>
+                  <p class="card-text">Crée votre annonceur en renseignent divers information comme le nom de votre société</p>
+                  <a  type="button" class="btn btn-success"href="/annonceurs/add">Demarer</a>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Etape 2</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Crée votre visuel</h6>
+                  <p class="card-text">Dans cette section vous choisir votre visuel publicitaire à diffuser</p>
+                  <a  type="button" class="btn btn-success"href="/visuels/add">Demarer</a>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Etape 3</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Crée votre campagne</h6>
+                  <p class="card-text">Vous pouvais crée votre campagne en choisant votre visuel,format et site de diffusion</p>
+                  <a  type="button" class="btn btn-warning"href="/campagne/add">Demarer</a>
 
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Etape 4</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Choisir vos nombre impression</h6>
+                  <p class="card-text">Une impression  correspond à un affichage de l'élément publicitaire.
+                    
+                    Le nombre d'impressions  est  décompté au niveau de notre l'ad server </p>
+
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Felicitation !</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Récaputilatif de votre campagne</h6>
+                    <p class="card-text">Apres avoir termier les étape précédente.Vous pouvez voir un récaputilatif de votre campagne et son budget global</p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Votre profile</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Vous informations liée au compte</h6>
+
+                  <p class="card-text">Nom: </p>
+                  <p class="card-text">Prenom: </p>
+                  <p class="card-text">Profession:</p>
+                  <p class="card-text">Téléphone: </p>
+                  <p class="card-text">Email: </p>
+
+                  <button type="button" class="btn btn-warning"href="https://bootsnipp.com/pradeep330">Modifier</button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Campagne</h5>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">En cours</th>
+                        <th scope="col">Commencer</th>
+                        <th scope="col">Terminer</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Campagne Zeop</td>
+                        <td>Campagne Zeop promo</td>
+                        <td>Campagne Zeop promo2</td>
+                      </tr>
+                     
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
-    </div>
-
-    </div>
-</nav>
-<div id="profil">
-<div class="container-fluid">
-<div class="col-md-4"></div>
-<h1>Mon profile</h1>
-
-
-
-
-            <p><%= user.id %></p>
-            <p><%= user.nom %></p>
-            <p><%= user.prenom %></p>
-            <p><%= user.profession %></p>
-            <p><%= user.telephone %></p>
-</div>
-
-</div>
-</div>
+      </div>
 
 
 
@@ -62,4 +117,53 @@
 
 
 
-<% include ../layouts/doctype_end.ejs %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+
+
+<script>
+    $( document ).ready(function() {
+     $('.leftmenutrigger').on('click', function(e) {
+     $('.side-nav').toggleClass("open");
+     e.preventDefault();
+    });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

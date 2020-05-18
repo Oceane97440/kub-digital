@@ -2,12 +2,7 @@
 
    
 
-<style>
 
-.login-blue {
-    background: linear-gradient(145deg, #2196F3, #3F51B5);
-}
-</style>
 
 <div class="container">
     <div class="row justify-content-center">
@@ -15,7 +10,7 @@
             <div class="card"style="margin-top: 20%;">
             <div class="login-blue p-3 shadow-lg rounded">
                 <div class="pt-3">
-                    <h2 class="text-white">Admin | Ajout d'un utilisateur</h2>
+                    <h2 class="text-dark">Admin | Ajout d'un utilisateur</h2>
                 </div>
         
                 <form id="signup-form" data-parsley-validate class="mt-5" role="form" action="/admin/update/<%= user.id %>" method="POST"> 
@@ -48,13 +43,7 @@
                            >
                     </div>
         
-                    <!-- <div class="form-group">
-                        <input type="password" 
-                            name="password_user"
-                            class="form-control form-control-sm" 
-                            required 
-                            placeholder="<%= user.password %>">
-                    </div> -->
+                
         
                     <div class="form-group">
                         <input type="text" 
@@ -74,15 +63,7 @@
                             > <!--+262 692 12 34 56 -->
                     </div>
         
-                    <div class="form-group">
-                        <label class="control-label">Choisir votre annonceur</label>
-                        <div class="form-group">
-                            <select name="user_annonceur" id="user_annonceur" >
-
-
-                            </select>
-                        </div>
-                    </div>
+        
 
                     <div class="form-group">
                             <select value="<%= user.statut %>" name="statut" id="">
@@ -95,18 +76,13 @@
         
                     <div class="mt-5">
                         <button id="signup-submit-btn" class="btn btn-sm btn-danger col">
-                            Ajout user
+                            Modif user
                         </button>
                     </div>
         
                     
                     
-                    <div class="mt-5">
-                        <p class="text-center text-white">
-                            Vous avez déja un compte ?
-                            <a href="/login" class="text-warning">Connecter-vous</a>
-                        </p>
-                    </div>
+                 
                 </form>
             </div>
         </div>

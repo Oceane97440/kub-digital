@@ -4,11 +4,19 @@ let adminController = require("../controllers/adminController");
 
 /**
  * @request GET
- * @controller index
+ * @controller dashboard
  * Listing des users dans la bdd 'utilisateurs'
  * 
  */
 router.get('/', adminController.index);
+
+/**
+ * @request GET
+ * @controller index
+ * Listing des users dans la bdd 'utilisateurs'
+ * 
+ */
+router.get('/utilisateurs', adminController.utilisateurs);
 /**
  * @request GET
  * @controller edit
@@ -33,10 +41,6 @@ router.post('/update/:id', adminController.update);
  */
 router.get('/delete/:id', adminController.delete);
 
-/**
- * @method GET
- * @url /admin/jsonList
- */
-//router.get('/jsonList',adminController.jsonList)
+
 
 module.exports = router;
