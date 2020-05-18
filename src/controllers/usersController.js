@@ -308,8 +308,8 @@ usersController.profil = (req, res) => {
  * @memberof usersController
  */
 usersController.auth = (req, res) => { //GET : /users/auth
-    //  console.log(req.headers['authorization'])
-    // console.log(Jwt.getUserId(headerAuth))
+      console.log(req.headers['authorization'])
+     console.log(Jwt.getUserId(headerAuth))
 
     /**recupère le header du token*/
     var headerAuth = req.headers['authorization'];

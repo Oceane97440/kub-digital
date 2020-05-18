@@ -45,7 +45,7 @@ visuelsController.create = async(req, res) => { // POST :/visuels/create
 
    fileName = path.parse(uploadedFile.name).name + ".jpg"; /* remplace l'extension originale par .jpg*/
 
-   file = await sharp(uploadedFile.data) /**resize si hauteur plus haut que 400 et converti en jp */ g
+   file = await sharp(uploadedFile.data) /**resize si hauteur plus haut que 400 et converti en jp */ 
        .resize({
            height: 500, /**resize si hauteur plus haut que 500px*/
            width:600,/**resize si largeur plus haut que 600px*/

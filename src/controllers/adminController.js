@@ -2,6 +2,7 @@ const adminController = {};
 const User = require('../models/users.js');
 const Campagne = require('../models/campagnes');
 const Visuels = require('../models/visuels');
+var Jwt = require('../jwt/utils');
 
 
 
@@ -13,13 +14,21 @@ const Visuels = require('../models/visuels');
  * @memberof adminController
  */
 adminController.index=(req,res)=>{// GET : /admin/
-   
+    var headerAuth = req.headers['authorization'];
+   // console.log(req.headers)
+
+    var userId = Jwt.getUserId(headerAuth);
+   // console.log(headerAuth)
     User.findOne({
         /**affiche les élément du profil */
          attributes: ['id', 'nom', 'prenom', 'profession', 'telephone','email'],
-         
+         where:{
+             id:userId
+         }
 
      }).then(user => {
+        console.log(user)
+
         res.render('admin/dashboard',{
             user: user,
             title: "Dashboard_admin"

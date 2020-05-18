@@ -15,19 +15,13 @@ Trello
 Discord Slack
 VS code
 Google sheet
-Npm : https-errors express path cookie-parser morgan nodemon body-parser express-fileupload ejs sequelize sqlife mysql bcrypt jwt async
+Npm : https-errors express path cookie-parser morgan nodemon body-parser express-fileupload ejs sequelize sqlife mysql bcrypt jwt async jsdoc
 
 # A faire:
 
--Role admin =1 et user=0 + repartition des roles et actions (cf.user story)
--Avec Squelieze crée les relations entre les table: visuels /campagne (visuels_has_campagne)
--Faire le lien etre annonceurs /user
--Cree le modèle commandes :id_user , id_annonceurs,id_visuels,id_campagne,nbr_impressions,budjet_total
--Recup les donnés de la campagne et affichier dans commande
+-Avec Squelieze crée les relations entre les table: visuels /campagne (visuels_has_campagne):voir squelize
 -Le budjet total s'ajoute lorsque le nombre impression augmente (cela depend du prix du format et quatiter)
--Avoir un recap des toutes la commandes
--Avoir les staus de la commande quand le date de debut est < campagne pas encore diffuser
-date de diff >=
+
 
 
 # En cours
@@ -54,6 +48,8 @@ L'intendification + controller de securité mdp et pas le même utilisateur dans
 -Upload une image 4/04
 -Template de hp login signup 
 -Model crée user_has_campagne user_has_annonceur visuel_has_campagne
+-Role admin =1 et user=0 + repartition des roles et actions (cf.user story)
+-générer la doc avec jsdoc
 
 # Prob
 Squelize ne veut pas s'installer =resolue version du package
@@ -61,3 +57,4 @@ Le user ne s'enregistre pas dans la base de donné ,la methode bcrypte ne hash p
 Le user apres login n'est pas rediriger vers sa page profil + avec les info liée a son compte=resolu grâce a un findOne de id user dans la route post registre
 problème upload d'image "mv" undifiend pourtant la fuction est ascry enctype est présent comme le dossier uploads dans public =résolu
 console.log(uploadfile) remplacer let par var uploadfile
+Prob avec le token: la session d'un user n'est pas maintenu
