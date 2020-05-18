@@ -1,10 +1,13 @@
 const formatController = {};
 const Formats = require('../models/formats');
 
-
-formatController.index = (req, res) => { //GET: /admin/formats/
-
-
+/**
+ * 
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ * @memberof formatController
+ */
+formatController.index = (req, res) => { /**GET: /admin/formats/*/
 
     Formats.findAll().then(formats => {
         res.render('formats/liste_formats', {
@@ -15,8 +18,13 @@ formatController.index = (req, res) => { //GET: /admin/formats/
 
 }
 
-
-formatController.create = (req, res) => { // POST : //admin/formats/create
+/**
+ * 
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ * @memberof formatController
+ */
+formatController.create = (req, res) => { /** POST : /admin/formats/create*/ 
     // console.log(req.body);
     Formats.create({
         nom_format: req.body.nom_format,
@@ -28,8 +36,14 @@ formatController.create = (req, res) => { // POST : //admin/formats/create
 }
 
 
-
-formatController.edit = (req, res) => { //GET: /admin/formats/edit/:id
+/**
+ * 
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ * @param - id: number
+ * @memberof formatController
+ */
+formatController.edit = (req, res) => { /**GET: /admin/formats/edit/:id*/
 
 
     Formats.findOne({
@@ -45,8 +59,13 @@ formatController.edit = (req, res) => { //GET: /admin/formats/edit/:id
         })
     })
 };
-
-formatController.update = (req, res) => { //POST: /admin/formats/update
+/**
+ * 
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ * @memberof formatController
+ */
+formatController.update = (req, res) => { /**POST: /admin/formats/update*/
 
     Formats.findOne({
         where: {
@@ -67,8 +86,15 @@ formatController.update = (req, res) => { //POST: /admin/formats/update
     })
 
 }
+/**
+ * 
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ * @param - id: number
 
-formatController.delete = (req, res) => { // GET : /admin/formats//delete/:id
+ * @memberof formatController
+ */
+formatController.delete = (req, res) => { /** GET : /admin/formats/**delete/:id*/
 
     Formats.destroy({
         where: {
@@ -80,11 +106,11 @@ formatController.delete = (req, res) => { // GET : /admin/formats//delete/:id
 }
 
 
-formatController.jsonList = (req, res) => {//GET //admin/formats//jsonlist
+formatController.jsonList = (req, res) => { 
 
     //permet de convertion la data en json
     Formats.findAll().then(formats => {
-   //     console.log(formats);
+        //    console.log(formats);
 
         try {
             res.json({

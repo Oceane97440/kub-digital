@@ -1,13 +1,14 @@
 var jwt = require('jsonwebtoken');
-//se doit rester sur le serveur
+/** la cles secrète doit rester sur le serveur*/
 const JWT_SIGN_SECRET='564dazdbgfeziufbezifbfzefay8995893214865fdezfhuyty56855985858zfzefzafezfgty';
 
 module.exports={
+     
      generateTokenForUser: function (userData) {
           console.log(userData)
-          //on génère et sign notre token
+          /**on génère et sign notre token*/
          return jwt.sign({
-          //payload donnée
+          //payload continien donner userid et useradmin
           userId: userData.id,
           admin:userData.admin
           
@@ -19,7 +20,7 @@ module.exports={
          })
      },
      parseAuthorization: function(authorization) {
-          //verif si la chaîne de caratère est non null si c le cas on laisse vide pour recup que le token 
+          /**verifie si la chaîne de caratère est non null si c le cas on laisse vide pour recup que le token */
           return (authorization != null) ? authorization.replace('Bearer','') : null;
      
      },

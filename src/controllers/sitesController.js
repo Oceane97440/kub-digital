@@ -2,7 +2,12 @@ const sitesController = {};
 const Sites = require('../models/sites');
 
 
-
+/**
+ * 
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ * @memberof sitesController
+ */
 sitesController.index = (req, res) => { //GET:/admin/sites
 
     Sites.findAll().then(sites => {
@@ -14,7 +19,12 @@ sitesController.index = (req, res) => { //GET:/admin/sites
 
 
 };
-
+/**
+ * 
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ * @memberof sitesController
+ */
 sitesController.add = (req, res) => { //GET:admin/sites/add
 
 
@@ -23,7 +33,12 @@ sitesController.add = (req, res) => { //GET:admin/sites/add
     });
 
 }
-
+/**
+ * 
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ * @memberof sitesController
+ */
 sitesController.create = (req, res) => { // POST : admin/sites/create
     console.log(req.body);
     Sites.create({
@@ -34,7 +49,14 @@ sitesController.create = (req, res) => { // POST : admin/sites/create
 
 
 
+/**
+ * 
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ * @param - id: number
 
+ * @memberof sitesController
+ */
 sitesController.edit = (req, res) => { // GET : admin/sites/edit:id
 
 
@@ -52,7 +74,12 @@ sitesController.edit = (req, res) => { // GET : admin/sites/edit:id
 
 
 }
-
+/**
+ * 
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ * @memberof sitesController
+ */
 sitesController.update = (req, res) => { // POST : admin/sites/update/:id
     //  console.log(req.body);
 
@@ -71,7 +98,13 @@ sitesController.update = (req, res) => { // POST : admin/sites/update/:id
         }).then(res.redirect('/admin/sites'))
     })
 }
-
+/**
+ * 
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+  * @param - id: number
+ * @memberof sitesController
+ */
 sitesController.delete = (req, res) => { // GET : sites/delete/:id
 
     Sites.destroy({
@@ -85,8 +118,10 @@ sitesController.delete = (req, res) => { // GET : sites/delete/:id
 
 
 /**
- * @method GET
- * @url /sites/jsonList
+ * 
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ * @memberof sitesController
  */
 sitesController.jsonList = (req, res) => {
     Sites.findAll().then(sites => {

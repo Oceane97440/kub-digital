@@ -5,10 +5,17 @@ const Visuels = require('../models/visuels');
 
 
 
-
+/**
+ * Show the dashbord
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ *
+ * @memberof adminController
+ */
 adminController.index=(req,res)=>{// GET : /admin/
    
     User.findOne({
+        /**affiche les élément du profil */
          attributes: ['id', 'nom', 'prenom', 'profession', 'telephone','email'],
          
 
@@ -20,9 +27,16 @@ adminController.index=(req,res)=>{// GET : /admin/
     }); 
 
 }
-
+/**
+ * Listing user
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ *
+ * @memberof adminController
+ */
 adminController.utilisateurs=(req,res)=>{ // GET : /admin/utilisateurs
 
+    /**search l'ensemble des users dans la tables */
     User.findAll().then(users => {
         res.render('admin/liste_users',{
             users: users,
@@ -34,7 +48,13 @@ adminController.utilisateurs=(req,res)=>{ // GET : /admin/utilisateurs
 
 }
 
-
+/**
+ * Edit un user
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ *
+ * @memberof adminController
+ */
 adminController.edit=(req,res)=>{ // GET : /admin/edit:id
 
   
@@ -52,7 +72,13 @@ adminController.edit=(req,res)=>{ // GET : /admin/edit:id
 
 }
 
-
+/**
+ * Action post edit du user
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ * @param - id: number
+ * @memberof adminController
+ */
 adminController.update = (req, res) => { // POST : admin/update/:id
     console.log(req.body);
 
@@ -73,7 +99,13 @@ adminController.update = (req, res) => { // POST : admin/update/:id
         }).then(res.redirect('/admin/utilisateurs'))
     })
 }
-
+/**
+ * Suppression d'un user
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ * @param - id: number
+ * @memberof adminController
+ */
 adminController.delete = (req, res) => { // GET : admin/delete/:id
 
 
@@ -98,7 +130,13 @@ adminController.campagne_admin = (req, res) => { // GET : admin/campagne/delete/
     });
 
 }
-
+/**
+ * Suppression d'une campagne
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ * @param - id: number
+ * @memberof adminController
+ */
 adminController.delete_campagne = (req, res) => { // GET : /admin/campagne/delete/:id
 
     Campagne.destroy({
@@ -121,7 +159,13 @@ adminController.visuels_admin = (req, res) => {
      
 
 }
-
+/**
+ * Suppression d'un visuel
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ * @param - id: number
+ * @memberof adminController
+ */
 adminController.delete_visuels = (req, res) => { // GET : /admin/visuels/delete/:id
 
     Visuels.destroy({

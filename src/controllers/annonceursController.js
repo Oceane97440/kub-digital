@@ -1,7 +1,12 @@
 const annonceursController = {};
 const Annonceur = require('../models/annonceurs');
 
-
+/**
+ * 
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ * @memberof annonceursController
+ */
 annonceursController.index = (req, res) => { //GET:/annonceurs
 
     Annonceur.findAll().then(annonceurs => {
@@ -16,7 +21,12 @@ annonceursController.index = (req, res) => { //GET:/annonceurs
 
 
 
-
+/**
+ * 
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ * @memberof annonceursController
+ */
 annonceursController.create = (req, res) => { // POST : /annonceurs/create
     console.log(req.body);
     Annonceur.create({
@@ -28,7 +38,13 @@ annonceursController.create = (req, res) => { // POST : /annonceurs/create
 
 
 
-
+/**
+ * 
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ * @param - id: number
+ * @memberof annonceursController
+ */
 annonceursController.edit = (req, res) => { // GET : /annonceurs/edit:id
 
 
@@ -46,7 +62,12 @@ annonceursController.edit = (req, res) => { // GET : /annonceurs/edit:id
 
 
 }
-
+/**
+ * 
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ * @memberof annonceursController
+ */
 annonceursController.update = (req, res) => { // POST : annonceurs/update/:id
     //  console.log(req.body);
 
@@ -66,7 +87,13 @@ annonceursController.update = (req, res) => { // POST : annonceurs/update/:id
         }).then(res.redirect('/annonceurs'))
     })
 }
-
+/**
+ * 
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ * @param - id: number
+ * @memberof annonceursController
+ */
 annonceursController.delete = (req, res) => { // GET : annonceurs/delete/:id
 
     Annonceur.destroy({
@@ -79,8 +106,10 @@ annonceursController.delete = (req, res) => { // GET : annonceurs/delete/:id
 }
 
 /**
- * @method GET
- * @url /annonceurs/jsonList
+ * 
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ * @memberof annonceursController
  */
 annonceursController.jsonList = (req, res) => {
     Annonceur.findAll().then(annonceurs => {

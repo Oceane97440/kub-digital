@@ -1,7 +1,13 @@
 const campagneController = {};
 const Campagne = require('../models/campagnes');
 
-
+/**
+ * Listing campagne
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ *
+ * @memberof campagneController
+ */
 campagneController.index = (req, res) => { // GET : /campagne/
     //console.log(campagnes);
     Campagne.findAll().then(campagnes => {
@@ -15,7 +21,13 @@ campagneController.index = (req, res) => { // GET : /campagne/
 }
 
 
-
+/**
+ * Action creaction campagne
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ *
+ * @memberof campagneController
+ */
 campagneController.create = (req, res) => { // POST : /campagne/create
     // console.log(req.body);
     Campagne.create({
@@ -23,15 +35,21 @@ campagneController.create = (req, res) => { // POST : /campagne/create
         date_d: req.body.date_d,
         date_f: req.body.date_f,
        // statut: req.body.statut,
-        id_formats: Number(req.body.format_campagne), //choisir un format
-        id_visuels: Number(req.body.visuel_campagne), //choisir votre visuel apres créaction
-        id_sites: Number(req.body.site_campagne) //choisir son site de diffusion
+        id_formats: Number(req.body.format_campagne), /**choisir un format*/
+        id_visuels: Number(req.body.visuel_campagne), /**choisir votre visuel apres créaction*/
+        id_sites: Number(req.body.site_campagne) /**choisir son site de diffusion*/
 
 
     }).then(res.redirect('/campagne'))
 }
 
-
+/**
+ * 
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ * @param - id: number
+ * @memberof campagneController
+ */
 campagneController.edit = (req, res) => { // GET : /campagne/edit:id
 
 
@@ -50,7 +68,12 @@ campagneController.edit = (req, res) => { // GET : /campagne/edit:id
 
 
 }
-
+/**
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ * @param - id: number
+ * @memberof adminController
+ */
 campagneController.update = (req, res) => { // POST : campagne/update/:id
     //  console.log(req.body);
 
@@ -64,9 +87,9 @@ campagneController.update = (req, res) => { // POST : campagne/update/:id
             date_d: req.body.date_d,
             date_f: req.body.date_f,
          //   statut: req.body.statut,
-            id_formats: Number(req.body.format_campagne), //choisir un format
-            id_visuels: Number(req.body.visuel_campagne), //choisir votre visuel apres créaction
-            id_sites: Number(req.body.site_campagne) //choisir son site de diffusion
+            id_formats: Number(req.body.format_campagne), /**choisir un format*/
+            id_visuels: Number(req.body.visuel_campagne), /**choisir votre visuel apres créaction*/
+            id_sites: Number(req.body.site_campagne) /**choisir son site de diffusion*/
 
         }, {
             where: {
@@ -75,7 +98,13 @@ campagneController.update = (req, res) => { // POST : campagne/update/:id
         }).then(res.redirect('/campagne'))
     })
 }
-
+/**
+ * 
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ * @param - id: number
+ * @memberof campagneController
+ */
 campagneController.delete = (req, res) => { // GET : campagne/delete/:id
 
     Campagne.destroy({
@@ -88,8 +117,11 @@ campagneController.delete = (req, res) => { // GET : campagne/delete/:id
 }
 
 /**
- * @method GET
- * @url /campagne/jsonList
+ * 
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ *
+ * @memberof campagneController
  */
 campagneController.jsonList = (req, res) => {
     Campagne.findAll().then(campagnes => {

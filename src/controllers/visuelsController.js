@@ -2,10 +2,13 @@ const visuelsController = {};
 const Visuels = require('../models/visuels');
 const path = require('path');
 const sharp = require('sharp');
-// const mainDir = __dirname;
 
-//var fs = require('fs');
-
+/**
+ * 
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ * @memberof visuelsController
+ */
 visuelsController.index=(req,res)=>{// GET :/visuels/
 //console.log(visuels);
     Visuels.findAll().then(visuels => {
@@ -19,7 +22,12 @@ visuelsController.index=(req,res)=>{// GET :/visuels/
 }
 
 
-
+/**
+ * 
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ * @memberof visuelsController
+ */
 visuelsController.create = async(req, res) => { // POST :/visuels/create
 
     console.log(req.body);
@@ -29,21 +37,21 @@ visuelsController.create = async(req, res) => { // POST :/visuels/create
 
    var uploadedFile = req.files.image_visuel; // nom du champ image
 
-   // il faut que le dossier upload existe... ;)
+   /**il faut que le dossier upload existe... ;) */ 
    await uploadedFile.mv('public/uploads/'+uploadedFile.name, err => {
         if (err) 
         return res.status(500).send(err)
     });
 
-   fileName = path.parse(uploadedFile.name).name + ".jpg"; // remplace l'extension originale par .jpg
+   fileName = path.parse(uploadedFile.name).name + ".jpg"; /* remplace l'extension originale par .jpg*/
 
-   file = await sharp(uploadedFile.data) // resize si hauteur plus haut que 400 et converti en jpg
+   file = await sharp(uploadedFile.data) /**resize si hauteur plus haut que 400 et converti en jp */ g
        .resize({
-           height: 500, // resize si hauteur plus haut que 500px
-           width:600,//resize si largeur plus haut que 600px
-           withoutEnlargement: true //Ne pas agrandir si la largeur ou la hauteur sont déjà inférieures aux dimensions spécifiées
+           height: 500, /**resize si hauteur plus haut que 500px*/
+           width:600,/**resize si largeur plus haut que 600px*/
+           withoutEnlargement: true /**Ne pas agrandir si la largeur ou la hauteur sont déjà inférieures aux dimensions spécifiées*/
        })
-       .toFormat("jpeg") // converti le fichier en jpg
+       .toFormat("jpeg") /**converti le fichier en jpg*/
        .jpeg({ quality: 90 })
        .toFile(`public/uploads/${fileName}`);
 
@@ -61,7 +69,13 @@ visuelsController.create = async(req, res) => { // POST :/visuels/create
 
 
 
-
+/**
+ * 
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ * @param - id: number
+ * @memberof visuelsController
+ */
 visuelsController.edit=(req,res)=>{ // GET :/visuels/edit:id
 
   
@@ -79,6 +93,12 @@ visuelsController.edit=(req,res)=>{ // GET :/visuels/edit:id
 
 }
 
+/**
+ * 
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ * @memberof visuelsController
+ */
 visuelsController.update = (req, res) => { // POST : visuels/update/:id
   //  console.log(req.body);
 
@@ -98,7 +118,13 @@ visuelsController.update = (req, res) => { // POST : visuels/update/:id
         }).then(res.redirect('/visuels'))
     })
 }
-
+/**
+ * 
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ * @param - id: number
+ * @memberof visuelsController
+ */
 visuelsController.delete = (req, res) => { // GET : visuels/delete/:id
 
     Visuels.destroy({
@@ -111,8 +137,10 @@ visuelsController.delete = (req, res) => { // GET : visuels/delete/:id
 }
 
 /**
- * @method GET
- * @url/visuels/jsonList
+ * 
+ * @param {object} req Express request object
+ * @param {object} res Express response object
+ * @memberof visuelsController
  */
 visuelsController.jsonList = (req, res) => {
     Visuels.findAll().then(visuels => {

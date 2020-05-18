@@ -39,12 +39,17 @@ router.post('/registre', usersController.registre);
 
 /**
  * @request GET
- * @controller login
- * Page profil apres authentification du user 
+ * @controller auth
+ * Génère le token du user connecté
  * 
  */
 router.get('/auth', usersController.auth);
-
+/**
+ * @request GET
+ * @controller profil
+ * Renvoie utilisateur connecté sur sa page profil
+ * 
+ */
 router.get('/profil', usersController.profil)
 
 

@@ -6,7 +6,7 @@ let indexController = require("../controllers/indexController");
 /**
  * @request GET
  * @controller index
- * Affiche la hp de l'appli
+ * Affiche la home page de la plateforme
  * 
  */
 router.get('/', indexController.index);
