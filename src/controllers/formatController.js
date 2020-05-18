@@ -2,7 +2,7 @@ const formatController = {};
 const Formats = require('../models/formats');
 
 
-formatController.index = (req, res) => { //GET: format/
+formatController.index = (req, res) => { //GET: /admin/formats/
 
 
 
@@ -15,17 +15,8 @@ formatController.index = (req, res) => { //GET: format/
 
 }
 
-formatController.add = (req, res) => { //GET: format/add
 
-
-    res.render('formats/add_formats', {
-        title: "Formulaire ajout formats"
-    });
-
-}
-
-
-formatController.create = (req, res) => { // POST : /format/create
+formatController.create = (req, res) => { // POST : //admin/formats/create
     // console.log(req.body);
     Formats.create({
         nom_format: req.body.nom_format,
@@ -33,12 +24,12 @@ formatController.create = (req, res) => { // POST : /format/create
         dimension_h: req.body.dimension_h,
         prix: req.body.prix,
 
-    }).then(res.redirect('/format'))
+    }).then(res.redirect('/admin/formats'))
 }
 
 
 
-formatController.edit = (req, res) => { //GET: format/add
+formatController.edit = (req, res) => { //GET: /admin/formats/edit/:id
 
 
     Formats.findOne({
@@ -55,7 +46,7 @@ formatController.edit = (req, res) => { //GET: format/add
     })
 };
 
-formatController.update = (req, res) => { //POST: format/update
+formatController.update = (req, res) => { //POST: /admin/formats/update
 
     Formats.findOne({
         where: {
@@ -72,24 +63,24 @@ formatController.update = (req, res) => { //POST: format/update
             where: {
                 id: req.params.id
             }
-        }).then(res.redirect('/format'))
+        }).then(res.redirect('/admin/formats'))
     })
 
 }
 
-formatController.delete = (req, res) => { // GET : format/delete/:id
+formatController.delete = (req, res) => { // GET : /admin/formats//delete/:id
 
     Formats.destroy({
         where: {
             id: req.params.id
         }
     }).then(() => {
-        res.redirect('/format')
+        res.redirect('/admin/formats')
     })
 }
 
 
-formatController.jsonList = (req, res) => {//GET /format/jsonlist
+formatController.jsonList = (req, res) => {//GET //admin/formats//jsonlist
 
     //permet de convertion la data en json
     Formats.findAll().then(formats => {

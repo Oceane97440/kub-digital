@@ -8,6 +8,8 @@ $(document).ready(function () {
         $.get("/format/jsonList", function (formats) {
             let options = "";
             formats.data.forEach(format => {
+                options += `<option value="">Selectionner un format</option>`
+
                 options += `<option value="${format.id}">${format.nom_format}</option>`
             });
 

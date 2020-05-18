@@ -11,13 +11,7 @@ let campagneController = require("../controllers/campagneController");
  */
 router.get('/', campagneController.index);
 
-/**
- * @request GET
- * @controller form_campagne
- * Formulaire d'ajout d'une campagne
- * 
- */
-router.get('/add', campagneController.form_campagne);
+
 
 /**
  * @request POST

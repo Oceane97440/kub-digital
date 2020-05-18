@@ -1,59 +1,204 @@
-<% include ../layouts/doctype.ejs %>
+<% include ../_partials/nav_profil.ejs %>
+
+
+<div class="container-fluid">
+
+
+    <div class="row">
+        <div class="col-md-6 col-lg-6 col-sm-3">
+
+
+            <div class="card card-default">
+                <div class="card-header">
+                    <h4 class="card-title">
+
+                        Crée votre annonceurs
+
+                    </h4>
+                </div>
+                <div id="collapse1" class="collapse show">
+                    <div class="card-body">
+                        <form id="signup-form" data-parsley-validate class="mt-5" role="form" action="/campagne/create"
+                            method="POST">
+                            <div class="row">
+                                <div class="">
+                                    <div class="form-group">
+                                      
+                                          <label class="control-label" for="nom_campagne">Etape 1 : donner un nom à votre campagne</label>
+                                          <input type="text" name="nom_campagne" class="form-control" id="nom_campagne"
+                                            required />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                    <div class="form-group">
+                                   
+                                        <div class="input-group date">
+                                               <label class="control-label" for="date_d">Votre commence du </label>  
+                                               <input type="datetime-local" class="form-control" name="date_d" id="date_d"
+                                                min="2020-04-09T08:00" required>
+
+                                        </div>
+                                    </div>
+                                
+                                    <div class="form-group">
+                                        <div class="input-group date">
+
+                                        <label class="control-label" for="date_f">Au</label>
+                                        <input type="datetime-local" class="form-control" name="date_f" id="date_f"
+                                            min="2020-04-14T08:00" required>
+                                        </div>    
+                                    </div>
+                                </div>
+
+
+                              
+                          
 
 
 
-    <table class="table table-striped">
+                                <div class="form-group">
+                                    
+                                <label class="control-label" for="format_campagne">Choisir votre format</label>
+                                    <select name="format_campagne" id="format_campagne" required>
 
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <!-- <th scope="col">Noms Annonceurs</th> -->
-                <th scope="col">Noms Campagnes</th>
-                <th scope="col">Date debut et fin campagne</th>
-                <th scope="col">Budget</th>
-                <th scope="col">Statut</th>
-                <th scope="col">Votre visuel</th>
-                <th scope="col">Format</th>
-                <th scope="col">Sites</th>
-                <th scope="col">Action</th>
+                                    </select>
+                                </div>
 
-            </tr>
-        </thead>
+                                
 
-        <% for(let i=0; i < campagnes.length; i++) {%>
-        <tbody>
-            <tr>
-                <th scope="row"><%= campagnes[i].id %></th>
-                <td><%= campagnes[i].nom_campagne %></td>
-                <td><%= campagnes[i].date_d %>
-                    <br>
-                    <%= campagnes[i].date_f %>
-                </td>
-                <td><%= campagnes[i].budget %></td>
-                <td><%= campagnes[i].statut %></td>
-                <td><%= campagnes[i].id_visuels %></td>
-                <td><%= campagnes[i].id_formats %></td>
-                <td><%= campagnes[i].id_sites %></td>
+                                <div class="form-group">
+                                    <label class="control-label" for="visuel">Choisir votre visuel</label>
+                                    <select name="visuel_campagne" id="visuel" required>
 
 
-                <td>
-                    <a class="btn btn-sm btn-info" href="/campagne/detail/<%= campagnes[i].id %>" type="button"><i
-                            class="fas fa-eye"></i></a>
-
-                    <a class="btn btn-sm btn-warning" href="/campagne/edit/<%= campagnes[i].id %>"><i
-                            class="fa fa-pencil-alt"></i></a>
-
-                    <a class="btn btn-sm btn-danger" href="/campagne/delete/<%= campagnes[i].id %>" type="button"><i
-                            class="fas fa-times-circle"></i></a>
-                </td>
+                                    </select>
+                                </div>
 
 
 
-            </tr>
 
-        </tbody>
-        <% } %>
+                                <div class="form-group">
+                                    <label class="control-label" for="sites">Choisir votre support de diffusion</label>
+                                    <select name="site_campagne" id="sites" required>
 
-    </table>
 
-    <% include ../layouts/doctype_end.ejs %>
+                                    </select>
+                                </div>
+
+
+
+
+
+                    </div>
+
+
+
+                    <div class="mt-5">
+                        <button id="signup-submit-btn" class="btn btn-sm btn-danger col">
+                            Créaction de votre campagne
+                        </button>
+                    </div>
+
+                    </form>
+                </div>
+                </div>
+            </div>
+        
+
+        <div class="col-md-6 col-lg-6 col-sm-3">
+                <table class="table table-striped table-dark">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Noms du campagne</th>
+                            <th scope="col">Debut-fin campagne</th>
+                            <th scope="col">Visuel upload</th>
+                            <th scope="col">Formats</th>
+                            <th scope="col">Support</th>
+                            <th scope="col">Action</th>
+
+
+                        </tr>
+                    </thead>
+                    <% for(let i=0; i < campagnes.length; i++) {%>
+                    <tbody>
+                        <tr>
+                            <th scope="row"><%= campagnes[i].id %></th>
+                            <td><%= campagnes[i].nom_campagne %></td>
+                            <td><%= campagnes[i].date_d %>
+                                <br>
+                                <%= campagnes[i].date_f %>
+                            </td>
+                            <td><%= campagnes[i].id_visuels %></td>
+                            <td><%= campagnes[i].id_formats %></td>
+                            <td><%= campagnes[i].id_sites %></td>
+
+
+                            <td>
+
+
+                                <a class="btn btn-sm btn-warning" href="/campagne/edit/<%= campagnes[i].id %>"><i
+                                        class="fa fa-pencil-alt"></i></a>
+
+                                <a class="btn btn-sm btn-danger" href="/campagne/delete/<%= campagnes[i].id %>"
+                                    type="button"><i class="fas fa-times-circle"></i></a>
+                            </td>
+
+
+
+                        </tr>
+
+                    </tbody>
+                    <% } %>
+
+                </table>
+        </div>
+    </div>
+    </div>
+    </div>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $('.leftmenutrigger').on('click', function (e) {
+            $('.side-nav').toggleClass("open");
+            e.preventDefault();
+        });
+    });
+</script>
+
+
+<script src="/javascripts/formats/ajax.js"></script>
+<script src="/javascripts/annonceurs/ajax.js"></script>
+<script src="/javascripts/visuels/ajax.js"></script>
+<script src="/javascripts/sites/ajax.js"></script>
+
+</body>
+
+</html>

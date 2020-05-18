@@ -11,13 +11,7 @@ let visuelsController = require("../controllers/visuelsController");
  */
 router.get('/', visuelsController.index);
 
-/**
- * @request GET
- * @controller form_visuels
- * Formulaire d'ajout d'une visuels
- * 
- */
-router.get('/add', visuelsController.add);
+
 
 /**
  * @request POST

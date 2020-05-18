@@ -5,7 +5,7 @@
         Ajouter d'un site
 	</div>
 	<div class="card-body">
-        <form action="/sites/update/<%= site.id %>" method="POST">
+        <form action="/admin/sites/update/<%= site.id %>" method="POST">
             <div class="form-group">
                 <label for="nom-categorie">Nom du site :</label>
 				<input type="text" class="form-control" name="nom_site" id="nom-categorie" value="<%= site.nom_site %>" />

@@ -1,7 +1,7 @@
 const adminController = {};
 const User = require('../models/users.js');
-const Format = require('../models/formats');
-//const Site = require('../models/sites');
+const Campagne = require('../models/campagnes');
+const Visuels = require('../models/visuels');
 
 
 
@@ -70,7 +70,7 @@ adminController.update = (req, res) => { // POST : admin/update/:id
             where:{
                 id:req.params.id
             }
-        }).then(res.redirect('/admin'))
+        }).then(res.redirect('/admin/utilisateurs'))
     })
 }
 
@@ -82,19 +82,56 @@ adminController.delete = (req, res) => { // GET : admin/delete/:id
             id: req.params.id
         }
     }).then(() => {
-        res.redirect('/admin')
+        res.redirect('/admin/utilisateurs')
     })
 }
 
 
-/**
- * @method GET
- * @url /campagne/jsonList
- */
 
+adminController.campagne_admin = (req, res) => { // GET : admin/campagne/delete/:id
 
+    Campagne.findAll().then(campagnes => {
+        res.render('admin/liste_campagne', {
+            campagnes: campagnes,
+            title: "Listes des campagnes"
+        });
+    });
 
+}
 
+adminController.delete_campagne = (req, res) => { // GET : /admin/campagne/delete/:id
+
+    Campagne.destroy({
+        where: {
+            id: req.params.id
+        }
+    }).then(() => {
+        res.redirect('/admin/campagnes')
+    })
+}
+
+adminController.visuels_admin = (req, res) => {
+
+    Visuels.findAll().then(visuels => {
+        res.render('admin/liste_visuels',{
+            visuels: visuels,
+           title: "Listes des visuels"
+        });
+    }); 
+     
+
+}
+
+adminController.delete_visuels = (req, res) => { // GET : /admin/visuels/delete/:id
+
+    Visuels.destroy({
+        where: {
+            id: req.params.id
+        }
+    }).then(() => {
+        res.redirect('/admin/visuels')
+    })
+}
 
 
 

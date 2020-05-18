@@ -19,14 +19,6 @@ visuelsController.index=(req,res)=>{// GET :/visuels/
 }
 
 
-visuelsController.add=(req,res)=>{// GET :/visuels/add
-
-
-    res.render('visuels/add_visuels',{
-        title:"Formulaire add visuels"
-    });
-
-}
 
 visuelsController.create = async(req, res) => { // POST :/visuels/create
 

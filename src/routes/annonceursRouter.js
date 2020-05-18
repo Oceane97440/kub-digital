@@ -11,13 +11,6 @@ let annonceursController = require("../controllers/annonceursController");
  */
 router.get('/', annonceursController.index);
 
-/**
- * @request GET
- * @controller form_campagne
- * Formulaire d'ajout d'une annonceur
- * 
- */
-router.get('/add', annonceursController.add);
 
 /**
  * @request POST

@@ -8,6 +8,8 @@ $(document).ready(function () {
         $.get("/visuels/jsonList", function (visuels) {
             let options = "";
             visuels.data.forEach(visuel => {
+                options += `<option value="">Selectionner votre visuel</option>`
+
                 options += `<option value="${visuel.id}">${visuel.nom_visuel}</option>`
             });
 

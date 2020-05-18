@@ -30,11 +30,8 @@ app.use(fileUpload());
 app.use(fileUpload({
   limits: {
     fileSize: 50 * 2000 * 2000
-  },
-  uriDecodeFileNames:true,
-  abortOnLimit:true,
-  responseOnLimit:'La taille de la pièce jointe dépasse la limite autorisée '	
-
+  }
+  
 }));
 
 //Route pour uploads image
@@ -60,14 +57,13 @@ var campagneRouter=require('./src/routes/campagneRoute');
 app.use('/campagne',campagneRouter);
 
 
-
 //Formats
 var formatRouter=require('./src/routes/formatRoute');
-app.use('/format',formatRouter);
+app.use('/admin/formats',formatRouter);
 
 //Sites
 var sitesRouter=require('./src/routes/sitesRoute');
-app.use('/sites',sitesRouter);
+app.use('/admin/sites',sitesRouter);
 
 
 //Sites

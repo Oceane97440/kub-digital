@@ -41,6 +41,10 @@ router.post('/update/:id', adminController.update);
  */
 router.get('/delete/:id', adminController.delete);
 
+router.get('/campagnes', adminController.campagne_admin)
+router.get('/campagnes/delete/:id', adminController.delete_campagne);
+router.get('/visuels', adminController.visuels_admin)
+router.get('/visuels/delete/:id', adminController.delete_visuels);
 
 
 module.exports = router;

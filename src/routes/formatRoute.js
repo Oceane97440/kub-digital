@@ -10,13 +10,6 @@ let formatController = require("../controllers/formatController");
  */
 router.get('/', formatController.index);
 
-/**
- * @request GET
- * @controller add
- *Formulaire ajout d'un format
- * 
- */
-router.get('/add', formatController.add);
 
 /**
  * @request POST

@@ -15,14 +15,6 @@ campagneController.index = (req, res) => { // GET : /campagne/
 }
 
 
-campagneController.form_campagne = (req, res) => { // GET : /campagne/add
-
-
-    res.render('campagnes/add_campagne', {
-        title: "Formulaire add campagnes"
-    });
-
-}
 
 campagneController.create = (req, res) => { // POST : /campagne/create
     // console.log(req.body);
@@ -30,7 +22,7 @@ campagneController.create = (req, res) => { // POST : /campagne/create
         nom_campagne: req.body.nom_campagne,
         date_d: req.body.date_d,
         date_f: req.body.date_f,
-        statut: req.body.statut,
+       // statut: req.body.statut,
         id_formats: Number(req.body.format_campagne), //choisir un format
         id_visuels: Number(req.body.visuel_campagne), //choisir votre visuel apres créaction
         id_sites: Number(req.body.site_campagne) //choisir son site de diffusion
@@ -71,8 +63,7 @@ campagneController.update = (req, res) => { // POST : campagne/update/:id
             nom_campagne: req.body.nom_campagne,
             date_d: req.body.date_d,
             date_f: req.body.date_f,
-            budget: req.body.budget,
-            statut: req.body.statut,
+         //   statut: req.body.statut,
             id_formats: Number(req.body.format_campagne), //choisir un format
             id_visuels: Number(req.body.visuel_campagne), //choisir votre visuel apres créaction
             id_sites: Number(req.body.site_campagne) //choisir son site de diffusion

@@ -3,7 +3,7 @@ const Sites = require('../models/sites');
 
 
 
-sitesController.index = (req, res) => { //GET:/sites
+sitesController.index = (req, res) => { //GET:/admin/sites
 
     Sites.findAll().then(sites => {
         res.render('sites/liste_sites', {
@@ -15,7 +15,7 @@ sitesController.index = (req, res) => { //GET:/sites
 
 };
 
-sitesController.add = (req, res) => { //GET:/sites/add
+sitesController.add = (req, res) => { //GET:admin/sites/add
 
 
     res.render('sites/add_sites', {
@@ -24,18 +24,18 @@ sitesController.add = (req, res) => { //GET:/sites/add
 
 }
 
-sitesController.create = (req, res) => { // POST : /sites/create
+sitesController.create = (req, res) => { // POST : admin/sites/create
     console.log(req.body);
     Sites.create({
         nom_site: req.body.nom_site,
         statut: req.body.statut,
-    }).then(res.redirect('/sites'))
+    }).then(res.redirect('/admin/sites'))
 }
 
 
 
 
-sitesController.edit = (req, res) => { // GET : /sites/edit:id
+sitesController.edit = (req, res) => { // GET : admin/sites/edit:id
 
 
     Sites.findOne({
@@ -53,7 +53,7 @@ sitesController.edit = (req, res) => { // GET : /sites/edit:id
 
 }
 
-sitesController.update = (req, res) => { // POST : campagne/update/:id
+sitesController.update = (req, res) => { // POST : admin/sites/update/:id
     //  console.log(req.body);
 
     Sites.findOne({
@@ -68,7 +68,7 @@ sitesController.update = (req, res) => { // POST : campagne/update/:id
             where: {
                 id: req.params.id
             }
-        }).then(res.redirect('/sites'))
+        }).then(res.redirect('/admin/sites'))
     })
 }
 
@@ -79,7 +79,7 @@ sitesController.delete = (req, res) => { // GET : sites/delete/:id
             id: req.params.id
         }
     }).then(() => {
-        res.redirect('/sites')
+        res.redirect('/admin/sites')
     })
 }
 

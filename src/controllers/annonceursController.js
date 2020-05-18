@@ -14,14 +14,8 @@ annonceursController.index = (req, res) => { //GET:/annonceurs
 
 };
 
-annonceursController.add = (req, res) => { //GET:/annonceurs/add
 
 
-    res.render('annonceurs/add_annonceurs', {
-        title: "Formulaire ajout annonceurs"
-    });
-
-}
 
 annonceursController.create = (req, res) => { // POST : /annonceurs/create
     console.log(req.body);

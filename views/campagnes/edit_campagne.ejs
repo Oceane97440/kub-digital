@@ -1,119 +1,80 @@
 <% include ../layouts/doctype.ejs %>
 
+<div class="card bg-light mb-3 mx-auto mt-5" style="max-width: 35rem;">
+    <div class="card-header">
+        Modification campagne
+    </div>
+    <div class="card-body">
+        <form id="signup-form" data-parsley-validate class="mt-5" role="form"
+        action="/campagne/update/<%= campagne.id %>" method="POST">
+        <div class="row">
+                <div class="form-group">
+                    <label class="control-label" for="nom_campagne">Etape 1 : donner un nom à votre campagne</label>
+                    <input value="<%= campagne.nom_campagne %>" type="text" name="nom_campagne"  id="nom_campagne" required
+                        class="form-control" />
+                </div>
 
-<div id="accordion">
+
+                <div class="form-group">
+                    <div class="input-group date">
+                        <label class="control-label" for="date_d">Votre commence du </label>  
+                        <input type="datetime-local" class="form-control" name="date_d"
+                            value="<%= campagne.date_d %>" id="date_d"
+                            min="2020-04-09T08:00" required>
 
 
-    <div class="card card-default">
-        <div class="card-header">
-            <h4 class="card-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-                    <i class="glyphicon glyphicon-search text-gold"></i>
-                    <b>Modifier votre campagne</b>
-                </a>
-            </h4>
+                    </div>
+                </div>
+            <div class="form-group">
+                    <label class="control-label" for="date_f">Au</label>                    
+                    <input type="datetime-local" class="form-control" name="date_f"
+                        value="<%= campagne.date_f %>" min="<%= campagne.date_f %>">
+                </div>
+     </div>
+
+     
+
+
+                <div class="form-group">
+                    <label class="control-label" for="format_campagne">Choisir votre format</label>
+                    <select name="format_campagne" id="format_campagne" value="<%= campagne.format_campagne %>">
+
+
+                    </select>
+                </div>
+            
+
+
+                <div class="form-group">
+                    <label class="control-label" for="visuel">Choisir votre visuel</label>
+
+                    <select name="visuel_campagne" value="<%= campagne.visuel_campagne %>" id="visuel">
+
+
+                    </select>
+                </div>
+
+
+
+
+                <div class="form-group">
+                    <label class="control-label" for="sites">Choisir votre support de diffusion</label>
+
+                    <select name="site_campagne" value="<%= campagne.site_campagne %>" id="sites">
+
+
+                    </select>
+                </div>
+
+
+
         </div>
-        <div id="collapse1" class="collapse show">
-            <div class="card-body">
-                <form id="signup-form" data-parsley-validate class="mt-5" role="form"
-                    action="/campagne/update/<%= campagne.id %>" method="POST">
-                    <div class="row">
-                        <div class="col-md-3 col-lg-4">
-                            <div class="form-group">
-                                <label class="control-label">Nom de la campagne</label>
-                                <input value="<%= campagne.nom_campagne %>" type="text" name="nom_campagne"
-                                    class="form-control" />
-                            </div>
-                        </div>
 
-
-                        <div class="col-md-2 col-lg-3">
-                            <div class="form-group">
-                                <label class="control-label">Debut de la campagne</label>
-                                <div class="input-group date">
-                                    <input type="datetime-local" class="form-control" name="date_d"
-                                        value="<%= campagne.date_d %>" min="2020-04-09T08:00">
-
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2 col-lg-3">
-                            <div class="form-group">
-                                <label class="control-label">Fin de la campagne</label>
-                                <input type="datetime-local" class="form-control" name="date_f"
-                                    value="<%= campagne.date_f %>" min="2020-04-14T08:00">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4 col-lg-3">
-                            <div class="form-group">
-                                <label class="control-label">Votre budget(HT en €)</label>
-                                <input type="number" name="budget" value="<%= campagne.budget %>" min="2000" max="5000"
-                                    class="form-control" />
-
-                            </div>
-                        </div>
-                        <div class="col-md-2 col-lg-3">
-                            <label class="control-label">Staut de la campagne</label>
-                            <div class="form-group">
-                                <select value="<%= campagne.statut %>" name="statut" id="">
-                                    <option value="1">Actif</option>
-                                    <option value="0">Inactif</option>
-
-                                </select>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-2 col-lg-3">
-                            <label class="control-label">Choisir votre format</label>
-                            <div class="form-group">
-                                <select name="format_campagne" id="format_campagne">
-
-
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 col-lg-3">
-                            <label class="control-label">Choisir votre visuel</label>
-
-                            <div class="form-group">
-                                <select name="visuel_campagne" id="visuel">
-
-
-                                </select>
-                            </div>
-
-
-
-                        </div>
-                        <div class="col-md-3 col-lg-3">
-                            <label class="control-label">Choisir votre sites</label>
-
-                            <div class="form-group">
-                                <select name="site_campagne" id="sites">
-
-
-                                </select>
-                            </div>
-
-
-
-                        </div>
-                    </div>
-                    <div class="mt-5">
-                        <button id="signup-submit-btn" class="btn btn-sm btn-danger col">
-                            Modifier de votre campagne
-                        </button>
-                    </div>
-
-                </form>
+            <div class="card-footer bg-transparent border-success justify-content-center d-flex">
+                <button type="submit" class="btn btn-warning">Modif</button>
             </div>
-        </div>
+        </form>
     </div>
 </div>
+
 <% include ../layouts/doctype_end.ejs %>
