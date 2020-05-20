@@ -2,7 +2,7 @@ const adminController = {};
 const User = require('../models/users.js');
 const Campagne = require('../models/campagnes');
 const Visuels = require('../models/visuels');
-var Jwt = require('../jwt/utils');
+var Jwt = require('../middleware/utils');
 
 
 
@@ -15,10 +15,10 @@ var Jwt = require('../jwt/utils');
  */
 adminController.index=(req,res)=>{// GET : /admin/
     var headerAuth = req.headers['authorization'];
-   // console.log(req.headers)
+   console.log(headerAuth)
 
     var userId = Jwt.getUserId(headerAuth);
-   // console.log(headerAuth)
+    console.log(userId)
     User.findOne({
         /**affiche les élément du profil */
          attributes: ['id', 'nom', 'prenom', 'profession', 'telephone','email'],

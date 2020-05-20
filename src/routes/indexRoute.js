@@ -11,4 +11,6 @@ let indexController = require("../controllers/indexController");
  */
 router.get('/', indexController.index);
 
+router.get('/cookie',indexController.cookie);
+
 module.exports = router;

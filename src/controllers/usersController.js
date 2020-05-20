@@ -2,7 +2,8 @@ const usersController = {};
 /**Export le modèle user */
 const User = require('../models/users.js');
 /**Export middlware */
-var Jwt = require('../jwt/utils');
+var Jwtutil = require('../middleware/utils');
+
 var bcrypt = require('bcrypt');
 /**Module async permet de traiter les fonction asynchrone  */
 var asyncLib = require('async');
@@ -218,7 +219,7 @@ usersController.registre = (req, res, next) => { // POST : /users/registre
                 * @param {string} callback - waterfall terminer
 
                 */
-                        function (userFound, callback) {
+                function (userFound, callback) {
                     if (userFound) {
                         /**on verifie si l'utilisateur à utiliser le bon mot de passe*/
                         bcrypt.compare(password, userFound.password, function (errBycrypt, resBycrypt) {
@@ -231,7 +232,7 @@ usersController.registre = (req, res, next) => { // POST : /users/registre
                         });
                     }
                 },
-                  /**
+                /**
                  * 
                  * @constructor
                  * @param {string} userFound - utilisateur trouvé
@@ -253,9 +254,9 @@ usersController.registre = (req, res, next) => { // POST : /users/registre
             /**Si le user a reussi à s'auth on génère son token auth */
             function (userFound) {
                 if (userFound) {
-                    console.log(userFound.id)
-                    console.log(userFound.admin)
-                    console.log(Jwt.generateTokenForUser(userFound))
+                   // console.log(userFound.id)
+                   // console.log(userFound.admin)
+                   console.log(Jwtutil.generateTokenForUser(userFound))
 
                     User.findOne({
                         attributes: ['id', 'nom', 'prenom', 'profession', 'telephone', 'email'],
@@ -266,19 +267,17 @@ usersController.registre = (req, res, next) => { // POST : /users/registre
 
                     }).then(user => {
                         //si le user est un admin rediriger vers la back-office
-                        var admin = userFound.admin
-                        if (admin === true) {
-                            res.redirect('/admin')
+                      //  console.log(user)
+                        var admin=userFound.admin
+                        if (admin===true) {
+                            // res.redirect('/users/admin')
 
+                            res.redirect('/cookie')
+                        }else{
+                            // res.redirect('/users/auth')
 
-                        } else {
-                            //sinon vers une page profil utilisateur
-                            res.redirect('/users/profil')
 
                         }
-
-
-
                     })
 
                 } else {
@@ -295,56 +294,98 @@ usersController.registre = (req, res, next) => { // POST : /users/registre
  *
  * @memberof usersController
  */
-usersController.profil = (req, res) => {
-    res.render('users/profil')
-}
 
+usersController.auth = (req, res) => { // Getting auth header
 
-/**
- * Show the home page
- * @param {object} req Express request object
- * @param {object} res Express response object
- *
- * @memberof usersController
- */
-usersController.auth = (req, res) => { //GET : /users/auth
-      console.log(req.headers['authorization'])
-     console.log(Jwt.getUserId(headerAuth))
-
-    /**recupère le header du token*/
-    var headerAuth = req.headers['authorization'];
-    var userId = Jwt.getUserId(headerAuth);
-
-    User.findOne({
+        /**recupère le header du token*/
+        var headerAuth = req.headers['authorization'];
+        var userId = Jwtutil.getUserId(headerAuth);
+        console.log('Votre token='+ req.headers['authorization'])
+        console.log('Votre id='+ userId)
+     console.log(req.headers)
+    //     if (userId < 0)
+    //         return res.status(400).json({
+    //             'error': 'wrong token'
+    //         });
         /**chercher les éléments de la table utilisateurs qu'on souhaite récupérer*/
-        attributes: ['id', 'nom', 'prenom', 'profession', 'telephone'],
-        //recup les donnée userid du token
-        where: {
-            id: userId
-        }
-    }).then((user) => {
-        if (user) {
-            //  console.log(user);
-            //si les info son correct affiche les donnés
-            res.status(201).json(user)
 
-        } //sinon error
-        else {
-            res.status(404).json({
-                'error': 'user pas trouvé'
-            })
-        }
-    }).catch((err) => {
-        res.status(500).json({
-            'error': 'impossible de recupérer le user'
-        })
-    });
-
-
-}
+        User.findOne({
+            attributes: ['id', 'nom', 'prenom', 'profession', 'telephone', 'email','admin'],
+            //recup les donnée userid du token
+            where: {
+                id: userId,
+            }
+        }).then(function (user) {
+            if (user) {
+                 console.log(user)
+                res.status(201).json(user);
+                    //sinon vers une page profil utilisateur
+                    // res.render('users/profil', {
+                    //     user: user,
+                    //     title: "Profil"
+                    // })
+                     console.log('TU ES UN USER')
 
 
 
+            } else {
+                res.status(404).json({
+                    'error': 'user not found'
+                });
+            }
+        }).catch(function (err) {
+            res.status(500).json({
+                'error': 'cannot fetch user'
+            });
+        });
+    },
+
+
+    usersController.admin = (req, res) => { // Getting auth header
+
+        /**recupère le header du token*/
+        var headerAuth = req.headers['authorization'];
+        var userId = Jwtutil.getUserId(headerAuth);
+        console.log('Votre token='+ req.headers['authorization'])
+        console.log('Votre id='+ userId)
+        console.log(req.headers)
+
+        // if (userId < 0)
+        //     return res.status(400).json({
+        //         'error': 'wrong token'
+        //     });
+        /**chercher les éléments de la table utilisateurs qu'on souhaite récupérer*/
+
+        User.findOne({
+            attributes: ['id', 'nom', 'prenom', 'profession', 'telephone', 'email','admin'],
+            //recup les donnée userid du token
+            where: {
+                id: userId,
+            }
+        }).then(function (user) {
+            if (user) {
+                 console.log(user)
+                // res.status(201).json(user);
+                    res.render('admin/dashboard', {
+                        user: user,
+                        title: "Back-office"
+                    })
+                    console.log('TU ES UN ADMIN')
+
+               
+
+
+            } else {
+                res.status(404).json({
+                    'error': 'user not found'
+                });
+            }
+        }).catch(function (err) {
+            res.status(500).json({
+                'error': 'cannot fetch user'
+            });
+        });
+    },
 
 
 
@@ -353,8 +394,4 @@ usersController.auth = (req, res) => { //GET : /users/auth
 
 
 
-
-
-
-
-module.exports = usersController;
+    module.exports = usersController;

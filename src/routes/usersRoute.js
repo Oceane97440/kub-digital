@@ -44,13 +44,8 @@ router.post('/registre', usersController.registre);
  * 
  */
 router.get('/auth', usersController.auth);
-/**
- * @request GET
- * @controller profil
- * Renvoie utilisateur connecté sur sa page profil
- * 
- */
-router.get('/profil', usersController.profil)
+
+router.get('/admin', usersController.admin);
 
 
 module.exports = router;

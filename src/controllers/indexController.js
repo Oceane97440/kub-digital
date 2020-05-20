@@ -15,5 +15,10 @@ indexController.index=(req,res)=>{
 
 }
 
+indexController.cookie=(req,res)=>{
+    res.render('testcookie',{
+    
+    });
+}
 
 module.exports = indexController;

@@ -4,6 +4,7 @@ var cors = require('cors')
 var fileUpload = require('express-fileupload');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 
 
 /** Utilisation de express dans notre serveur*/
@@ -18,6 +19,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieParser());
+
 /**Traite les donnée dans le corps de la requete */
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
