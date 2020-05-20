@@ -5,31 +5,38 @@ var fileUpload = require('express-fileupload');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+var Jwtutil = require('./src/middleware/utils');
 
 
 /** Utilisation de express dans notre serveur*/
 var app = express();
 
-/** view engine setup*/ 
+/** view engine setup*/
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(cors())
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
+
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 /**Traite les donnée dans le corps de la requete */
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 /**L'image à une limite min=50px max=2000px */
 app.use(fileUpload({
   limits: {
     fileSize: 50 * 2000 * 2000
   }
-  
+
 }));
 
 /**Route pour uploads image*/
@@ -47,41 +54,65 @@ var usersRouter = require('./src/routes/usersRoute');
 app.use('/users', usersRouter);
 
 /**Route vers le back-office */
-var adminRouter=require('./src/routes/adminRoute');
-app.use('/admin',adminRouter);
+var adminRouter = require('./src/routes/adminRoute');
+app.use('/admin', adminRouter);
 
 /**Route créaction campagne */
-var campagneRouter=require('./src/routes/campagneRoute');
-app.use('/campagne',campagneRouter);
+var campagneRouter = require('./src/routes/campagneRoute');
+app.use('/campagne', campagneRouter);
 
 
 /**Route créaction formats */
-var formatRouter=require('./src/routes/formatRoute');
-app.use('/admin/formats',formatRouter);
+var formatRouter = require('./src/routes/formatRoute');
+app.use('/admin/formats', formatRouter);
 
 /**Route créaction sites */
-var sitesRouter=require('./src/routes/sitesRoute');
-app.use('/admin/sites',sitesRouter);
+var sitesRouter = require('./src/routes/sitesRoute');
+app.use('/admin/sites', sitesRouter);
 
 
 /**Route créaction visuels */
-var visuelsRouter=require('./src/routes/visuelsRoute');
-app.use('/visuels',visuelsRouter);
+var visuelsRouter = require('./src/routes/visuelsRoute');
+app.use('/visuels', visuelsRouter);
 
 /**Route créaction annonceurs */
-var annonceursRouter=require('./src/routes/annonceursRouter');
-app.use('/annonceurs',annonceursRouter);
+var annonceursRouter = require('./src/routes/annonceursRouter');
+app.use('/annonceurs', annonceursRouter);
 
 
+/**
+ * @MidleWare
+ * UTILISATEUR CONNECTER
+ */
+// app.get('/cookie',function (req, res, next) {
+//   console.log(req.cookies)
+//   // check if client sent cookie
+//   var cookie = req.cookies.cookieName;
+//   if (cookie === undefined)
+//   {
+//     // no: set a new cookie
+//     var token='Mon token';
+//     var usersID='userId'
+//   //  randomNumber=randomNumber.substring(2,randomNumber.length);
+//     res.cookie(usersID,token, { maxAge: 900000, httpOnly: true });
+//     return res.send('Cookie crée');
+//   } 
+//   else
+//   {
+//     // yes, cookie was already present 
+//     console.log('cookie exists', cookie);
+//   } 
+//   next(); // <-- important!
+// });
 
 
 /**
  * @MidleWare
  * UTILISATEUR DECONNECTER
  */
-app.get('/logout',function(req,res){
-  req.auth= false;
-  req.token= null;
+app.get('/logout', function (req, res) {
+  req.auth = false;
+  req.token = null;
   res.redirect('/')
 })
 

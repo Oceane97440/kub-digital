@@ -254,31 +254,42 @@ usersController.registre = (req, res, next) => { // POST : /users/registre
             /**Si le user a reussi à s'auth on génère son token auth */
             function (userFound) {
                 if (userFound) {
-                   // console.log(userFound.id)
-                   // console.log(userFound.admin)
-                   console.log(Jwtutil.generateTokenForUser(userFound))
+                    // console.log(userFound.id)
+                    //  console.log(userFound.admin)
+                    // console.log(Jwtutil.generateTokenForUser(userFound))
 
-                    User.findOne({
-                        attributes: ['id', 'nom', 'prenom', 'profession', 'telephone', 'email'],
-                        where: {
-                            id: userFound.id,
-                            admin: userFound.admin
+                    var cookie = req.cookies.usersID;
+                    if (cookie === undefined) {
+
+                        // no: set a new cookie
+                        var Token = Jwtutil.generateTokenForUser(userFound);
+                        var usersID = userFound.id
+                        
+                        var admin = userFound.admin
+                        console.log(Token)
+                        console.log(usersID)
+                        console.log(admin)
+
+                        res.cookie(usersID, Token, admin, {
+                            maxAge: 900000,
+                            httpOnly: true
+                        });
+                        //return res.send('Cookie crée');
+                        //  si le user est un admin rediriger vers la back-office
+                        if (admin === true) {
+                            return res.redirect('/users/admin')
+
+                        } else {
+
+                            return res.redirect('/users/auth')
+
+
                         }
+                    } else {
+                        // yes, cookie was already present 
+                        console.log('cookie exists', cookie);
+                    }
 
-                    }).then(user => {
-                        //si le user est un admin rediriger vers la back-office
-                      //  console.log(user)
-                        var admin=userFound.admin
-                        if (admin===true) {
-                            // res.redirect('/users/admin')
-
-                            res.redirect('/cookie')
-                        }else{
-                            // res.redirect('/users/auth')
-
-
-                        }
-                    })
 
                 } else {
                     return res.status(500).json({
@@ -287,68 +298,77 @@ usersController.registre = (req, res, next) => { // POST : /users/registre
                 }
             });
     },
-/**
- * Show the home page
- * @param {object} req Express request object
- * @param {object} res Express response object
- *
- * @memberof usersController
- */
 
-usersController.auth = (req, res) => { // Getting auth header
 
+
+
+
+    /**
+     * Show the home page
+     * @param {object} req Express request object
+     * @param {object} res Express response object
+     *
+     * @memberof usersController
+     */
+
+    usersController.auth = (req, res) => { // Getting auth header
+        res.render('users/profil', {
+            title: "Profil"
+        })
         /**recupère le header du token*/
-        var headerAuth = req.headers['authorization'];
-        var userId = Jwtutil.getUserId(headerAuth);
-        console.log('Votre token='+ req.headers['authorization'])
-        console.log('Votre id='+ userId)
-     console.log(req.headers)
-    //     if (userId < 0)
-    //         return res.status(400).json({
-    //             'error': 'wrong token'
-    //         });
+        //var headerAuth = req.headers['authorization'];
+        //var userId = Jwtutil.getUserId(headerAuth);
+        // console.log('Votre token='+ req.headers['authorization'])
+        //  console.log('Votre id='+ userId)
+        // console.log(req.headers)
+        //     if (userId < 0)
+        //         return res.status(400).json({
+        //             'error': 'wrong token'
+        //         });
         /**chercher les éléments de la table utilisateurs qu'on souhaite récupérer*/
 
-        User.findOne({
-            attributes: ['id', 'nom', 'prenom', 'profession', 'telephone', 'email','admin'],
-            //recup les donnée userid du token
-            where: {
-                id: userId,
-            }
-        }).then(function (user) {
-            if (user) {
-                 console.log(user)
-                res.status(201).json(user);
-                    //sinon vers une page profil utilisateur
-                    // res.render('users/profil', {
-                    //     user: user,
-                    //     title: "Profil"
-                    // })
-                     console.log('TU ES UN USER')
+        // User.findOne({
+        //     attributes: ['id', 'nom', 'prenom', 'profession', 'telephone', 'email', 'admin'],
+        //     //recup les donnée userid du token
+        //     where: {
+        //         id: userId,
+        //     }
+        // }).then(function (user) {
+        //     if (user) {
+        //         //  console.log(user)
+        //         //res.status(201).json(user);
+        //         //sinon vers une page profil utilisateur
+        //         res.render('users/profil', {
+        //             //user: user,
+        //             title: "Profil"
+        //         })
+        //         console.log('TU ES UN USER')
 
 
 
-            } else {
-                res.status(404).json({
-                    'error': 'user not found'
-                });
-            }
-        }).catch(function (err) {
-            res.status(500).json({
-                'error': 'cannot fetch user'
-            });
-        });
+        //     } else {
+        //         res.status(404).json({
+        //             'error': 'user not found'
+        //         });
+        //     }
+        // }).catch(function (err) {
+        //     res.status(500).json({
+        //         'error': 'cannot fetch user'
+        //     });
+        // });
     },
 
 
     usersController.admin = (req, res) => { // Getting auth header
-
+        res.render('admin/dashboard', {
+            title: "Back-office"
+        })
         /**recupère le header du token*/
-        var headerAuth = req.headers['authorization'];
-        var userId = Jwtutil.getUserId(headerAuth);
-        console.log('Votre token='+ req.headers['authorization'])
-        console.log('Votre id='+ userId)
-        console.log(req.headers)
+        // var headerAuth = req.headers['authorization'];
+        // var userId = Jwtutil.getUserId(headerAuth);
+        //   console.log('Votre token='+ req.headers['authorization'])
+        //  console.log('Votre id='+ userId)
+        //  console.log(req.headers)
 
         // if (userId < 0)
         //     return res.status(400).json({
@@ -356,35 +376,35 @@ usersController.auth = (req, res) => { // Getting auth header
         //     });
         /**chercher les éléments de la table utilisateurs qu'on souhaite récupérer*/
 
-        User.findOne({
-            attributes: ['id', 'nom', 'prenom', 'profession', 'telephone', 'email','admin'],
-            //recup les donnée userid du token
-            where: {
-                id: userId,
-            }
-        }).then(function (user) {
-            if (user) {
-                 console.log(user)
-                // res.status(201).json(user);
-                    res.render('admin/dashboard', {
-                        user: user,
-                        title: "Back-office"
-                    })
-                    console.log('TU ES UN ADMIN')
-
-               
+        // User.findOne({
+        //     attributes: ['id', 'nom', 'prenom', 'profession', 'telephone', 'email', 'admin'],
+        //     //recup les donnée userid du token
+        //     where: {
+        //         id: userId,
+        //     }
+        // }).then(function (user) {
+        //     if (user) {
+        //         // console.log(user)
+        //         // res.status(201).json(user);
+        //         res.render('admin/dashboard', {
+        //             user: user,
+        //             title: "Back-office"
+        //         })
+        //         console.log('TU ES UN ADMIN')
 
 
-            } else {
-                res.status(404).json({
-                    'error': 'user not found'
-                });
-            }
-        }).catch(function (err) {
-            res.status(500).json({
-                'error': 'cannot fetch user'
-            });
-        });
+
+
+        //     } else {
+        //         res.status(404).json({
+        //             'error': 'user not found'
+        //         });
+        //     }
+        // }).catch(function (err) {
+        //     res.status(500).json({
+        //         'error': 'cannot fetch user'
+        //     });
+        // });
     },
 
 

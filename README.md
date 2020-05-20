@@ -15,7 +15,7 @@ Trello
 Discord Slack
 VS code
 Google sheet
-Npm : https-errors express path cookie-parser morgan nodemon body-parser express-fileupload ejs sequelize sqlife mysql bcrypt jwt async jsdoc
+Npm : https-errors express path cookie-parser morgan nodemon body-parser express-fileupload ejs sequelize sqlife mysql bcrypt jwt async jsdoc cookie-parser
 
 # A faire:
 
@@ -50,6 +50,7 @@ L'intendification + controller de securité mdp et pas le même utilisateur dans
 -Model crée user_has_campagne user_has_annonceur visuel_has_campagne
 -Role admin =1 et user=0 + repartition des roles et actions (cf.user story)
 -générer la doc avec jsdoc
+-j'arrive a crée un cookie dans laquel le user id et token son stocké
 
 # Prob
 Squelize ne veut pas s'installer =resolue version du package
@@ -58,3 +59,4 @@ Le user apres login n'est pas rediriger vers sa page profil + avec les info lié
 problème upload d'image "mv" undifiend pourtant la fuction est ascry enctype est présent comme le dossier uploads dans public =résolu
 console.log(uploadfile) remplacer let par var uploadfile
 Prob avec le token: la session d'un user n'est pas maintenu
+Au vu du delais j'ai décider de crée et stocké le cookie dans le controller

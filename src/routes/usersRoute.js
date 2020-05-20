@@ -45,6 +45,7 @@ router.post('/registre', usersController.registre);
  */
 router.get('/auth', usersController.auth);
 
+
 router.get('/admin', usersController.admin);
 
 
