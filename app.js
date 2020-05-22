@@ -78,33 +78,6 @@ app.use('/visuels', visuelsRouter);
 var annonceursRouter = require('./src/routes/annonceursRouter');
 app.use('/annonceurs', annonceursRouter);
 
-
-/**
- * @MidleWare
- * UTILISATEUR CONNECTER
- */
-// app.get('/cookie',function (req, res, next) {
-//   console.log(req.cookies)
-//   // check if client sent cookie
-//   var cookie = req.cookies.cookieName;
-//   if (cookie === undefined)
-//   {
-//     // no: set a new cookie
-//     var token='Mon token';
-//     var usersID='userId'
-//   //  randomNumber=randomNumber.substring(2,randomNumber.length);
-//     res.cookie(usersID,token, { maxAge: 900000, httpOnly: true });
-//     return res.send('Cookie crée');
-//   } 
-//   else
-//   {
-//     // yes, cookie was already present 
-//     console.log('cookie exists', cookie);
-//   } 
-//   next(); // <-- important!
-// });
-
-
 /**
  * @MidleWare
  * UTILISATEUR DECONNECTER
