@@ -47,6 +47,8 @@ router.get('/auth', usersController.auth);
 
 
 router.get('/admin', usersController.admin);
+router.get('/logout', usersController.logout);
+
 
 
 module.exports = router;

@@ -25,7 +25,6 @@ Npm : https-errors express path cookie-parser morgan nodemon body-parser express
 
 
 # En cours
--Deconnexion
 -Commande
 
 # Terminer
@@ -52,6 +51,7 @@ L'intendification + controller de securité mdp et pas le même utilisateur dans
 -générer la doc avec jsdoc
 -j'arrive a crée un cookie dans laquel le user id et token son stocké
 -le cookie identifie le user sur chaque page gâce a la fonction slipt, la session du user est maintenu avec l'aide du cookie
+-Logout fonction clear cookie
 
 # Prob
 Squelize ne veut pas s'installer =resolue version du package

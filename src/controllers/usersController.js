@@ -392,11 +392,17 @@ usersController.registre = (req, res) => { // POST : /users/registre
 
     },
 
+    usersController.logout = (req, res) => {
+        /**On récupère en tête cookie */
+        const headerAuth = req.headers['cookie'];
+        /**Avec la fonction clear on supprimer le cookie */
+        res.clearCookie(headerAuth);
+        res.redirect('/');
+    }
 
 
 
 
 
 
-
-    module.exports = usersController;
+module.exports = usersController;
