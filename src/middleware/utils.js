@@ -7,52 +7,22 @@ module.exports = {
      generateTokenForUser: function (userData) {
           console.log(userData)
           /**on génère et sign notre token*/
-          // return jwt.sign({
-          //           //payload continien donner userid et useradmin
-          //           userId: userData.id,
-          //           admin: userData.admin
-
-          //      },
-          //      JWT_SIGN_SECRET,
-          //      //le token ne sera plus valide dans 1h
-          //      {
-          //           expiresIn: '1h'
-          //      })
-          // const token = 
-          //      jwt.sign({
-          //           //payload continien donner userid et useradmin
-          //           userId: userData.id,
-          //           admin: userData.admin
-
-          //      },
-          //      JWT_SIGN_SECRET,
-          //      //le token ne sera plus valide dans 1h
-          //      {
-          //           expiresIn: '1h'
-          //      })
-          // console.log('MA CONST TOKEN:' + token)
-
-          // return res.cookie('token', token, {
-          //      expires: new Date(Date.now() + expiration),
-          //      secure: false, // set to true if your using https
-          //      httpOnly: true,
-          // });
-
           return jwt.sign({
-               //payload continien donner userid et useradmin
-               userId: userData.id,
-               admin: userData.admin
+                    //payload continien donner userid et useradmin
+                    userId: userData.id,
+                    admin: userData.admin
 
-          },
-          JWT_SIGN_SECRET,
-          //le token ne sera plus valide dans 1h
-          {
-               expiresIn: '1h'
-          })
-     //console.log('MA CONST TOKEN:' + token)
+               },
+               JWT_SIGN_SECRET,
+               //le token ne sera plus valide dans 1h
+               {
+                    expiresIn: '1h'
+               })
+
+          //console.log('MA CONST TOKEN:' + token)
 
 
- 
+
 
      },
      parseAuthorization: function (authorization) {
