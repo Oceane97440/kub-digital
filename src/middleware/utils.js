@@ -61,9 +61,9 @@ module.exports = {
 
      },
      getUserId: function (authorization) {
-          //value par defaut
+          /**value par defaut du user id*/
           var userId = -1;
-          //module.exports.parseAuthorization: précise qu'on est dans le même module
+          /**module.exports.parseAuthorization: précise qu'on est dans le même module*/
           var token = module.exports.parseAuthorization(authorization);
           if (token != null) {
                try {

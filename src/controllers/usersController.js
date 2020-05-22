@@ -251,31 +251,35 @@ usersController.registre = (req, res, next) => { // POST : /users/registre
                     }
                 }
             ],
-            /**Si le user a reussi à s'auth on génère son token auth */
             function (userFound) {
                 if (userFound) {
-                    // console.log(userFound.id)
-                    //  console.log(userFound.admin)
-                    // console.log(Jwtutil.generateTokenForUser(userFound))
+                   
 
-                    var cookie = req.cookies.usersID;
+                   var cookie = req.cookies.userId;
                     if (cookie === undefined) {
 
-                        // no: set a new cookie
+                        /**Si le user a reussi à s'auth on génère son token auth */
                         var Token = Jwtutil.generateTokenForUser(userFound);
-                        var usersID = userFound.id
-                        
+                        var userId = userFound.id
+
                         var admin = userFound.admin
                         console.log(Token)
-                        console.log(usersID)
+                        console.log(userId)
                         console.log(admin)
+                        /**Stocke le cookie le id le token du user auth */
 
-                        res.cookie(usersID, Token, admin, {
-                            maxAge: 900000,
+                         res.cookie(userId, Token, admin, {
+                            maxAge: 3600000,
                             httpOnly: true
                         });
-                        //return res.send('Cookie crée');
-                        //  si le user est un admin rediriger vers la back-office
+                        // return res.status(201).json({
+                        //     'ID': userId,
+                        //     'Token': Token,
+                        //     'Admin': admin,
+
+
+                        //   });
+                        /**si le user est un admin rediriger vers la back-office */  
                         if (admin === true) {
                             return res.redirect('/users/admin')
 
@@ -312,50 +316,27 @@ usersController.registre = (req, res, next) => { // POST : /users/registre
      */
 
     usersController.auth = (req, res) => { // Getting auth header
+
+        console.log(req.headers)
+
+
+
         res.render('users/profil', {
             title: "Profil"
         })
         /**recupère le header du token*/
-        //var headerAuth = req.headers['authorization'];
-        //var userId = Jwtutil.getUserId(headerAuth);
-        // console.log('Votre token='+ req.headers['authorization'])
-        //  console.log('Votre id='+ userId)
-        // console.log(req.headers)
-        //     if (userId < 0)
-        //         return res.status(400).json({
-        //             'error': 'wrong token'
-        //         });
+        // var headerAuth = req.headers['authorization'];
+        // var userId = Jwtutil.getUserId(userId);
+         console.log('Votre token='+ req.headers['cookie'])
+
+        /**Vérifie si userId est < 0 si c'est la cas renvoir une erreur, cette erreur signifie que le userId na pas etait récupérer*/
+
+            // if (userId < 0)
+            //     return res.status(400).json({
+            //         'error': 'User Id non définie userid=-1'
+            //     });
         /**chercher les éléments de la table utilisateurs qu'on souhaite récupérer*/
 
-        // User.findOne({
-        //     attributes: ['id', 'nom', 'prenom', 'profession', 'telephone', 'email', 'admin'],
-        //     //recup les donnée userid du token
-        //     where: {
-        //         id: userId,
-        //     }
-        // }).then(function (user) {
-        //     if (user) {
-        //         //  console.log(user)
-        //         //res.status(201).json(user);
-        //         //sinon vers une page profil utilisateur
-        //         res.render('users/profil', {
-        //             //user: user,
-        //             title: "Profil"
-        //         })
-        //         console.log('TU ES UN USER')
-
-
-
-        //     } else {
-        //         res.status(404).json({
-        //             'error': 'user not found'
-        //         });
-        //     }
-        // }).catch(function (err) {
-        //     res.status(500).json({
-        //         'error': 'cannot fetch user'
-        //     });
-        // });
     },
 
 
@@ -364,47 +345,12 @@ usersController.registre = (req, res, next) => { // POST : /users/registre
             title: "Back-office"
         })
         /**recupère le header du token*/
-        // var headerAuth = req.headers['authorization'];
-        // var userId = Jwtutil.getUserId(headerAuth);
-        //   console.log('Votre token='+ req.headers['authorization'])
-        //  console.log('Votre id='+ userId)
-        //  console.log(req.headers)
+        // var headerAuth = req.headers['cookie'];
+        console.log('Votre token='+ req.headers['cookie'])
 
-        // if (userId < 0)
-        //     return res.status(400).json({
-        //         'error': 'wrong token'
-        //     });
         /**chercher les éléments de la table utilisateurs qu'on souhaite récupérer*/
 
-        // User.findOne({
-        //     attributes: ['id', 'nom', 'prenom', 'profession', 'telephone', 'email', 'admin'],
-        //     //recup les donnée userid du token
-        //     where: {
-        //         id: userId,
-        //     }
-        // }).then(function (user) {
-        //     if (user) {
-        //         // console.log(user)
-        //         // res.status(201).json(user);
-        //         res.render('admin/dashboard', {
-        //             user: user,
-        //             title: "Back-office"
-        //         })
-        //         console.log('TU ES UN ADMIN')
-
-
-
-
-        //     } else {
-        //         res.status(404).json({
-        //             'error': 'user not found'
-        //         });
-        //     }
-        // }).catch(function (err) {
-        //     res.status(500).json({
-        //         'error': 'cannot fetch user'
-        //     });
-        // });
+      
     },
 
 

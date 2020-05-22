@@ -5,7 +5,6 @@ var fileUpload = require('express-fileupload');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-var Jwtutil = require('./src/middleware/utils');
 
 
 /** Utilisation de express dans notre serveur*/
