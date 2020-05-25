@@ -19,8 +19,9 @@ Npm : https-errors express path cookie-parser morgan nodemon body-parser express
 
 # A faire:
 
--Avec Squelieze crée les relations entre les table: visuels /campagne (visuels_has_campagne):voir squelize
--Le budjet total s'ajoute lorsque le nombre impression augmente (cela depend du prix du format et quatiter)
+-Récap de la commande (nom user,annonceur,buget total,format,site,visuel,nombre impression)
+-Travaillier sur le font
+-Sécurisation test unitaire
 
 
 
@@ -52,7 +53,8 @@ L'intendification + controller de securité mdp et pas le même utilisateur dans
 -j'arrive a crée un cookie dans laquel le user id et token son stocké
 -le cookie identifie le user sur chaque page gâce a la fonction slipt, la session du user est maintenu avec l'aide du cookie
 -Logout fonction clear cookie
-
+-Avec Squelieze crée les relations entre les table:soluc temporaire cles index
+-Le budjet total s'ajoute lorsque le nombre impression augmente (cela depend du prix du format et quatiter)
 # Sécurisation
 Test : visuel taille poids, si le fichier a le même nom il doit pas être ecraser
 

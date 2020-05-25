@@ -1,5 +1,7 @@
 const campagneController = {};
 const Campagne = require('../models/campagnes');
+const Formats = require('../models/formats')
+
 
 /**
  * Listing campagne
@@ -10,7 +12,19 @@ const Campagne = require('../models/campagnes');
  */
 campagneController.index = (req, res) => { // GET : /campagne/
     //console.log(campagnes);
-    Campagne.findAll().then(campagnes => {
+
+    const headerAuth = req.headers['cookie'];
+
+    /**Utilise la fonction split pour séparer le userid et le token */
+    const token = headerAuth.split('=')
+    var userId = token[0];
+
+    Campagne.findAll({
+        where: {
+            id_users: userId
+        }
+
+    }).then(campagnes => {
         res.render('campagnes/liste_campagne', {
             campagnes: campagnes,
             title: "Listes des campagnes"
@@ -29,20 +43,31 @@ campagneController.index = (req, res) => { // GET : /campagne/
  * @memberof campagneController
  */
 campagneController.create = (req, res) => { // POST : /campagne/create
-    // console.log(req.body);
-    Campagne.create({
+    const headerAuth = req.headers['cookie'];
+
+    /**Utilise la fonction split pour séparer le userid et le token */
+    const token = headerAuth.split('=')
+    var userId = token[0];
+
+
+    // console.log(req.body.format_campagne)
+    //console.log(req.body.prix)
+
+    var campagne = Campagne.create({
         nom_campagne: req.body.nom_campagne,
         date_d: req.body.date_d,
         date_f: req.body.date_f,
-       // statut: req.body.statut,
-        id_formats: Number(req.body.format_campagne), /**choisir un format*/
         id_visuels: Number(req.body.visuel_campagne), /**choisir votre visuel apres créaction*/
-        id_sites: Number(req.body.site_campagne) /**choisir son site de diffusion*/
+        id_sites: Number(req.body.site_campagne),   /**choisir son site de diffusion*/
+        id_formats: req.body.format_campagne,    /**choisir un format*/
+        nbr_impressions: req.body.nbr_impressions,
+        budget_total: req.body.nbr_impressions * req.body.prix,
+        id_users: userId
 
 
     }).then(res.redirect('/campagne'))
-}
 
+}
 /**
  * 
  * @param {object} req Express request object
@@ -86,9 +111,11 @@ campagneController.update = (req, res) => { // POST : campagne/update/:id
             nom_campagne: req.body.nom_campagne,
             date_d: req.body.date_d,
             date_f: req.body.date_f,
-         //   statut: req.body.statut,
-            id_formats: Number(req.body.format_campagne), /**choisir un format*/
-            id_visuels: Number(req.body.visuel_campagne), /**choisir votre visuel apres créaction*/
+            //   statut: req.body.statut,
+            id_formats: Number(req.body.format_campagne),
+            /**choisir un format*/
+            id_visuels: Number(req.body.visuel_campagne),
+            /**choisir votre visuel apres créaction*/
             id_sites: Number(req.body.site_campagne) /**choisir son site de diffusion*/
 
         }, {
@@ -106,6 +133,7 @@ campagneController.update = (req, res) => { // POST : campagne/update/:id
  * @memberof campagneController
  */
 campagneController.delete = (req, res) => { // GET : campagne/delete/:id
+
 
     Campagne.destroy({
         where: {

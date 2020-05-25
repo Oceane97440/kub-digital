@@ -9,8 +9,9 @@ const campagnes = sequelize.define('campagnes', {
     nom_campagne: {type: Sequelize.STRING(45),allowNull:false},
     date_d: {type: Sequelize.STRING(45),allowNull:false},
     date_f: {type: Sequelize.STRING(45),allowNull:false},
-   // nbr_impressions: {type: Sequelize.INTEGER,allowNull:false},
-   // budget_total: {type: Sequelize.FLOAT,allowNull:false},
+   nbr_impressions: {type: Sequelize.INTEGER,allowNull:false},
+   budget_total: {type: Sequelize.FLOAT,allowNull:false},
+   id_users: {type: Sequelize.INTEGER,allowNull:false},
 
 },
 {tableName: 'campagnes', underscored: true, timestamps: false}
@@ -22,7 +23,7 @@ const sites =require('./sites');
 
 
 campagnes.belongsTo(formats,{foreignKey: 'id_formats', onDelete: 'cascade', hooks: true });// la campagne à un format.
-formats.hasMany(campagnes, {foreignKey: 'id_formats', onDelete: 'cascade', hooks: true});// Un format peut avoir plusieur articles.
+formats.hasMany(campagnes, {foreignKey: 'id_formats', onDelete: 'cascade', hooks: true});// Un format peut avoir plusieur campagne.
 
 
 campagnes.belongsTo(visuels,{foreignKey: 'id_visuels', onDelete: 'cascade', hooks: true });// la campagne à un visuel.

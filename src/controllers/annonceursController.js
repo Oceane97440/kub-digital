@@ -9,7 +9,18 @@ const Annonceur = require('../models/annonceurs');
  */
 annonceursController.index = (req, res) => { //GET:/annonceurs
 
-    Annonceur.findAll().then(annonceurs => {
+    const headerAuth = req.headers['cookie'];
+
+    /**Utilise la fonction split pour séparer le userid et le token */
+    const token = headerAuth.split('=')
+    var userId = token[0];
+
+    Annonceur.findAll({
+        where: {
+            id_users: userId
+        }
+
+    }).then(annonceurs => {
         res.render('annonceurs/listes_annonceurs', {
             annonceurs: annonceurs,
             title: "Listes des annonceurs"
@@ -28,11 +39,18 @@ annonceursController.index = (req, res) => { //GET:/annonceurs
  * @memberof annonceursController
  */
 annonceursController.create = (req, res) => { // POST : /annonceurs/create
-    console.log(req.body);
+    const headerAuth = req.headers['cookie'];
+
+    /**Utilise la fonction split pour séparer le userid et le token */
+    const token = headerAuth.split('=')
+    var userId = token[0];
+
+  //  console.log(req.body);
     Annonceur.create({
         nom_societe: req.body.nom_societe,
-       // nom_annonceur: req.body.nom_annonceur,
-        statut: req.body.statut,
+       // statut: req.body.statut,
+        id_users: userId
+
     }).then(res.redirect('/annonceurs'))
 }
 
@@ -78,7 +96,7 @@ annonceursController.update = (req, res) => { // POST : annonceurs/update/:id
     }).then(annonceur => {
         Annonceur.update({
             nom_societe: req.body.nom_societe,
-          //  nom_annonceur: req.body.nom_annonceur,
+            //  nom_annonceur: req.body.nom_annonceur,
             statut: req.body.statut,
         }, {
             where: {
@@ -113,7 +131,7 @@ annonceursController.delete = (req, res) => { // GET : annonceurs/delete/:id
  */
 annonceursController.jsonList = (req, res) => {
     Annonceur.findAll().then(annonceurs => {
-      //  console.log(annonceurs);
+        //  console.log(annonceurs);
         try {
             res.json({
                 statut: "OK",

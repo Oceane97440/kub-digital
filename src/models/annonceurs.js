@@ -10,8 +10,8 @@ module.exports = db.sequelize.define(
 
     id: {type: Sequelize.INTEGER, autoIncrement:true, primaryKey:true },
     nom_societe: {type: Sequelize.STRING(45),allowNull:false},
-  
-    statut: {type: Sequelize.BOOLEAN(),allowNull:false},// 1=actif 0=inactif
+    //statut: {type: Sequelize.BOOLEAN(),allowNull:false},// 1=actif 0=inactif
+    id_users: {type: Sequelize.INTEGER,allowNull:false},
 
 
 },
