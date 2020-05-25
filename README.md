@@ -53,6 +53,10 @@ L'intendification + controller de securité mdp et pas le même utilisateur dans
 -le cookie identifie le user sur chaque page gâce a la fonction slipt, la session du user est maintenu avec l'aide du cookie
 -Logout fonction clear cookie
 
+# Sécurisation
+Test : visuel taille poids, si le fichier a le même nom il doit pas être ecraser
+
+
 # Prob
 Squelize ne veut pas s'installer =resolue version du package
 Le user ne s'enregistre pas dans la base de donné ,la methode bcrypte ne hash pas le mdp =resolu utiliser des fonction asynchrone avec waterfall
