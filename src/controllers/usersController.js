@@ -35,7 +35,7 @@ usersController.index = (req, res) => { // GET : /users
  */
 usersController.create = (req, res) => { // POST : /users/create
 
-    // console.log(req.body);
+     console.log(req.body);
 
     var nom = req.body.nom_user
     var prenom = req.body.prenom_user
@@ -262,7 +262,8 @@ usersController.registre = (req, res) => { // POST : /users/registre
 
                         res.cookie(userId, Token, {
                             maxAge: 3600000,
-                            httpOnly: true
+                            httpOnly: true,
+                            secure: false,// set to true if your using https
                         });
                         // return res.status(201).json({
                         //     'ID': userId,
@@ -392,7 +393,7 @@ usersController.registre = (req, res) => { // POST : /users/registre
 
     },
 
-    usersController.logout = (req, res) => {
+    usersController.logout = (req, res) => { //GET :/users/logout
         /**On récupère en tête cookie */
         const headerAuth = req.headers['cookie'];
         /**Avec la fonction clear on supprimer le cookie */
@@ -406,3 +407,6 @@ usersController.registre = (req, res) => { // POST : /users/registre
 
 
 module.exports = usersController;
+
+
+
