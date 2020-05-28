@@ -61,7 +61,7 @@ campagneController.create = (req, res) => { // POST : /campagne/create
         id_sites: Number(req.body.site_campagne),   /**choisir son site de diffusion*/
         id_formats: req.body.format_campagne,    /**choisir un format*/
         nbr_impressions: req.body.nbr_impressions,
-        budget_total: req.body.nbr_impressions * req.body.prix,
+        budget_total: req.body.nbr_impressions * req.body.prix*1.2,
         id_users: userId
 
 
