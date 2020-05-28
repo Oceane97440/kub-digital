@@ -126,6 +126,8 @@
                         <th scope="col">Visuel upload</th>
                         <th scope="col">Formats</th>
                         <th scope="col">Support</th>
+                        <th scope="col">Budget estimé</th>
+                        <th scope="col">Budget total</th>
                         <th scope="col">Actions</th>
 
 
@@ -143,13 +145,15 @@
                         <td><%= campagnes[i].id_visuels %></td>
                         <td><%= campagnes[i].id_formats %></td>
                         <td><%= campagnes[i].id_sites %></td>
+                        <td><%= campagnes[i].nbr_impressions %></td>
+                        <td><%= campagnes[i].budget_total %></td>
 
 
                         <td>
 
+                            <a class="btn btn-sm btn-info" href="/campagne/recap/<%= campagnes[i].id %>"><i class="far fa-eye"></i></a>
 
-                            <a class="btn btn-sm btn-warning" href="/campagne/edit/<%= campagnes[i].id %>"><i
-                                    class="fa fa-pencil-alt"></i></a>
+                            <a class="btn btn-sm btn-warning" href="/campagne/edit/<%= campagnes[i].id %>"><i class="fas fa-pencil-alt"></i></a>
 
                             <a class="btn btn-sm btn-danger" href="/campagne/delete/<%= campagnes[i].id %>"
                                 type="button"><i class="fas fa-times-circle"></i></a>
@@ -203,10 +207,10 @@
 </script>
 
 
-<script src="/javascripts/formats/ajax.js"></script>
-<script src="/javascripts/annonceurs/ajax.js"></script>
-<script src="/javascripts/visuels/ajax.js"></script>
-<script src="/javascripts/sites/ajax.js"></script>
+<script src="/javascripts/formats/select_format.js"></script>
+<script src="/javascripts/annonceurs/select_ann.js"></script>
+<script src="/javascripts/visuels/select_img.js"></script>
+<script src="/javascripts/sites/select_site.js"></script>
 
 </body>
 

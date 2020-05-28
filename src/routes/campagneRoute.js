@@ -46,7 +46,7 @@ router.post('/update/:id', campagneController.update);
  * 
  */
 router.get('/delete/:id', campagneController.delete);
-
+router.get('/recap/:id', campagneController.recap)
 /**
  * @method GET
  * @url /campagne/jsonList

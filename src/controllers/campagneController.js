@@ -144,6 +144,32 @@ campagneController.delete = (req, res) => { // GET : campagne/delete/:id
     })
 }
 
+campagneController.recap=(req,res)=>{
+
+    
+    const headerAuth = req.headers['cookie'];
+
+    /**Utilise la fonction split pour séparer le userid et le token */
+    const token = headerAuth.split('=')
+    var userId = token[0];
+
+    Campagne.findOne({
+        where: {
+            id_users: userId,
+            id: req.params.id
+
+        }
+
+    }).then(campagne => {
+        res.render('campagnes/recap', {
+            campagne: campagne,
+            title: "Listes des campagnes"
+        });
+    });
+
+}
+
+
 /**
  * 
  * @param {object} req Express request object
