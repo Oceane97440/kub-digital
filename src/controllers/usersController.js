@@ -35,7 +35,7 @@ usersController.index = (req, res) => { // GET : /users
  */
 usersController.create = (req, res) => { // POST : /users/create
 
-     console.log(req.body);
+    // console.log(req.body);
 
     var nom = req.body.nom_user
     var prenom = req.body.prenom_user
@@ -47,12 +47,11 @@ usersController.create = (req, res) => { // POST : /users/create
     /**verifier si les champs ne son pas vide*/
     if (nom == null || prenom == null || email == null || password == null) {
         return res.send('il y a des infos manquantes' + '<a href="/users">Retour</a>')
-
     }
 
     /**verifie si email est valide avec le regex*/
     if (!EMAIL_REGEX.test(email)) {
-        return res.send('mail pas valide' + '<a href="/users">Retour</a>')
+       return res.send('mail pas valide' + '<a href="/users">Retour</a>')
 
     }
     /**verifie si le password contien entre min 4 et max 8 caratère + un number*/
@@ -257,7 +256,7 @@ usersController.registre = (req, res) => { // POST : /users/registre
                         /**Si le user a reussi à s'auth on génère son token auth */
                         var Token = Jwtutil.generateTokenForUser(userFound);
                         var userId = userFound.id
-                        console.log(Token)
+                        //console.log(Token)
                         /**Stocke le cookie le id le token du user auth */
 
                         res.cookie(userId, Token, {
@@ -313,7 +312,7 @@ usersController.registre = (req, res) => { // POST : /users/registre
 
         /**Utilise la fonction split pour séparer le userid et le token */
         const token = headerAuth.split('=')
-        console.log(token);
+       // console.log(token);
         var userId = token[0];
 
         /**Vérifie si userId est < 0 si c'est la cas renvoir une erreur, cette erreur signifie que le userId na pas etait récupérer*/
@@ -329,7 +328,7 @@ usersController.registre = (req, res) => { // POST : /users/registre
                 id: userId
             }
         }).then(function (user) {
-            console.log(user)
+            //console.log(user)
             if (user) {
                 // res.status(201).json(user);
                 res.render('users/profil', {
@@ -356,7 +355,7 @@ usersController.registre = (req, res) => { // POST : /users/registre
         const headerAuth = req.headers['cookie'];
 
         const token = headerAuth.split('=')
-        console.log(token);
+     //   console.log(token);
         var userId = token[0];
 
         if (userId < 0)
@@ -370,7 +369,7 @@ usersController.registre = (req, res) => { // POST : /users/registre
                 id: userId
             }
         }).then(function (user) {
-            console.log(user)
+         //   console.log(user)
             if (user) {
                 // res.status(201).json(user);
                 res.render('admin/dashboard', {
