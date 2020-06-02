@@ -62,7 +62,6 @@ visuelsController.create = async (req, res) => { // POST :/visuels/create
             (uploadedFile.mimetype != 'image/gif') ||
             (uploadedFile.mimetype != 'image/jpeg')) {
 
-         res.send('Extention du fichier invalide')
         } 
         /**Verifie si le fichier n'est pas > à 100ko */
         if (uploadedFile.size>=90000) {
@@ -103,8 +102,9 @@ visuelsController.create = async (req, res) => { // POST :/visuels/create
         })
         .toFile(`public/uploads/${fileName}`);
 
+    
     await Visuels.create({
-        nom_visuel: req.body.nom_visuel,
+        nom_visuel:req.body.nom_visuel ,
         image: fileName,
         id_users: userId
 
