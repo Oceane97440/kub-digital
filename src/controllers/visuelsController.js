@@ -57,22 +57,30 @@ visuelsController.create = async (req, res) => { // POST :/visuels/create
     /**Verifie extention du fichier avant envoie */
     if (req.files) {
         console.log(req.files)
-        if ((uploadedFile.mimetype == 'image/png') ||
-            (uploadedFile.mimetype == 'image/jpg') ||
-            (uploadedFile.mimetype == 'image/gif') ||
-            (uploadedFile.mimetype == 'image/jpeg')) {
+        if ((uploadedFile.mimetype != 'image/png') ||
+            (uploadedFile.mimetype != 'image/jpg') ||
+            (uploadedFile.mimetype != 'image/gif') ||
+            (uploadedFile.mimetype != 'image/jpeg')) {
 
-            res.send('Fichier upload')
-        } else {
-            return res.send('Extention du fichier invalide')
+         res.send('Extention du fichier invalide')
+        } 
+        /**Verifie si le fichier n'est pas > à 100ko */
+        if (uploadedFile.size>=90000) {
+            return res.send('Fichier volumineux')
 
         }
+        else {
+            res.send('fichier upload')
+        }
+       
 
     } else {
         return res.send('un problème est survenu. veuillez réessayer')
 
 
     }
+    
+    
     /**il faut que le dossier upload existe... ;) */
     await uploadedFile.mv('public/uploads/' + uploadedFile.name, err => {
         if (err)
