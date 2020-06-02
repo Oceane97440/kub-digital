@@ -26,7 +26,7 @@
 
                                         <label class="control-label" for="nom_campagne">Etape 1 : Saisissez l'intitulé de votre campagne</label>
                                         <input type="text" name="nom_campagne" class="form-control" id="nom_campagne"
-                                            required />
+                                        pattern="[A-Za-z]{3}" required />
                                     </div>
                                 </div>
 
@@ -94,7 +94,7 @@
 
                                     <label class="control-label" for="nbr_impressions">Nombre impression</label>
                                     <input type="number" class="form-control" name="nbr_impressions" id="nbr_impressions"
-                                        required>
+                                       value="100" min="100" max="9999999" required>
                                 </div>
                             </div>
                         </div>

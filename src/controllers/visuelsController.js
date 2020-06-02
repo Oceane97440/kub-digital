@@ -2,7 +2,7 @@ const visuelsController = {};
 const Visuels = require('../models/visuels');
 const path = require('path');
 const sharp = require('sharp');
-
+const validator = require('validator');
 /**
  * 
  * @param {object} req Express request object
@@ -17,7 +17,9 @@ visuelsController.index = (req, res) => { // GET :/visuels/
     /**Utilise la fonction split pour séparer le userid et le token */
     const token = headerAuth.split('=')
     var userId = token[0];
-
+    if (userId <= 0) {
+        return res.send('utilisateur non trouvé')
+    }
     Visuels.findAll({
         where: {
             id_users: userId
@@ -46,14 +48,31 @@ visuelsController.create = async (req, res) => { // POST :/visuels/create
     /**Utilise la fonction split pour séparer le userid et le token */
     const token = headerAuth.split('=')
     var userId = token[0];
-
-    console.log(req.body);
-    console.log(req.files);
-    console.log(uploadedFile);
+    if (userId <= 0) {
+        return res.send('utilisateur non trouvé')
+    }
 
 
     var uploadedFile = req.files.image_visuel; // nom du champ image
+    /**Verifie extention du fichier avant envoie */
+    if (req.files) {
+        console.log(req.files)
+        if ((uploadedFile.mimetype == 'image/png') ||
+            (uploadedFile.mimetype == 'image/jpg') ||
+            (uploadedFile.mimetype == 'image/gif') ||
+            (uploadedFile.mimetype == 'image/jpeg')) {
 
+            res.send('Fichier upload')
+        } else {
+            return res.send('Extention du fichier invalide')
+
+        }
+
+    } else {
+        return res.send('un problème est survenu. veuillez réessayer')
+
+
+    }
     /**il faut que le dossier upload existe... ;) */
     await uploadedFile.mv('public/uploads/' + uploadedFile.name, err => {
         if (err)
@@ -84,7 +103,6 @@ visuelsController.create = async (req, res) => { // POST :/visuels/create
 
     });
     res.redirect('/visuels');
-
 }
 
 

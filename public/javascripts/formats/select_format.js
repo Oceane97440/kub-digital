@@ -6,7 +6,7 @@ $(document).ready(function () {
 
     function getFormats() {
         $.get("/admin/formats/jsonList", function (formats) {
-            let options = "<option selected>Selectionner votre format</option>";
+            let options = "<option selected >Selectionner votre format</option>";
             formats.data.forEach(format => {
 
                 options += `<option  data-prix="${format.prix}" value="${format.id}">${format.nom_format}</option>`

@@ -14,7 +14,9 @@ annonceursController.index = (req, res) => { //GET:/annonceurs
     /**Utilise la fonction split pour séparer le userid et le token */
     const token = headerAuth.split('=')
     var userId = token[0];
-
+    if (userId<=0) {
+        return res.send('utilisateur non trouvé')
+    }
     Annonceur.findAll({
         where: {
             id_users: userId
@@ -44,7 +46,9 @@ annonceursController.create = (req, res) => { // POST : /annonceurs/create
     /**Utilise la fonction split pour séparer le userid et le token */
     const token = headerAuth.split('=')
     var userId = token[0];
-
+    if (userId<=0) {
+        return res.send('utilisateur non trouvé')
+    }
   //  console.log(req.body);
     Annonceur.create({
         nom_societe: req.body.nom_societe,

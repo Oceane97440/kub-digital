@@ -14,20 +14,9 @@ var Jwt = require('../middleware/utils');
  * @memberof adminController
  */
 adminController.index=(req,res)=>{// GET : /admin/
-    var headerAuth = req.headers['authorization'];
-   console.log(headerAuth)
-
-    var userId = Jwt.getUserId(headerAuth);
-    console.log(userId)
-    User.findOne({
-        /**affiche les élément du profil */
-         attributes: ['id', 'nom', 'prenom', 'profession', 'telephone','email'],
-         where:{
-             id:userId
-         }
-
-     }).then(user => {
-        console.log(user)
+ 
+    User.findOne().then(user => {
+       // console.log(user)
 
         res.render('admin/dashboard',{
             user: user,
@@ -50,7 +39,7 @@ adminController.utilisateurs=(req,res)=>{ // GET : /admin/utilisateurs
         res.render('admin/liste_users',{
             users: users,
            title: "Liste Users"
-        });console.log(users);
+        });//console.log(users);
     }); 
      
 
@@ -89,7 +78,7 @@ adminController.edit=(req,res)=>{ // GET : /admin/edit:id
  * @memberof adminController
  */
 adminController.update = (req, res) => { // POST : admin/update/:id
-    console.log(req.body);
+  //  console.log(req.body);
 
     User.findOne({
         where: {id: req.params.id}

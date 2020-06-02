@@ -146,7 +146,7 @@ usersController.create = (req, res) => { // POST : /users/create
         function (newUser) {
             if (newUser) {
                 return res.redirect('/users/login');
-
+           
             } else {
                 return res.status(500).json({
                     'error': 'impossible add le user'
