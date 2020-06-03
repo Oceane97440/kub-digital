@@ -158,9 +158,8 @@ visuelsController.update = (req, res) => { // POST : visuels/update/:id
     }).then(visuels => {
         Visuels.update({
             nom_visuel: req.body.nom_visuel,
-            image: req.body.image
+            image: req.body.image_visuel
 
-            //  id_formats: Number(req.body.format_visuels),//choisir un format
 
         }, {
             where: {
