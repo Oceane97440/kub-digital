@@ -57,24 +57,32 @@ visuelsController.create = async (req, res) => { // POST :/visuels/create
     /**Verifie extention du fichier avant envoie */
     if (req.files) {
         console.log(req.files)
-        if ((uploadedFile.mimetype != 'image/png') ||
-            (uploadedFile.mimetype != 'image/jpg') ||
-            (uploadedFile.mimetype != 'image/gif') ||
-            (uploadedFile.mimetype != 'image/jpeg')) {
-
+        if ((uploadedFile.mimetype == 'image/png') ||
+            (uploadedFile.mimetype == 'image/jpg') ||
+            (uploadedFile.mimetype == 'image/gif') ||
+            (uploadedFile.mimetype == 'image/jpeg')) {
         } 
+        else{
+            res.json({res:'KO', success:{message:"Extention du fichier invalide"}});
+
+        }
         /**Verifie si le fichier n'est pas > à 100ko */
         if (uploadedFile.size>=90000) {
-            return res.send('Fichier volumineux')
+           // return res.send('Fichier volumineux')
+          return res.json({res:'KO', success:{message:"Fichier volumineux"}});
 
         }
         else {
-            res.send('fichier upload')
+          //  res.send('fichier upload')
+            res.json({res:'KO', success:{message:"Fichier ajouté!"}});
+
         }
        
 
     } else {
-        return res.send('un problème est survenu. veuillez réessayer')
+       // return res.send('un problème est survenu. veuillez réessayer')
+        return res.json({res:'KO', success:{message:"Un problème est survenu. veuillez réessayer"}});
+
 
 
     }
@@ -86,7 +94,7 @@ visuelsController.create = async (req, res) => { // POST :/visuels/create
             return res.status(500).send(err)
     });
 
-    fileName = path.parse(uploadedFile.name).name + ".jpg"; /* remplace l'extension originale par .jpg*/
+    fileName = path.parse(uploadedFile.name).name ; /* remplace l'extension originale par .jpg*/
 
     file = await sharp(uploadedFile.data) /**resize si hauteur plus haut que 400 et converti en jp */
         .resize({
@@ -96,10 +104,10 @@ visuelsController.create = async (req, res) => { // POST :/visuels/create
             /**resize si largeur plus haut que 600px*/
             withoutEnlargement: true /**Ne pas agrandir si la largeur ou la hauteur sont déjà inférieures aux dimensions spécifiées*/
         })
-        .toFormat("jpeg") /**converti le fichier en jpg*/
-        .jpeg({
-            quality: 90
-        })
+        // .toFormat("jpeg") /**converti le fichier en jpg*/
+        // .jpeg({
+        //     quality: 90
+        // })
         .toFile(`public/uploads/${fileName}`);
 
     
@@ -112,7 +120,6 @@ visuelsController.create = async (req, res) => { // POST :/visuels/create
     });
     res.redirect('/visuels');
 }
-
 
 
 
