@@ -26,7 +26,7 @@
 
                                         <label class="control-label" for="nom_campagne">Etape 1 : Saisissez l'intitulé de votre campagne</label>
                                         <input type="text" name="nom_campagne" class="form-control" id="nom_campagne"
-                                        pattern="[A-Za-z]{3}" required />
+                                       required />
                                     </div>
                                 </div>
 
@@ -142,9 +142,9 @@
                             <br>
                             <%= campagnes[i].date_f %>
                         </td>
-                        <td><%= campagnes[i].id_visuels %></td>
-                        <td><%= campagnes[i].id_formats %></td>
-                        <td><%= campagnes[i].id_sites %></td>
+                        <td><%= campagnes[i].visuel.nom_visuel %></td>
+                        <td><%= campagnes[i].format.nom_format %></td>
+                        <td><%= campagnes[i].site.nom_site %></td>
                         <td><%= campagnes[i].nbr_impressions %></td>
                         <td><%= campagnes[i].budget_total %></td>
 

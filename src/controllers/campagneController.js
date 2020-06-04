@@ -1,6 +1,9 @@
 const campagneController = {};
 const Campagne = require('../models/campagnes');
-const Formats = require('../models/formats')
+const Formats = require('../models/formats');
+const Users = require('../models/users');
+const Sites = require('../models/sites');
+const Visuels = require('../models/visuels');
 
 /**
  * Listing campagne
@@ -17,13 +20,29 @@ campagneController.index = (req, res) => { // GET : /campagne/
     /**Utilise la fonction split pour séparer le userid et le token */
     const token = headerAuth.split('=')
     var userId = token[0];
-     if (userId<=0) {
+    if (userId <= 0) {
         return res.send('utilisateur non trouvé')
     }
     Campagne.findAll({
             where: {
                 id_users: userId
-            }
+            },
+            include: [{
+                    model: Users
+                },
+                {
+                    model: Formats
+                },
+                {
+                    model: Sites
+                },
+                {
+                    model: Visuels
+                }
+
+
+
+            ]
 
         }
 
@@ -174,20 +193,37 @@ campagneController.recap = (req, res) => {
     /**Utilise la fonction split pour séparer le userid et le token */
     const token = headerAuth.split('=')
     var userId = token[0];
-
+    // console.log(req.params.id)
     Campagne.findOne({
         where: {
             id_users: userId,
             id: req.params.id
 
-        }
+        },
+        include: [{
+                model: Users
+            },
+            {
+                model: Formats
+            },
+            {
+                model: Sites
+            },
+            {
+                model: Visuels
+            }
 
+
+
+        ]
     }).then(campagne => {
+        console.log(campagne)
         res.render('campagnes/recap', {
             campagne: campagne,
             title: "Listes des campagnes"
         });
     });
+
 
 }
 

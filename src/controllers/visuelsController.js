@@ -60,41 +60,56 @@ visuelsController.create = async (req, res) => { // POST :/visuels/create
         if ((uploadedFile.mimetype == 'image/png') ||
             (uploadedFile.mimetype == 'image/jpg') ||
             (uploadedFile.mimetype == 'image/gif') ||
-            (uploadedFile.mimetype == 'image/jpeg')) {
-        } 
-        else{
-            res.json({res:'KO', success:{message:"Extention du fichier invalide"}});
-
+            (uploadedFile.mimetype == 'image/jpeg')) {} else {
+            res.json({
+                error: {
+                    message: "Extention du fichier invalide"
+                }
+            });
         }
         /**Verifie si le fichier n'est pas > à 100ko */
-        if (uploadedFile.size>=90000) {
-           // return res.send('Fichier volumineux')
-          return res.json({res:'KO', success:{message:"Fichier volumineux"}});
+        if (uploadedFile.size >= 90000) {
+            // return res.send('Fichier volumineux')
+            return res.json({
+                result: alerte,
+                error: {
+                    message: "Fichier volumineux"
+                }
+            });
+
+        } else {
+            //  res.send('fichier upload')
+            res.json({
+                result: 'KO',
+                success: {
+                    message: "Fichier ajouté!"
+                }
+            });
 
         }
-        else {
-          //  res.send('fichier upload')
-            res.json({res:'KO', success:{message:"Fichier ajouté!"}});
 
-        }
-       
 
     } else {
-       // return res.send('un problème est survenu. veuillez réessayer')
-        return res.json({res:'KO', success:{message:"Un problème est survenu. veuillez réessayer"}});
+        // return res.send('un problème est survenu. veuillez réessayer')
+        return res.json({
+            result: alerte,
+            error: {
+                message: "Un problème est survenu. veuillez réessayer"
+            }
+        });
 
 
 
     }
-    
-    
+
+
     /**il faut que le dossier upload existe... ;) */
     await uploadedFile.mv('public/uploads/' + uploadedFile.name, err => {
         if (err)
             return res.status(500).send(err)
     });
 
-    fileName = path.parse(uploadedFile.name).name ; /* remplace l'extension originale par .jpg*/
+    fileName = path.parse(uploadedFile.name).name; /* remplace l'extension originale par .jpg*/
 
     file = await sharp(uploadedFile.data) /**resize si hauteur plus haut que 400 et converti en jp */
         .resize({
@@ -104,15 +119,12 @@ visuelsController.create = async (req, res) => { // POST :/visuels/create
             /**resize si largeur plus haut que 600px*/
             withoutEnlargement: true /**Ne pas agrandir si la largeur ou la hauteur sont déjà inférieures aux dimensions spécifiées*/
         })
-        // .toFormat("jpeg") /**converti le fichier en jpg*/
-        // .jpeg({
-        //     quality: 90
-        // })
+
         .toFile(`public/uploads/${fileName}`);
 
-    
+
     await Visuels.create({
-        nom_visuel:req.body.nom_visuel ,
+        nom_visuel: req.body.nom_visuel,
         image: fileName,
         id_users: userId
 
@@ -210,6 +222,7 @@ visuelsController.jsonList = (req, res) => {
             })
         } catch (error) {
             res.json({
+
                 statut: "KO",
                 message: error
             })

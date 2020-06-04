@@ -20,7 +20,7 @@ const campagnes = sequelize.define('campagnes', {
 const formats = require('./formats');
 const visuels=require('./visuels')
 const sites =require('./sites');
-
+const users=require('./users');
 
 campagnes.belongsTo(formats,{foreignKey: 'id_formats', onDelete: 'cascade', hooks: true });// la campagne à un format.
 formats.hasMany(campagnes, {foreignKey: 'id_formats', onDelete: 'cascade', hooks: true});// Un format peut avoir plusieur campagne.
@@ -32,7 +32,8 @@ visuels.hasMany(campagnes, {foreignKey: 'id_visuels', onDelete: 'cascade', hooks
 campagnes.belongsTo(sites,{foreignKey: 'id_sites', onDelete: 'cascade', hooks: true });// la campagne à un site.
 sites.hasMany(campagnes, {foreignKey: 'id_sites', onDelete: 'cascade', hooks: true});// Un site peut avoir plusieur campagne.
 
-
+campagnes.belongsTo(users,{foreignKey: 'id_users', onDelete: 'cascade', hooks: true });// la campagne à un user.
+users.hasMany(campagnes, {foreignKey: 'id_users', onDelete: 'cascade', hooks: true});// Un user peut avoir plusieur campagne.
 
 
 module.exports = campagnes;

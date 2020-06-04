@@ -5,8 +5,7 @@ var fileUpload = require('express-fileupload');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-//var session=require('express-session');
-//var flash = require('connect-flash');
+
 
 
 /** Utilisation de express dans notre serveur*/
@@ -39,19 +38,7 @@ app.use(fileUpload({
   }
 
 }));
-/**Express session middleware */
-// app.use(session({
-//   secret: 'keyboard cat',
-//   resave: false,
-//   saveUninitialized: true,
-//   cookie: { secure: true }
-// }))
-/**Express message middleware */
-// app.use(require('connect-flash')());
-// app.use(function (req, res, next) {
-//   res.locals.messages = require('express-messages')(req, res);
-//   next();
-// });
+
 /**Route pour uploads image*/
 app.post('/uploads', function (req) {
   console.log(req.files.image_visuel.name); //requette.files.nom du file 
@@ -92,15 +79,6 @@ app.use('/visuels', visuelsRouter);
 var annonceursRouter = require('./src/routes/annonceursRouter');
 app.use('/annonceurs', annonceursRouter);
 
-/**
- * @MidleWare
- * UTILISATEUR DECONNECTER
- */
-app.get('/logout', function (req, res) {
-  req.auth = false;
-  req.token = null;
-  res.redirect('/')
-})
 
 
 /**Le serveur ecoute sur le port 3000  */

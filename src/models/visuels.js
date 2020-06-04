@@ -16,6 +16,10 @@ const visuels = sequelize.define('visuels', {
 },
 {tableName: 'visuels', underscored: true, timestamps: false}
 );
+const users=require('./users');
+
+visuels.belongsTo(users,{foreignKey: 'id_users', onDelete: 'cascade', hooks: true });
+users.hasMany(visuels, {foreignKey: 'id_users', onDelete: 'cascade', hooks: true});
 
 
 

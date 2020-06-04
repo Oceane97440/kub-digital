@@ -1,8 +1,9 @@
 const adminController = {};
-const User = require('../models/users.js');
-const Campagne = require('../models/campagnes');
+const Users = require('../models/users.js');
+const Campagnes = require('../models/campagnes');
 const Visuels = require('../models/visuels');
-var Jwt = require('../middleware/utils');
+const Formats = require('../models/formats');
+const Sites = require('../models/sites');
 
 
 
@@ -13,16 +14,17 @@ var Jwt = require('../middleware/utils');
  *
  * @memberof adminController
  */
-adminController.index=(req,res)=>{// GET : /admin/
- 
-    User.findOne().then(user => {
-       // console.log(user)
+adminController.index = (req, res) => { // GET : /admin/
 
-        res.render('admin/dashboard',{
+    Users.findOne().then(user => {
+        // console.log(user)
+
+        res.render('admin/dashboard', {
             user: user,
             title: "Dashboard_admin"
-        });console.log(user);
-    }); 
+        });
+        console.log(user);
+    });
 
 }
 /**
@@ -32,16 +34,16 @@ adminController.index=(req,res)=>{// GET : /admin/
  *
  * @memberof adminController
  */
-adminController.utilisateurs=(req,res)=>{ // GET : /admin/utilisateurs
+adminController.utilisateurs = (req, res) => { // GET : /admin/utilisateurs
 
     /**search l'ensemble des users dans la tables */
-    User.findAll().then(users => {
-        res.render('admin/liste_users',{
+    Users.findAll().then(users => {
+        res.render('admin/liste_users', {
             users: users,
-           title: "Liste Users"
-        });//console.log(users);
-    }); 
-     
+            title: "Liste Users"
+        }); //console.log(users);
+    });
+
 
 
 }
@@ -53,17 +55,19 @@ adminController.utilisateurs=(req,res)=>{ // GET : /admin/utilisateurs
  *
  * @memberof adminController
  */
-adminController.edit=(req,res)=>{ // GET : /admin/edit:id
+adminController.edit = (req, res) => { // GET : /admin/edit:id
 
-  
+
     User.findOne({
-        where: {id: req.params.id}
+        where: {
+            id: req.params.id
+        }
 
     }).then(user => {
-    console.log(user)
-        res.render('admin/edit_users',{
-           user: user,
-           title:"Edit user"
+        console.log(user)
+        res.render('admin/edit_users', {
+            user: user,
+            title: "Edit user"
         })
     })
 
@@ -78,10 +82,12 @@ adminController.edit=(req,res)=>{ // GET : /admin/edit:id
  * @memberof adminController
  */
 adminController.update = (req, res) => { // POST : admin/update/:id
-  //  console.log(req.body);
+    //  console.log(req.body);
 
     User.findOne({
-        where: {id: req.params.id}
+        where: {
+            id: req.params.id
+        }
     }).then(user => {
         User.update({
             nom: req.body.nom_user,
@@ -89,10 +95,10 @@ adminController.update = (req, res) => { // POST : admin/update/:id
             email: req.body.email_user,
             profession: req.body.profession_user,
             telephone: req.body.telephone_user,
-            statut:req.body.statut
+            statut: req.body.statut
         }, {
-            where:{
-                id:req.params.id
+            where: {
+                id: req.params.id
             }
         }).then(res.redirect('/admin/utilisateurs'))
     })
@@ -120,7 +126,28 @@ adminController.delete = (req, res) => { // GET : admin/delete/:id
 
 adminController.campagne_admin = (req, res) => { // GET : admin/campagne/delete/:id
 
-    Campagne.findAll().then(campagnes => {
+    Campagnes.findAll({
+
+            include: [{
+                    model: Users
+                },
+                {
+                    model: Formats
+                },
+                {
+                    model: Sites
+                },
+                {
+                    model: Visuels
+                }
+
+
+
+            ]
+
+        }
+
+    ).then(campagnes => {
         res.render('admin/liste_campagne', {
             campagnes: campagnes,
             title: "Listes des campagnes"
@@ -137,7 +164,7 @@ adminController.campagne_admin = (req, res) => { // GET : admin/campagne/delete/
  */
 adminController.delete_campagne = (req, res) => { // GET : /admin/campagne/delete/:id
 
-    Campagne.destroy({
+    Campagnes.destroy({
         where: {
             id: req.params.id
         }
@@ -148,13 +175,17 @@ adminController.delete_campagne = (req, res) => { // GET : /admin/campagne/delet
 
 adminController.visuels_admin = (req, res) => {
 
-    Visuels.findAll().then(visuels => {
-        res.render('admin/liste_visuels',{
+    Visuels.findAll(
+        {
+         include: [{model: Users}]
+        }
+    ).then(visuels => {
+        res.render('admin/liste_visuels', {
             visuels: visuels,
-           title: "Listes des visuels"
+            title: "Listes des visuels"
         });
-    }); 
-     
+    });
+
 
 }
 /**
@@ -175,6 +206,37 @@ adminController.delete_visuels = (req, res) => { // GET : /admin/visuels/delete/
     })
 }
 
+adminController.jsonList = (req, res) => {
+    User.findAll().then(users => {
+        try {
+            res.json({
+                statut: "OK",
+                data: users,
+                message: ""
+            })
+        } catch (error) {
+            res.json({
+                statut: "KO",
+                message: error
+            })
+        }
+    })
+}
 
+adminController.jsonList_visuels = (req, res) => {
+    Visuels.findAll().then(visuels => {
+        //  console.log(visuels);
+        try {
+            res.json({
+                data: visuels,
+            })
+        } catch (error) {
+            res.json({
+
+                message: error
+            })
+        }
+    })
+}
 
 module.exports = adminController;

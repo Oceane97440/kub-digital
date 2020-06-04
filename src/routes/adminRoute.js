@@ -17,6 +17,7 @@ router.get('/', adminController.index);
  * 
  */
 router.get('/utilisateurs', adminController.utilisateurs);
+
 /**
  * @request GET
  * @controller edit
@@ -68,6 +69,9 @@ router.get('/visuels', adminController.visuels_admin)
  * Supprime un visuel grâce à son id
  */
 router.get('/visuels/delete/:id', adminController.delete_visuels);
+router.get('/utilisateurs/jsonList', adminController.jsonList);
+router.get('/visuels/jsonList', adminController.jsonList_visuels);
+
 
 
 module.exports = router;

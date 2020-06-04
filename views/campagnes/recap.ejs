@@ -42,9 +42,12 @@
                                 <div class="col invoice-to">
                                     <div class="text-gray-light">INVOICE TO:</div>
 
-                                    <h2 class="to">John Doe: <%= campagne.id_users %></h2>
-                                    <div class="address">796 Silver Harbour, TX 79273, US</div>
-                                    <div class="email"><a href="mailto:john@example.com">john@example.com</a></div>
+                                    <h2 class="to"><%= campagne.utilisateur.nom %> <%= campagne.utilisateur.prenom %></h2>
+
+                                
+
+                                    <!-- <div class="address">796 Silver Harbour, TX 79273, US</div> -->
+                                    <div class="email"><a href="mailto:john@example.com"><%= campagne.utilisateur.email %></a></div>
                                 </div>
                                 <div class="col invoice-details">
                                     <h1 class="invoice-id">Campagne</h1>
@@ -68,11 +71,11 @@
                                         <td class="no">01</td>
                                         <td class="text-left">
                                             <h3><%= campagne.nom_campagne %></h3>
-                                            <p><strong>Intitulé du visuel</strong>: <%= campagne.id_visuels %></p> 
-                                            <p><strong>Support de diffusion:</strong><%= campagne.id_sites %></p>
+                                            <p><strong>Intitulé du visuel</strong>: <%= campagne.visuel.nom_visuel %></p>
+                                            <p><strong>Support de diffusion:</strong>:<%= campagne.site.nom_site %></p>
                                         </td>
 
-                                        <td class="qty"><%= campagne.id_formats %></td>
+                                        <td class="qty"><%= campagne.format.nom_format %></td>
 
                                         <td class="total"><%= campagne.nbr_impressions %></td>
                                     </tr>
@@ -93,7 +96,6 @@
                             Invoice was created on a computer and is valid without the signature and seal.
                         </footer>
                     </div>
-                    <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
                     <div></div>
                 </div>
             </div>

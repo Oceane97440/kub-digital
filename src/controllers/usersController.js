@@ -401,8 +401,7 @@ usersController.registre = (req, res) => { // POST : /users/registre
     }
 
 
-
-
+ 
 
 
 module.exports = usersController;

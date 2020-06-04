@@ -36,12 +36,12 @@
                                 <br>
                                 <%= campagnes[i].date_f %>
                             </td>
-                            <td><%= campagnes[i].id_visuels %></td>
-                            <td><%= campagnes[i].id_formats %></td>
-                            <td><%= campagnes[i].id_sites %></td>
+                            <td><%= campagnes[i].visuel.nom_visuel %></td>
+                        <td><%= campagnes[i].format.nom_format %></td>
+                        <td><%= campagnes[i].site.nom_site %></td>
                             <td><%= campagnes[i].nbr_impressions %></td>
-                            <td><%= campagnes[i].budget_total %></td>
-                            <td><%= campagnes[i].id_users %></td>
+                            <td><%= campagnes[i].budget_total %>€</td>
+                            <td><%= campagnes[i].utilisateur.nom %> <%= campagnes[i].utilisateur.prenom %></td>
 
 
                             <td>
