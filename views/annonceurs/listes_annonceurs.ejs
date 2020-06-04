@@ -25,7 +25,10 @@
                                 <label for="nom_societe">Nom de la société :</label>
                                 <input type="text" class="form-control" name="nom_societe" id="nom_societe"   required />
                             </div>
-                       
+                            <div class="form-group">
+                                <label for="adresse">Adresse de la société :</label>
+                                <input type="text" class="form-control" name="adresse" id="adresse"   required />
+                            </div>
                 
 
 
@@ -48,7 +51,7 @@
                       <tr>
                           <th scope="col">#</th>
                           <th scope="col">Nom de la société </th>
-                          <th scope="col">Status</th>
+                          <th scope="col">Adresse  de la société</th>
                           <th scope="col">Action</th>
       
       
@@ -59,6 +62,8 @@
                             <tr>
                                 <th scope="row"><%= annonceurs[i].id %></th>
                                 <td><%= annonceurs[i].nom_societe %></td>
+                                <td><%= annonceurs[i].adresse %></td>
+
                     
             
                                 <td>
