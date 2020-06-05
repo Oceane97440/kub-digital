@@ -2,7 +2,6 @@ const visuelsController = {};
 const Visuels = require('../models/visuels');
 const path = require('path');
 const sharp = require('sharp');
-const validator = require('validator');
 /**
  * 
  * @param {object} req Express request object
@@ -79,12 +78,12 @@ visuelsController.create = async (req, res) => { // POST :/visuels/create
 
         } else {
             //  res.send('fichier upload')
-            res.json({
-                result: 'KO',
-                success: {
-                    message: "Fichier ajouté!"
-                }
-            });
+            // res.json({
+            //     result: 'KO',
+            //     success: {
+            //         message: "Fichier ajouté!"
+            //     }
+            // });
 
         }
 
@@ -109,7 +108,7 @@ visuelsController.create = async (req, res) => { // POST :/visuels/create
             return res.status(500).send(err)
     });
 
-    fileName = path.parse(uploadedFile.name).name; /* remplace l'extension originale par .jpg*/
+    fileName = path.parse(uploadedFile.name).name +"jpeg"; /* remplace l'extension originale par .jpg*/
 
     file = await sharp(uploadedFile.data) /**resize si hauteur plus haut que 400 et converti en jp */
         .resize({
