@@ -1,4 +1,4 @@
-<% include ../layouts/doctype.ejs %>
+<% include ../_partials/nav_dashboard.ejs %>
 
    
 
@@ -7,10 +7,10 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card"style="margin-top: 20%;">
-            <div class="login-blue p-3 shadow-lg rounded">
+            <div id="card" style="margin-top: 20px; border-radius: 10px;" class="card border-danger ">
+                <div class="login-blue p-3 shadow-lg rounded">
                 <div class="pt-3">
-                    <h2 class="text-dark">Admin | Ajout d'un utilisateur</h2>
+                    <h2 class="text-dark">Admin | Edit un utilisateur</h2>
                 </div>
         
                 <form id="signup-form" data-parsley-validate class="mt-5" role="form" action="/admin/update/<%= user.id %>" method="POST"> 
@@ -65,13 +65,13 @@
         
         
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                             <select value="<%= user.statut %>" name="statut" id="">
                                 <option value="1">Actif</option>
                                 <option value="0">Inactif</option>
 
                             </select>
-                    </div>
+                    </div> -->
         
         
                     <div class="mt-5">

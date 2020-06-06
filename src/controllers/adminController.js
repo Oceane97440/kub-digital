@@ -58,7 +58,7 @@ adminController.utilisateurs = (req, res) => { // GET : /admin/utilisateurs
 adminController.edit = (req, res) => { // GET : /admin/edit:id
 
 
-    User.findOne({
+    Users.findOne({
         where: {
             id: req.params.id
         }
@@ -95,7 +95,7 @@ adminController.update = (req, res) => { // POST : admin/update/:id
             email: req.body.email_user,
             profession: req.body.profession_user,
             telephone: req.body.telephone_user,
-            statut: req.body.statut
+            statut: false
         }, {
             where: {
                 id: req.params.id

@@ -7,9 +7,11 @@
     <div class="row">
 
 
-          
 
-        <div class="col-md-6 col-lg-6 col-sm-3">
+
+        <div class="col-md-6 col-lg-12 col-sm-3">
+            <div class="table-responsive" style="margin-top: 30px;">
+
                 <table class="table table-striped table-dark">
                     <thead class="thead-dark">
                         <tr>
@@ -37,8 +39,8 @@
                                 <%= campagnes[i].date_f %>
                             </td>
                             <td><%= campagnes[i].visuel.nom_visuel %></td>
-                        <td><%= campagnes[i].format.nom_format %></td>
-                        <td><%= campagnes[i].site.nom_site %></td>
+                            <td><%= campagnes[i].format.nom_format %></td>
+                            <td><%= campagnes[i].site.nom_site %></td>
                             <td><%= campagnes[i].nbr_impressions %></td>
                             <td><%= campagnes[i].budget_total %>€</td>
                             <td><%= campagnes[i].utilisateur.nom %> <%= campagnes[i].utilisateur.prenom %></td>
@@ -47,7 +49,7 @@
                             <td>
 
 
-                                
+
                                 <a class="btn btn-sm btn-danger" href="/admin/campagnes/delete/<%= campagnes[i].id %>"
                                     type="button"><i class="fas fa-times-circle"></i></a>
                             </td>
@@ -60,10 +62,11 @@
                     <% } %>
 
                 </table>
+            </div>
         </div>
     </div>
-    </div>
-    </div>
+</div>
+</div>
 
 </div>
 </div>

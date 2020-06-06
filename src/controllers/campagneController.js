@@ -142,7 +142,11 @@ campagneController.edit = (req, res) => { // GET : /campagne/edit:id
  */
 campagneController.update = (req, res) => { // POST : campagne/update/:id
     //  console.log(req.body);
+    const headerAuth = req.headers['cookie'];
 
+    /**Utilise la fonction split pour séparer le userid et le token */
+    const token = headerAuth.split('=')
+    var userId = token[0];
     Campagne.findOne({
         where: {
             id: req.params.id
@@ -157,7 +161,10 @@ campagneController.update = (req, res) => { // POST : campagne/update/:id
             /**choisir un format*/
             id_visuels: Number(req.body.visuel_campagne),
             /**choisir votre visuel apres créaction*/
-            id_sites: Number(req.body.site_campagne) /**choisir son site de diffusion*/
+            id_sites: Number(req.body.site_campagne), /**choisir son site de diffusion*/
+            nbr_impressions: req.body.nbr_impressions,
+            budget_total: req.body.nbr_impressions * req.body.prix * 1.2,
+            id_users: userId
 
         }, {
             where: {

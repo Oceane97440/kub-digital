@@ -29,7 +29,7 @@ router.post('/create', visuelsController.create);
  * Formulaire d'edit d'un visuels
  * 
  */
-router.get('/edit/:id', visuelsController.edit);
+//router.get('/edit/:id', visuelsController.edit);
 
 /**
  * @request POST
@@ -37,7 +37,7 @@ router.get('/edit/:id', visuelsController.edit);
  * Update des info de la visuels
  * 
  */
-router.post('/update/:id', visuelsController.update);
+//router.post('/update/:id', visuelsController.update);
 
 /**
  * @request DELETE

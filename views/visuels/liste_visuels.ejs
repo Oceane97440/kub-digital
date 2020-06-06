@@ -8,7 +8,7 @@
         <div class="col-md-5 col-lg-6 col-sm-3">
 
 
-            <div class="card card-default">
+            <div id="card" style="margin-top: 20px; border-radius: 10px;" class="card border-danger col-sm-6 ">
                 <div class="card-header">
                     <h4 class="card-title">
 
@@ -22,15 +22,16 @@
                             <div class="row">
 
 
-                                <div class="col-md-3 col-lg-4">
+                                <div class="col-sm-9">
                                     <div class="form-group">
-                                        <label class="control-label" for="image_visuel">Image</label>
+                                        <label class="control-label" for="image_visuel">Image: Choisir votre
+                                            image</label>
                                         <input type="file" name="image_visuel" id="image_visuel" class="form-control"
                                             required />
                                     </div>
                                 </div>
 
-                                <div class="col-md-3 col-lg-4">
+                                <div class="col-sm-9">
                                     <div class="form-group">
                                         <label class="control-label" for="nom_visuel">Intitulé du visuel</label>
                                         <input type="text" name="nom_visuel" class="form-control" id="nom_visuel"
@@ -43,7 +44,7 @@
                             </div>
                             <div class="mt-5">
                                 <button id="signup-submit-btn" class="btn btn-sm btn-info col">
-                                    Ajouter un visuel                                
+                                    Ajouter un visuel
                                 </button>
                             </div>
 
@@ -55,49 +56,51 @@
 
 
         <div class="col-md-6 col-lg-6 col-sm-3">
+            <div class="table-responsive">
+
                 <table class="table table-striped table-dark">
                     <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Ajouter un visuel</th>
-                                <th scope="col">Image upload</th>
-                                <th scope="col">Action</th>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Ajouter un visuel</th>
+                            <th scope="col">Image upload</th>
+                            <th scope="col">Action</th>
 
 
-                            </tr>
-                        </thead>
-                        <% for(let i=0; i < visuels.length; i++) {%>
-                        <tbody>
-                            <tr>
-                                <th scope="row"><%= visuels[i].id %></th>
-                                <td><%= visuels[i].nom_visuel %></td>
-                                <td><img src="/uploads/<%= visuels[i].image %>"
-                                        alt="/uploads/<%= visuels[i].image %>" />
-                                </td>
+                        </tr>
+                    </thead>
+                    <% for(let i=0; i < visuels.length; i++) {%>
+                    <tbody>
+                        <tr>
+                            <th scope="row"><%= visuels[i].id %></th>
+                            <td><%= visuels[i].nom_visuel %></td>
+                            <td><img src="/uploads/<%= visuels[i].image %>" alt="/uploads/<%= visuels[i].image %>" />
+                            </td>
 
 
-                                <td>
+                            <td>
 
-                                    <a class="btn btn-sm btn-warning" href="/visuels/edit/<%= visuels[i].id %>"><i
-                                            class="fa fa-pencil-alt"></i></a>
+                                <!-- <a class="btn btn-sm btn-warning" href="/visuels/edit/<%= visuels[i].id %>">
+                                    <i class="fas fa-pencil-alt"></i></a> -->
 
-                                    <a class="btn btn-sm btn-danger" href="/visuels/delete/<%= visuels[i].id %>"
-                                        type="button"><i class="fas fa-times-circle"></i></a>
-
-
-                                </td>
+                                <a class="btn btn-sm btn-danger" href="/visuels/delete/<%= visuels[i].id %>"
+                                    type="button"><i class="fas fa-times-circle"></i></a>
 
 
+                            </td>
 
-                            </tr>
 
-                        </tbody>
-                        <% } %>
 
-                    </table>
+                        </tr>
+
+                    </tbody>
+                    <% } %>
+
+                </table>
             </div>
         </div>
-        </div>
+    </div>
+</div>
 
 
 

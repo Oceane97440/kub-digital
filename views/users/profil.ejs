@@ -2,110 +2,172 @@
 
 
 
-        <div class="container-fluid">
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Étape 1</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Crée votre annonceur</h6>
+          <p class="card-text">Renseigner les informations de votre entreprise</p><br>
+          <a type="button" class="btn btn-success" href="/annonceurs">Démarrer</a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Étape 2</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Ajouter un visuel</h6>
+          <p class="card-text">Dans cette section vous choisir votre visuel publicitaire à diffuser</p>
+          <a type="button" class="btn btn-success" href="/visuels">Démarrer</a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Étape 3</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Crée votre campagne</h6>
+          <p class="card-text">Lancez vous dans la programmation de votre campagne digitale</p>
+          <a type="button" class="btn btn-warning" href="/campagne">Démarrer</a>
+
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Étape 4</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Saisissez votre budget </h6>
+          <p class="card-text">Une impression correspond à un affichage de l'élément publicitaire.
+
+            Le nombre d'impressions est décompté au niveau de notre l'ad server </p>
+
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Récapitulatif</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Récaputilatif de votre campagne</h6>
+          <p class="card-text">Apres avoir termier les étape précédente.Vous pouvez voir un récaputilatif de votre
+            campagne et son budget global</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Profile -->
+  <div class="container emp-profile">
+    <form method="post">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="profile-img">
+            <img
+              src="https://evs-profilepics.s3.amazonaws.com/production/user_recommendations/pictures/000/000/021/original/10506738_10150004552801856_220367501106153455_o.jpg?1538645734"
+              alt="" />
+            <div class="file btn btn-lg btn-primary">
+              Change Photo
+              <input type="file" name="file" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="profile-head">
+            <h5>
+              <%=user.nom%> <%=user.prenom%>
+            </h5>
+            <h6>
+              <%=user.profession%>            
+            </h6>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                  aria-selected="true">Vos informations</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                  aria-controls="profile" aria-selected="false">Autre</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="profile-work">
+            <p>Menu</p>
+            <a href="/annonceurs">Annonceurs</a><br />
+            <a href="/visuels">Visuels</a><br />
+            <a href="/campagne">Campagnes</a>
+
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="tab-content profile-tab" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
               <div class="row">
-            <div class="col">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Étape 1</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Crée votre annonceur</h6>
-                  <p class="card-text">Renseigner les informations de votre entreprise</p>
-                  <a  type="button" class="btn btn-success"href="/annonceurs">Démarrer</a>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Étape 2</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Ajouter un visuel</h6>
-                  <p class="card-text">Dans cette section vous choisir votre visuel publicitaire à diffuser</p>
-                  <a  type="button" class="btn btn-success"href="/visuels">Démarrer</a>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Étape 3</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Crée votre campagne</h6>
-                  <p class="card-text">Lancez vous dans la programmation de votre campagne digitale</p>
-                  <a  type="button" class="btn btn-warning"href="/campagne">Démarrer</a>
 
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Nom</label>
+                </div>
+                <div class="col-md-6">
+                  <p><%=user.nom%></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Prénom</label>
+                </div>
+                <div class="col-md-6">
+                  <p><%=user.prenom%></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Email</label>
+                </div>
+                <div class="col-md-6">
+                  <p><%=user.email%></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Téléphone</label>
+                </div>
+                <div class="col-md-6">
+                  <p><%=user.telephone%></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Profession</label>
+                </div>
+                <div class="col-md-6">
+                  <p><%=user.profession%></p>
                 </div>
               </div>
             </div>
-            <div class="col">
-              <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Étape 4</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Saisissez votre budget </h6>
-                  <p class="card-text">Une impression  correspond à un affichage de l'élément publicitaire.
-                    
-                    Le nombre d'impressions  est  décompté au niveau de notre l'ad server </p>
-
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Récapitulatif</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Récaputilatif de votre campagne</h6>
-                    <p class="card-text">Apres avoir termier les étape précédente.Vous pouvez voir un récaputilatif de votre campagne et son budget global</p>
-
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Vos informations</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Vos informations personnelles</h6>
-                  <p class="card-text"><strong>Nom:</strong>  <%=user.nom%> </p>
-                  <p class="card-text"><strong>Prenom:</strong> <%=user.prenom%> </p>
-                  <p class="card-text"><strong>Profession:</strong> <%=user.profession%> </p>
-                  <p class="card-text"><strong>Téléphone:</strong>  <%=user.telephone%> </p>
-                  <p class="card-text"><strong>Email:</strong>  <%=user.email%> </p>
-
-                  <!-- <a type="button" class="btn btn-warning"href="/admin/edit/<%= user.id %>">Modifier</a> -->
-
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Campagne</h5>
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">En cours</th>
-                        <th scope="col">Commencer</th>
-                        <th scope="col">Terminer</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Campagne Zeop</td>
-                        <td>Campagne Zeop promo</td>
-                        <td>Campagne Zeop promo2</td>
-                      </tr>
-                     
-                    </tbody>
-                  </table>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+              <div class="row">
+                <div class="col-md-12">
+                  <label>Your Bio</label><br />
+                  <p>Your detail description</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </form>
+  </div>
+</div>
 
 
 
@@ -129,25 +191,25 @@
 
 
 
-      <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-  </script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-  </script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+</script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
 
 
 <script>
-    $( document ).ready(function() {
-     $('.leftmenutrigger').on('click', function(e) {
-     $('.side-nav').toggleClass("open");
-     e.preventDefault();
+  $(document).ready(function () {
+    $('.leftmenutrigger').on('click', function (e) {
+      $('.side-nav').toggleClass("open");
+      e.preventDefault();
     });
-});
+  });
 </script>
 
 

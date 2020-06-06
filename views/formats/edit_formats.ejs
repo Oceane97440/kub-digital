@@ -1,52 +1,51 @@
-<% include ../layouts/doctype.ejs %>
-<div class="card bg-light mb-3 mx-auto mt-5" style="max-width: 35rem;">
+<% include ../_partials/nav_dashboard.ejs %>
+<div class="card bg-light mb-3 mx-auto mt-5" style="max-width: 18rem; margin-top: 20px; border-radius: 10px;">
     <div class="card-header">
         Ajouter d'un format
     </div>
     <div class="card-body">
-        <form id="signup-form" data-parsley-validate class="mt-5" role="form" action="/admin/formats/update/<%= format.id %>"
-            method="POST">
+        <form id="signup-form" data-parsley-validate class="mt-5" role="form"
+            action="/admin/formats/update/<%= format.id %>" method="POST">
             <div class="row">
-          
-                    <div class="form-group">
-                        <label class="control-label"for="nom_format">Nom du format</label>
-                        <input type="text" name="nom_format" id="nom_format"class="form-control" value="<%= format.nom_format %>" required/>
-                    </div>
-           
 
-
-           
-                    <div class="form-group">
-                        <div class="input-group date">
-                            <label class="control-label"for="dimension_w">Dimension longeur (W)</label>
-
-                            <input type="number" class="form-control" name="dimension_w" id="dimension_w"
-                                value="<%= format.dimension_w %>" min="50"required>
-
-                        </div>
-                    </div>
-          
-                    <div class="form-group">
-                        <label class="control-label"for="dimension_h">Dimension hauteur (H)</label>
-                        <input type="number" class="form-control" name="dimension_h" id="dimension_h"
-                            value="<%= format.dimension_h %>" min="50" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label" for="prix">Prix (HT en €)</label>
-                        <input type="number" name="prix" id="prix"class="form-control"
-                        min="50" value="<%= format.prix %>" required />
-
-                    </div>
-              
+                <div class="form-group">
+                    <label class="control-label" for="nom_format">Nom du format</label>
+                    <input type="text" name="nom_format" id="nom_format" class="form-control"
+                        value="<%= format.nom_format %>" required />
                 </div>
-        
-                    <div class="card-footer bg-transparent border-success justify-content-center d-flex">
-                        <button type="submit" class="btn btn-warning">Modif</button>
-                    </div>
+
+
+
+
+                <div class="form-group">
+                    <label class="control-label" for="dimension_w">Dimension longeur (W)</label>
+
+                    <input type="number" class="form-control" name="dimension_w" id="dimension_w"
+                        value="<%= format.dimension_w %>" min="50" required>
+
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="dimension_h">Dimension hauteur (H)</label>
+                    <input type="number" class="form-control" name="dimension_h" id="dimension_h"
+                        value="<%= format.dimension_h %>" min="50" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="prix">Prix (HT en €)</label>
+                    <input type="number" name="prix" id="prix" class="form-control" min="50" value="<%= format.prix %>"
+                        required />
+
+                </div>
+
+            </div>
+
+            <div class="card-footer bg-transparent border-success justify-content-center d-flex">
+                <button type="submit" class="btn btn-warning">Modif</button>
+            </div>
         </form>
-   
-</div>
+
+    </div>
 </div>
 
 <% include ../layouts/doctype_end.ejs %>
