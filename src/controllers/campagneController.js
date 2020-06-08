@@ -152,17 +152,32 @@ campagneController.update = (req, res) => { // POST : campagne/update/:id
             id: req.params.id
         }
     }).then(campagnes => {
+        var date_d = req.body.date_d
+        var date_f = req.body.date_f
+        var nbr_impressions = req.body.nbr_impressions
+    
+        /**verifier si les champs ne son pas vide*/
+        if (date_d > date_f) {
+            return res.send('date invalide la date de debut est inférieur à la date du fin')
+        }
+    
+        if (date_f == date_d) {
+            return res.send('date invalide la date de fin est égal à la date du début')
+        }
+        if (nbr_impressions <= 0) {
+            return res.send('Nombre impression est invalide')
+        }
         Campagne.update({
             nom_campagne: req.body.nom_campagne,
-            date_d: req.body.date_d,
-            date_f: req.body.date_f,
+            date_d:date_d,
+            date_f:date_f,
             //   statut: req.body.statut,
             id_formats: Number(req.body.format_campagne),
             /**choisir un format*/
             id_visuels: Number(req.body.visuel_campagne),
             /**choisir votre visuel apres créaction*/
             id_sites: Number(req.body.site_campagne), /**choisir son site de diffusion*/
-            nbr_impressions: req.body.nbr_impressions,
+            nbr_impressions: nbr_impressions,
             budget_total: req.body.nbr_impressions * req.body.prix * 1.2,
             id_users: userId
 

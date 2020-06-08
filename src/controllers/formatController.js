@@ -1,13 +1,14 @@
 const formatController = {};
 const Formats = require('../models/formats');
-
+REGEX_NOM = /^([a-zA-Z '_]+)$/;
 /**
  * 
  * @param {object} req Express request object
  * @param {object} res Express response object
  * @memberof formatController
  */
-formatController.index = (req, res) => { /**GET: /admin/formats/*/
+formatController.index = (req, res) => {
+    /**GET: /admin/formats/*/
 
     Formats.findAll().then(formats => {
         res.render('formats/liste_formats', {
@@ -24,13 +25,35 @@ formatController.index = (req, res) => { /**GET: /admin/formats/*/
  * @param {object} res Express response object
  * @memberof formatController
  */
-formatController.create = (req, res) => { /** POST : /admin/formats/create*/ 
+formatController.create = (req, res) => {
+    /** POST : /admin/formats/create*/
     // console.log(req.body);
+    var nom_format = req.body.nom_format
+    var dimension_w = req.body.dimension_w
+    var dimension_h = req.body.dimension_h
+    var prix = req.body.prix
+
+    if (!REGEX_NOM.test(nom_format)) {
+        return res.send('Nom du format invalide')
+    }
+
+    if (dimension_w < 20 || dimension_h < 20) {
+        return res.send('Dimension est invalide')
+
+    }
+
+
+    if (prix < 10) {
+        return res.send('Prix est invalide')
+
+    }
+
+
     Formats.create({
-        nom_format: req.body.nom_format,
-        dimension_w: req.body.dimension_w,
-        dimension_h: req.body.dimension_h,
-        prix: req.body.prix,
+        nom_format: nom_format,
+        dimension_w: dimension_w,
+        dimension_h: dimension_h,
+        prix: prix,
 
     }).then(res.redirect('/admin/formats'))
 }
@@ -43,7 +66,8 @@ formatController.create = (req, res) => { /** POST : /admin/formats/create*/
  * @param - id: number
  * @memberof formatController
  */
-formatController.edit = (req, res) => { /**GET: /admin/formats/edit/:id*/
+formatController.edit = (req, res) => {
+    /**GET: /admin/formats/edit/:id*/
 
 
     Formats.findOne({
@@ -65,18 +89,38 @@ formatController.edit = (req, res) => { /**GET: /admin/formats/edit/:id*/
  * @param {object} res Express response object
  * @memberof formatController
  */
-formatController.update = (req, res) => { /**POST: /admin/formats/update*/
+formatController.update = (req, res) => {
+    /**POST: /admin/formats/update*/
 
     Formats.findOne({
         where: {
             id: req.params.id
         }
     }).then(format => {
+        var nom_format = req.body.nom_format
+        var dimension_w = req.body.dimension_w
+        var dimension_h = req.body.dimension_h
+        var prix = req.body.prix
+
+        if (!REGEX_NOM.test(nom_format)) {
+            return res.send('Nom du format invalide')
+        }
+
+        if (dimension_w < 20 || dimension_h < 20) {
+            return res.send('Dimension est invalide')
+
+        }
+
+
+        if (prix < 10) {
+            return res.send('Prix est invalide')
+
+        }
         Formats.update({
-            nom_format: req.body.nom_format,
-            dimension_w: req.body.dimension_w,
-            dimension_h: req.body.dimension_h,
-            prix: req.body.prix,
+            nom_format: nom_format,
+            dimension_w: dimension_w,
+            dimension_h: dimension_h,
+            prix: prix,
 
         }, {
             where: {
@@ -94,7 +138,8 @@ formatController.update = (req, res) => { /**POST: /admin/formats/update*/
 
  * @memberof formatController
  */
-formatController.delete = (req, res) => { /** GET : /admin/formats/**delete/:id*/
+formatController.delete = (req, res) => {
+    /** GET : /admin/formats/**delete/:id*/
 
     Formats.destroy({
         where: {
@@ -106,7 +151,7 @@ formatController.delete = (req, res) => { /** GET : /admin/formats/**delete/:id*
 }
 
 
-formatController.jsonList = (req, res) => { 
+formatController.jsonList = (req, res) => {
 
     //permet de convertion la data en json
     Formats.findAll().then(formats => {

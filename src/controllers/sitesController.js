@@ -1,5 +1,6 @@
 const sitesController = {};
 const Sites = require('../models/sites');
+REGEX_NOM = /^([a-zA-Z '.]+)$/;
 
 
 /**
@@ -40,9 +41,16 @@ sitesController.add = (req, res) => { //GET:admin/sites/add
  * @memberof sitesController
  */
 sitesController.create = (req, res) => { // POST : admin/sites/create
-    console.log(req.body);
+    //   console.log(req.body);
+
+    var nom_site = req.body.nom_site
+    if (!REGEX_NOM.test(nom_site)) {
+        return res.send('Nom du site invalide')
+    }
+
+
     Sites.create({
-        nom_site: req.body.nom_site,
+        nom_site: nom_site,
         statut: false,
     }).then(res.redirect('/admin/sites'))
 }
@@ -88,8 +96,15 @@ sitesController.update = (req, res) => { // POST : admin/sites/update/:id
             id: req.params.id
         }
     }).then(site => {
+
+        var nom_site = req.body.nom_site
+        
+        if (!REGEX_NOM.test(nom_site)) {
+            return res.send('Nom du site invalide')
+        }
+
         Sites.update({
-            nom_site: req.body.nom_site,
+            nom_site: nom_site,
             statut: false,
         }, {
             where: {
@@ -102,7 +117,7 @@ sitesController.update = (req, res) => { // POST : admin/sites/update/:id
  * 
  * @param {object} req Express request object
  * @param {object} res Express response object
-  * @param - id: number
+ * @param - id: number
  * @memberof sitesController
  */
 sitesController.delete = (req, res) => { // GET : sites/delete/:id
